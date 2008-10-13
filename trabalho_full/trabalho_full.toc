@@ -1,0 +1,30 @@
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{6}
+\contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{6}
+\contentsline {section}{\numberline {1.2}Proposta Funcional}{7}
+\contentsline {subsection}{\numberline {1.2.1}Usu\IeC {\'a}rios}{7}
+\contentsline {subsection}{\numberline {1.2.2}Introdu\IeC {\c c}\IeC {\~a}o do Material (Cadastro)}{8}
+\contentsline {subsection}{\numberline {1.2.3}Intera\IeC {\c c}\IeC {\~a}o com o Material (Execu\IeC {\c c}\IeC {\~a}o)}{8}
+\contentsline {section}{\numberline {1.3}Proposta de Trabalho}{9}
+\contentsline {chapter}{\numberline {2}Mecanismos de Arquitetura}{10}
+\contentsline {section}{\numberline {2.1}Introdu\IeC {\c c}\IeC {\~a}o}{10}
+\contentsline {section}{\numberline {2.2}Linguagem de Programa\IeC {\c c}\IeC {\~a}o}{10}
+\contentsline {subsection}{\numberline {2.2.1}C/C++}{11}
+\contentsline {subsection}{\numberline {2.2.2}Pascal}{12}
+\contentsline {subsection}{\numberline {2.2.3}Fortran}{12}
+\contentsline {subsection}{\numberline {2.2.4}Java (op\IeC {\c c}\IeC {\~a}o final)}{12}
+\contentsline {section}{\numberline {2.3}Ambiente de Desenvolvimento, Compila\IeC {\c c}\IeC {\~a}o e Publica\IeC {\c c}\IeC {\~a}o}{13}
+\contentsline {section}{\numberline {2.4}Testes Automatizados}{13}
+\contentsline {section}{\numberline {2.5}Arquitetura}{14}
+\contentsline {subsection}{\numberline {2.5.1}Mapeamento Objeto-Relacional}{15}
+\contentsline {subsection}{\numberline {2.5.2}Apresenta\IeC {\c c}\IeC {\~a}o e MVC (Model / View / Controller)}{17}
+\contentsline {subsection}{\numberline {2.5.3}Invers\IeC {\~a}o de Controle / Inje\IeC {\c c}\IeC {\~a}o de Depend\IeC {\^e}ncias}{19}
+\contentsline {chapter}{\numberline {3}Projeto de Software}{21}
+\contentsline {chapter}{\numberline {4}M\IeC {\'e}todos e Modelos}{22}
+\contentsline {section}{\numberline {4.1}Modelo Econom\IeC {\'e}trico: S\IeC {\'e}ries de Tempo}{22}
+\contentsline {section}{\numberline {4.2}M\IeC {\'e}todos Num\IeC {\'e}ricos}{23}
+\contentsline {chapter}{\numberline {5}Experimentos e Resultados}{24}
+\contentsline {chapter}{\numberline {6}Conclus\IeC {\~o}es}{25}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{26}
+\contentsline {section}{\numberline {A.1}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{26}
+\contentsline {chapter}{Refer\^encias Bibliogr\'aficas}{27}

@@ -1,0 +1,44 @@
+wellington
+carta de próprio punho
+assina
+no. da matrícula
+tel. para contato
+
+fax do plano individual, 2a. a 6a., das 8h às 17h
+2139-1520
+
+
+
+
+Mecanismos de Arquitetura
+
+Introdução
+
+Este documento tem por objetivo detalhar as tecnologias (linguagens, ferramentas e frameworks) e metodologias (padrões de projeto) utilizadas na implementação do software, bem como as motivações para a escolha de cada uma delas.
+
+Um pré-requisito importante é que todas as ferramentas utilizadas sejam gratuitas, e, sempre que possível, de código aberto. Isto garante que a ferramenta resultante possa ser ampliada e modificada por qualquer entidade interessada sem que hajam restrições de qualquer natureza.
+
+Linguagem de Programação
+
+É necessário fazer duas escolhas neste tópico: a da linguagem a ser utilizada para construir a ferramenta, e a da linguagem através da qual os algoritmos serão descritos para a mesma.
+
+Para a aplicação, é preciso ter uma linguagem que ofereça performance, escalabilidade, suporte ao desenvolvimento para a web e facilidade para trabalhar com bancos de dados relacionais.
+
+O algoritmo exige uma linguagem que possa ser compilada ou interpretada dinâmicamente, que tenha respaldo acadêmico (para aproveitar código pré-existente) e, preferencialmente, que já possua um ambiente de compilação/runtime livre (as complexidades inerentes a este tipo de implementação fogem ao escopo deste trabalho). 
+
+Apesar das naturezas relativamente divergentes das demandas mencionadas acima, os avanços recentes em linguagens 
+
+ (por exemplo, a aplicação, por exigir performance, demanda uma linguagem compilada e fortemente tipada, enquanto que os algoritmos pedem a flexibilidade que linguagens dinâmicas e de ligação dinâmica oferecem), o uso de uma única linguagem t
+
+existem atualmente linguagens/ambientes flexíveis o suficiente para atender às duas demandas.
+
+
+
+
+IDE
+
+Framewokrs
+Maven
+Hibernate
+Spring
+Stripes

@@ -1,0 +1,417 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 0.4
+% see http://www.hj-gym.dk/~hj/writer2latex for more info
+\documentclass[12pt,twoside]{article}
+\usepackage[ascii]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuges]{babel}
+\usepackage{amsmath,amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{calc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=blue, pagecolor=blue, urlcolor=blue}
+% Outline numbering
+\setcounter{secnumdepth}{0}
+% List styles
+\newcommand\liststyleLi{%
+\renewcommand\labelitemi{[25CF?]}
+\renewcommand\labelitemii{[25CB?]}
+\renewcommand\labelitemiii{[25A0?]}
+\renewcommand\labelitemiv{[25CF?]}
+}
+% Pages styles (master pages)
+\makeatletter
+\newcommand\ps@Standard{%
+\renewcommand\@oddhead{}%
+\renewcommand\@evenhead{}%
+\renewcommand\@oddfoot{}%
+\renewcommand\@evenfoot{}%
+\setlength\paperwidth{20.999cm}\setlength\paperheight{29.699cm}\setlength\voffset{-1in}\setlength\hoffset{-1in}\setlength\topmargin{2cm}\setlength\headheight{12pt}\setlength\headsep{0cm}\setlength\footskip{12pt+0cm}\setlength\textheight{29.699cm-2cm-2cm-0cm-12pt-0cm-12pt}\setlength\oddsidemargin{2cm}\setlength\textwidth{20.999cm-2cm-2cm}
+\renewcommand\thepage{\arabic{page}}
+\setlength{\skip\footins}{0.101cm}\renewcommand\footnoterule{\vspace*{-0.018cm}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.018cm}}\vspace*{0.101cm}}
+}
+\makeatother
+\pagestyle{Standard}
+% footnotes configuration
+\makeatletter
+\renewcommand\thefootnote{\arabic{footnote}}
+\makeatother
+\begin{document}
+\subsubsection[Uma Plataforma de Software para o EstudoInterativo de
+M\'etodos e Algoritmos Econom\'etricos:Mecanismos de ArquiteturaDraft
+Inicial, vers\~ao 2 (Mar\c{c}o/2008) {--} Carlos Duarte do
+Nascimento]{Uma Plataforma de Software para o Estudo\newline
+Interativo de M\'etodos e Algoritmos Econom\'etricos:\newline
+Mecanismos de Arquitetura\newline
+\newline
+\textmd{\textit{Draft Inicial, vers\~ao 2 (Mar\c{c}o/2008) {--} Carlos
+Duarte do Nascimento}}}
+\paragraph{Introdu\c{c}\~ao}
+Este documento tem por objetivo detalhar as tecnologias (linguagens,
+ferramentas e frameworks) e metodologias (padr\~oes de projeto)
+escolhidas para a aplica\c{c}\~ao que ir\'a implementar a plataforma
+proposta, expondo as \ motiva\c{c}\~oes por tr\'as de cada escolha.
+
+As escolhas definidas aqui foram norteadas por dois pr\'e requisitos:
+que todas as metodologias tenham referencial acad\^emico e
+implementa\c{c}\~oes bem{}-sucedidas; e que todas as ferramentas
+utilizadas sejam gratuitas e de c\'odigo livre, garantindo que a
+aplica\c{c}\~ao \ possa ser ampliada e modificada por qualquer entidade
+interessada, sem que hajam restri\c{c}\~oes de qualquer natureza.
+
+\paragraph{Linguagem de Programa\c{c}\~ao}
+\'E necess\'ario fazer duas escolhas neste t\'opico: a da linguagem a
+ser utilizada para construir o aplicativo, e a da linguagem atrav\'es
+da qual os algoritmos ser\~ao descritos para a mesma.
+
+Para o aplicativo, \'e preciso ter uma linguagem que ofere\c{c}a
+performance, escalabilidade, suporte ao desenvolvimento para a web e
+facilidade para trabalhar com bancos de dados relacionais (ferramenta
+indispens\'avel para o volume de dados gerado pelo uso em larga escala,
+vide adiante). Tamb\'em \'e importante que a linguagem n\~ao seja
+excessivamente obscura ou limitada a um nicho de mercado, j\'a que um
+dos objetivos \'e propor uma plataforma que possa ser ampliada e
+melhorada por quem tenha interesse.
+
+J\'a o algoritmo exige uma linguagem que possa ser compilada ou
+interpretada dinamicamente, que tenha respaldo acad\^emico (para
+aproveitar o c\'odigo e, mais importante, o conhecimento
+pr\'e{}-existente no corpo docente) e, preferencialmente, que j\'a
+possua um ambiente de compila\c{c}\~ao/runtime livre (a
+implementa\c{c}\~ao de tal ambiente n\~ao as complexidades inerentes a
+este tipo de implementa\c{c}\~ao fogem ao escopo deste trabalho). 
+
+Apesar das naturezas relativamente divergentes das demandas mencionadas
+acima, os avan\c{c}os recentes em linguagens de programa\c{c}\~ao
+[cita\c{c}\~ao] oferecem linguagens e ambientes flex\'iveis o
+suficiente para atender a ambas as demandas {--} e o uso de uma
+linguagem \'unica simplifica o projeto e reduz a barreira de entrada
+para novos desenvolvedores.
+
+Algumas das linguagens ``cl\'assicas'' consideradas foram:
+
+\textbf{C/C++}: A melhor op\c{c}\~ao em termos de performance. Por ter
+acesso aos mais diferentes tipos de bilbiotecas nos diversos sistemas
+operacionais existentes, tamb\'em n\~ao apresentaria problemas para
+trabalhar com banco de dados ou com web. No entanto, a
+programa\c{c}\~ao nesta dupla \'e bastante sujeita a erros, e muitas
+vezes \'e preciso escolher entre a flexibilidade do C++ e a performance
+do C. Al\'em disso, \'e necess\'ario um esfor\c{c}o extra para garantir
+a compabilidade entre diferentes plataformas. Tais fatores elevariam o
+tempo do \ projeto e colocariam uma barreira \`a entrada de novos
+desenvolvedores {--} isso sem falar que dificilmente a
+programa\c{c}\~ao dos algoritmos seria feita de forma didaticamente
+vi\'avel nela.
+
+\textbf{Pascal}: Tem a seu favor um excelente balan\c{c}o entre
+performance e facilidade de programa\c{c}\~ao (por ser mais fortemente
+tipada do que C e executar muitas das verifica\c{c}\~oes de erros
+comuns em tempo de execu\c{c}\~ao), al\'em de possuir extens\~oes de
+orienta\c{c}\~ao a objeto e implementa\c{c}\~oes livres (como o Free
+Pascal). No entanto as universidades j\'a n\~ao tem mais inclu\'ido
+esta linguagem em seus curr\'iculos (Java \'e o substituto mais comum),
+o que se reflete em reduzida disponibilidade de programadores.
+
+\textbf{FORTRAN}: Um dos pontos fortes \'e a vasta quantidade de
+algoritmos econom\'etricos dispon\'iveis na literatura j\'a codificados
+nesta linguagem. No entanto, a linguagem oferece poucas facilidades
+para a programa\c{c}\~ao na web, e a m\~ao{}-de{}-obra dispon\'ivel \'e
+muito limitada ao meio cient\'ifico/acad\^emico.
+
+O equil\'ibrio entre as demandas funcionais e n\~ao{}-funcionais levou
+\`a escolha da linguagem \textbf{Java} para a primeira
+implementa\c{c}\~ao. \ Caso esta escolha n\~ao seja a mais apropriada
+no futuro, recomenda{}-se o uso de linguagens din\^amicas como
+\textbf{Ruby}, \textbf{Python} ou \textbf{LISP}, ou, alternativamente,
+como linguagens est\'aticas com suporte a reflex\~ao, como \textbf{C\#}
+ou \textbf{Objective{}-C} {--} observando{}-se o mapeamento dos
+mecanismos de arquitetura para recursos equivalentes em cada uma delas.
+
+A vers\~ao 6 da plataforma Java permite que o compilador seja invocado
+atrav\'es de APIs de alto n\'ivel. Isto permitir\'a a execu\c{c}\~ao
+interativa dos algoritmos econom\'etricos de forma independente de
+sistema operacional ou plataforma.
+
+\paragraph{Ambiente de Desenvolvimento, Compila\c{c}\~ao e
+Publica\c{c}\~ao}
+\'E importante que o processo de compila\c{c}\~ao e publica\c{c}\~ao
+(\textit{deploy}) da aplica\c{c}\~ao sejam completamente automatizados,
+de forma que um novo desenvolvedor possa facilmente descarregar o
+c\'odigo existente de um reposit\'orio, test\'a{}-lo e implementar
+novas caracter\'isticas.
+
+A grande quantidade de frameworks envolvidos no processo gera uma
+dificuldade adicional: o gerenciamento de depend\^encias. Tento isto em
+vista, usaremos o \textbf{Maven}\textmd{ n\~ao apenas para executar a
+compila\c{c}\~ao e publica\c{c}\~ao, mas tamb\'em para recuperar
+automaticamente todas as bibliotecas (.JAR) de frameworks utilizados a
+partir da Internet.}
+
+O c\'odigo{}-fonte n\~ao ir\'a exigir nenhum IDE (ambiente de
+desenvolvimento) em particular. No entanto, o \textbf{Eclipse} ser\'a
+utilizado como ferramenta base, sempre tomando o cuidado de n\~ao
+tornar a ferrametna dependente dele. 
+
+\subparagraph{Testes Automatizados}
+\'E muito importante que o sistema mantenha os resultados consistentes,
+mesmo com a implementa\c{c}\~ao de novas funcionalidades. Para tanto, a
+cria\c{c}\~ao de testes autom\'aticos (unit\'arios e funcionais)
+durante o processo de desenvolvimento (e n\~ao como um detalhe
+adicional) \'e indispens\'avel [cita\c{c}\~ao de test{}-driven
+development].
+
+O framework \textbf{JUnit} \'e uma escolha natural para a
+implementa\c{c}\~ao de testes automatizados, devido \`a sua natureza
+n\~ao{}-intrusiva e ao uso difundido em projetos Java. Mesmo testes
+funcionais autom\'aticos podem ser feitos atrav\'es dele (havendo a
+possibilidade de expandi{}-lo com o uso da extens\~ao \textbf{JFunc}).
+
+\paragraph{Arquitetura}
+{\upshape
+Sob a perspectiva da arquitetura geral, o sistema pode ser visto como
+uma cole\c{c}\~ao interativa de
+CRUDs\footnote{Create{}-Read{}-Update{}-Delete, acr\^onimo para
+m\'odulos que efetuam estas quatro opera\c{c}\~oes b\'asicas sobre
+algum tipo de entidade.} (as exce\c{c}\~oes ficam por conta da
+execu\c{c}\~ao interativa de algoritmos e da importa\c{c}\~ao de
+dados), sendo, portanto, razo\'avel trabalhar com a tradicional
+[cita\c{c}\~ao] separa\c{c}\~ao em tr\^es camadas:}
+
+\liststyleLi
+\begin{enumerate}
+\item {\upshape
+uma camada de opera\c{c}\~oes (back{}-end) tais como: armazenamento de
+dados, execu\c{c}\~ao de algoritmos e convers\~ao de formatos, cuja
+implementa\c{c}\~ao \'e detalhada adiante;}
+\item {\upshape
+uma camada intermedi\'aria de ``fachada'' [cita\c{c}\~ao: Session Facade
+Pattern], agrupando as opera\c{c}\~oes de alto n\'ivel. Esta camada
+ser\'a implementada atrav\'es de classes e m\'etodos est\'aticos
+simples [cita\c{c}\~ao: POJO];}
+\item {\upshape
+uma camada de interface (front{}-end), utilizando MVC e outros
+princ\'ipios detalhados a seguir.}
+\end{enumerate}
+As melhores pr\'aticas de desenvolvimento de software muitas vezes
+demandam a implementa\c{c}\~ao de diversos padr\~oes de projeto
+[cita\c{c}\~ao]. Felizmente, a plataforma Java conta com diversos
+frameworks que implementam tais padr\~oes de projeto, economizando
+esfor\c{c}o e tornando o c\'odigo mais enxuto e focado no problema
+educacional.
+
+O restante desta sess\~ao \'e dedicado a descrever e justificar algumas
+destas pr\'aticas, definindo (quando aplic\'avel) os frameworks
+selecionados para a implementa\c{c}\~ao das mesmas.
+
+{\sffamily\bfseries
+Mapeamento Objeto{}-Relacional}
+
+Ao longo das \'ultimas d\'ecadas, os sistemas gerenciadores de banco de
+dados relacionais (RDBMS) \ simplificaram o armazenamento de dados
+atrav\'es da introdu\c{c}\~ao da abordagem relacional de
+representa\c{c}\~ao dos mesmos, implementada em pacotes de software de
+baixo custo, de forma isolada da aplica\c{c}\~ao principal, permitindo
+ao desenvolvedor concentrar{}-se no dom\'inio espec\'ifico do problema
+computacional a ser resolvido.
+
+Al\'em disso, a populariza\c{c}\~ao dos RDBMS permitiu o uso de recursos
+computacionais relativamente limitados (tais como microcomputadores)
+para a execu\c{c}\~ao de tarefas de manipula\c{c}\~ao de dados
+anteriormente restritas a sistemas de grande porte (e elevado custo de
+opera\c{c}\~ao e manuten\c{c}\~ao), raz\~ao pela qual o uso de um RDBMS
+\'e indicado em qualquer sistema no qual a manipula\c{c}\~ao indireta
+dos dados n\~ao represente impacto na performance.
+
+Tal caracter\'istica, aliada \`a import\^ancia que os dados representam
+para as organiza\c{c}\~oes (chegando, em muitos casos, a ser mais
+valiosos que os aplicativos ou os meios f\'isicos nos quais eles s\~ao
+armazenados e processados), fez com que muitos dos sistemas projetados
+neste per\'iodo tivessem o modelo relacional de banco de dados como
+base do seu projeto {--} o \textit{software}\textup{ que manipularia
+estes dados era pensado de forma secund\'aria, quase que
+conseq\"u\^encia direta do desenho do banco.}
+
+Com a introdu\c{c}\~ao das t\'ecnicas de desenvolvimento de software
+orientado a objeto {--} outro artefato que aumentou o n\'ivel de
+abstra\c{c}\~ao com o qual os projetistas de software lidam com o
+dom\'inio dos problemas (e, portanto, a sua produtividade) {--} surgiu
+uma nova abordagem: proponentes destas t\'ecnicas defendem que o
+sistema deve ser modelado sob o ponto de vista de suas classes,
+tratando o banco de dados como um mero armaz\'em de objetos.
+
+A plataforma proposta neste trabalho segue esta nova abordagem, para a
+qual se coloca um problema: como representar a riqueza gramatical dos
+elementos da orienta\c{c}\~ao a objeto (tais como heran\c{c}a,
+polimorfismo e navegabilidade) dentro do sistema de modelagem
+relacional dos RDBMS? Esta quest\~ao tem dois matizes: a metodologia
+para mapear estas caracter\'isticas e a forma de implement\'a{}-la
+(evitando a redund\^ancia de c\'odigo).
+
+Este problema n\~ao \'e novo [cita\c{c}\~ao], tampouco exclusivo desta
+aplica\c{c}\~ao. A t\'ecnica para resolve{}-lo \'e denominada
+mapeamento objeto{}-relacional, e na plataforma Java existem diversos
+\textup{framework} que a implementam [citar exemplos].
+
+Dentre eles, optamos pelo \textbf{Hibernate}. Trata{}-se de um framework
+de c\'odigo totalmente livre, bastante flex\'ivel e amplamente
+utilizado pela comunidade Java. Al\'em disso, a vers\~ao 3 permite o
+uso de \textit{annotations}\textup{, isto \'e, do desenho do mapeamento
+sobre o pr\'oprio c\'odigo. Esta caracter\'istica torna os arquivos de
+mapeamento (que usualmente demandam muito tempo e acrescentam um passo
+extra na compreens\~ao do c\'odigo) dispens\'aveis, o que, por si s\'o,
+j\'a justifica o seu uso.}
+
+{\sffamily\bfseries\upshape
+Apresenta\c{c}\~ao e MVC (Model / View / Controller)}
+
+{\upshape
+Devido \`a sua natureza de intera\c{c}\~ao com o usu\'ario, a camada de
+apresenta\c{c}\~ao \'e uma das mais sujeitas a altera\c{c}\~oes. Al\'em
+disso, seu fluxo pode se tornar bastante complexo, o que favorece a
+duplica\c{c}\~ao de c\'odigo desnecess\'aria.}
+
+{\upshape
+O padr\~ao de projeto Model/View/Controller (MVC) tem se demonstrado
+\'util na redu\c{c}\~ao destes problemas. Nele, a camada de
+apresenta\c{c}\~ao \'e segregada em dois tipos de componentes:
+\textit{view} (composta pelas diversas interfaces\footnote{Por
+interfaces aqui entendemos as unidades da aplica\c{c}\~ao com os quais
+o usu\'ario lida. Exemplos incluem ``telas'' de mainframe, caixas de
+di\'alogo em aplica\c{c}\~oes GUI e (no nosso caso) p\'aginas web.} do
+sistema, e desprovida de qualquer c\'odigo que n\~ao esteja relacionado
+\`a intera\c{c}\~ao com o usu\'ario e \`a pr\'e{}-valida\c{c}\~ao dos
+dados introduzidos por ele) e \textit{model} (c\'odigo que responde a
+a\c{c}\~oes imperativas do usu\'ario, tais como submeter um
+formul\'ario de dados ou solicitar uma funcionalidade).}
+
+{\upshape
+View e Model operam de forma totalmente independente: componentes de
+model respondem \`as solicita\c{c}\~oes utilizando as camadas
+inferiores e retornando algum tipo de status (ex.: ``sucesso'',
+``opera\c{c}\~ao inv\'alida'', etc.), e componentes de view apresentam
+dados anexados a eles e retornam os dados novos ou altera\c{c}\~oes
+feitas pelos usu\'arios.}
+
+{\upshape
+A conex\~ao entre eles \'e feita pelo controller: um componente que,
+para cada solicita\c{c}\~ao da view, dispara um ou mais componentes do
+model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo
+\'e mantido neste componente (no c\'odigo ou em um arquivo de
+configura\c{c}\~ao), desacoplando o c\'odigo e oferecendo uma vis\~ao
+de alto n\'ivel que torna f\'acil identificar componentes
+reutiliz\'aveis e/ou o impacto de quaisquer mudan\c{c}as [Cita\c{c}\~ao
+MVC].}
+
+{\upshape
+Embora seja poss\'ivel adotar a filosofia MVC atrav\'es do
+desenvolvimento direto, muito trabalho pode ser popupado atrav\'es do
+uso de um framework MVC que, dentre outras coisas, implemente um
+controller configur\'avel e auxilie na passagem de dados entre model e
+view (tarefa que se torna complexa \`a medida em que se considera a
+generalidade do HTML no tocante a formul\'arios de dados, e o desejo de
+usar t\'ecnicas como AJAX para aumentar a usabilidade da
+aplica\c{c}\~ao). De in\'icio, foram considerados os frameworks mais
+utilizados atualmente, a saber:}
+
+\textbf{\textup{Struts}}\textup{: Um dos frameworks mais tradicionais em
+Java, tem como vantagens uma biblioteca de apresenta\c{c}\~ao bastante
+rica e evolu\c{c}\~ao constante. Sua maior limita\c{c}\~ao \'e a grande
+quantidade de c\'odigo/configura\c{c}\~ao necess\'arios para definir o
+fluxo da aplica\c{c}\~ao;}
+
+{\bfseries
+\textup{Spring MVC}\textmd{\textup{: \'E parte do framework Spring, o
+que facilitaria a sua integra\c{c}\~ao. Mas tamb\'em sofre do mal de
+exigir muita configura\c{c}\~ao, sem apresentar maiores atrativos que
+compensem o fato;}}}
+
+{\upshape
+\textmd{Tendo em vista que as alternativas padr\~ao n\~ao atendem \`as
+necessidades do projeto, foram considerados frameworks com menor base
+de usu\'arios, tais como }\textbf{VRaptor}\textmd{,
+}\textmd{Jaffa}\textmd{ }\textmd{e }\textbf{Stripes}\textmd{. Este
+\'ultimo, por contar com excelente documenta\c{c}\~ao e muitos exemplos
+na web, foi escolhido para a implementa\c{c}\~ao.}}
+
+{\upshape
+Finalmente, \'e importante salientar que existe uma outra alternativa
+para otimizar o desenvolvimento da camada de apresenta\c{c}\~ao: o uso
+de arquiteturas baseadas em componentes, tais como
+\textbf{Wicket}\textmd{, }\textbf{WebWorks}\textmd{ e
+}\textbf{JSF}\textmd{ (os dois primeiros s\~ao frameworks, o \'ultimo
+\'e uma especifica\c{c}\~ao para este tipo de arquitetura, definida sob
+supervis\~ao da empresa que desenvolve o Java e seguida por diversos
+frameworks), sobretudo pela agilidade que oferecem na
+prototipa\c{c}\~ao e na cria\c{c}\~ao de interfaces. No entanto,
+aplica\c{c}\~oes desenvolvidas sob este tipo de arquitetura n\~ao
+possuem a ``toler\^ancia a mudan\c{c}as'' que o MVC proporciona (e
+estas mudan\c{c}as seguramente ocorrer\~ao \`a medida em que a
+plataforma for expandida), raz\~ao pela qual descartamos tal tipo de
+solu\c{c}\~ao.}}
+
+{\sffamily\bfseries\upshape
+Invers\~ao de Controle / Inje\c{c}\~ao de Depend\^encias}
+
+{\upshape
+Tendo em perspectiva que a aplica\c{c}\~ao resultante deste projeto
+ser\'a uma base para o desenvolvimento de outros sistemas, \'e
+importante que a mesma seja de f\'acil compreens\~ao e
+manuten\c{c}\~ao.}
+
+{\upshape
+Um dos grandes obst\'aculos para a manuten\c{c}\~ao de projetos de
+software \'e o acoplamento excessivo entre os seus diferentes m\'odulos
+e camadas. Ainda que se use (e usamos) boas pr\'aticas de
+separa\c{c}\~ao das mesmas (tais como a arqutetura
+Model{}-View{}-Controller e o modelo de tr\^es camadas), se estas
+camadas apresentarem excessiva depend\^encia cruzada, pequenas
+altera\c{c}\~oes ir\~ao demandar grandes esfor\c{c}os de
+recodifica\c{c}\~ao e teste.}
+
+{\upshape
+A invers\~ao de controle [citar: Martin Fowler] (IoC) \'e uma t\'ecnica
+de projeto que aborda o problema do acoplamento subvertendo a maneira
+tradicional com que um m\'odulo do sistema solicita funcionalidade a
+outro m\'odulo (da\'i o nome). O princ\'ipio fundamental \'e que um
+m\'odulo que dependa de outro para executar a sua funcionalidade n\~ao
+o chama explicitamente {--} ao inv\'es disso ele manifesta esta
+depend\^encia de alguma forma, e o ambiente operacional cuida de
+oferecer o componente que melhor ofere\c{c}a o tipo de servi\c{c}o
+necess\'ario.}
+
+{\upshape
+Isso faz com que o m\'odulo se concentre na sua pr\'opria funcionalidade
+{--} ao inv\'es de misturar este c\'odigo com o c\'odigo que cuidar\'a
+da itera\c{c}\~ao com a depend\^encia. H\'a um ligeiro aumento na
+quantidade de c\'odigo devido \`a necessidade de formalizar a
+depend\^encia atrav\'es de suas caracter\'isticas (e n\~ao atrav\'es da
+chamada direta do m\'odulo que satisfaz a depend\^encia) {--} o exemplo
+can\^onico de Fowler mostra essa diferen\c{c}a. Mas isto \'e largamente
+compensado pelo desacoplamento obtido, e a clareza do c\'odigo n\~ao
+\'e prejudicada.}
+
+{\upshape
+Existem v\'arias formas de implementar o princ\'ipio de IoC, sendo que a
+Inje\c{c}\~ao de Depend\^encias \'e bastante popular por reduzir a
+quantidade de c\'odigo envolvida no processo. Nela, o m\'odulo que
+oferece a funcionalidade apresenta uma interface n\~ao apenas para as
+tradicionais chamadas, mas tamb\'em para as depend\^encias delas (ex.:
+conex\~oes de banco de dados, canais de sa\'ida, etc.). O m\'odulo que
+solicita a funcionalidade o faz como na programa\c{c}\~ao tradicional
+(chamando o m\'etodo exposto), mas um framework media estas chamadas e
+fornece as depend\^encias necess\'arias de forma apropriada}
+
+{\upshape
+Para trabalhar sob esta abordagem utilizamos o Spring {--} um framework
+que tornou{}-se refer\^encia em aplica\c{c}\~oes Java. Uma de suas
+vantagens \'e se integrar de forma automatizada com outros frameworks
+(notadamente Hibernate), reduzindo ainda mais a quantidade de c\'odigo
+na nossa aplica\c{c}\~ao. O uso ser\'a bastante comedido (evitando o
+anti{}-padr\~ao que duplica cada classe do sistema em uma interface
+[cita\c{c}\~ao]), limitando{}-se aos pontos em que uma eventual
+substitui\c{c}\~ao de componentes se mostre como uma possibilidade
+interessante.}
+
+\subparagraph{}
+
+\bigskip
+\end{document}

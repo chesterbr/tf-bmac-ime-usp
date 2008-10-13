@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{1Gamma1995}
+Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
+\newblock {\em Design Patterns: Elements of Reusable Object-Oriented Software}.
+\newblock { Addison-Wesley} Professional Computing Series. { Addison-Wesley}
+  Publishing Company, New York, NY, 1995.
+
+\bibitem{gujarati}
+D.~N. Gujarati.
+\newblock {\em Econometria Básica}.
+\newblock Macron Books, 3a edition, 2000.
+
+\bibitem{intriligator}
+M.D. Intriligator.
+\newblock {\em Econometric Models, Techniques and Applications}.
+\newblock Prentice Hall, 1978.
+
+\bibitem{3john:91}
+J.~Johnston.
+\newblock {\em Econometric Methods}.
+\newblock Mc Graw-Hill, New York, 3rd edition, 1991.
+
+\bibitem{judge}
+G.~Judge, C.~Hill, and W.~Griffiths.
+\newblock {\em Econometria}.
+\newblock Editora Saraiva, 2000.
+
+\bibitem{2malks01:j2ee}
+D.~Malks, J.~Crupi, and D.~Alur.
+\newblock {\em {Core J2EE Patterns: Best Practices and Design Strategies, 1st
+  Edition}}.
+\newblock {Prentice Hall / Sun Microsystems Press}, 2001.
+
+\bibitem{4wooldridge}
+J.~M. Wooldridge.
+\newblock {\em Introdução à Econometria}.
+\newblock Thomson, 2006.
+
+\end{thebibliography}

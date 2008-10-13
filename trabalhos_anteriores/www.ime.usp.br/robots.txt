@@ -1,0 +1,9 @@
+# robots.txt
+#User-agent: htdig
+#Disallow: /cgi-bin/
+#
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: .pl
+Disallow: .html?
+Disallow: .php3

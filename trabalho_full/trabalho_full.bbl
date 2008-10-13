@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}
+
+\bibitem{BullSmithPottageFreeman}
+J.~M. Bull, L.~A. Smith, L.~Pottage, and R.~Freeman.
+\newblock Benchmarking java against c and fortran for scientific applications.
+\newblock In {\em In ACM 2001 Java Grande/ISCOPE Conf}, pages 97--105. ACM
+  Press, 2001.
+
+\bibitem{Eckerson1995}
+Wayne~W. Eckerson.
+\newblock Three tier client/server architecture: Achieving scalability,
+  performance, and efficiency in client server applications.
+\newblock {\em Open Information Systems}, 10(1), 1995.
+
+\bibitem{Jacobson}
+Ivar Jacobson.
+\newblock {\em Object-Oriented Software Engineering: A Use Case Driven
+  Approach}.
+\newblock Addison Wesley Longman Publishing Co., Inc., Redwood City, CA, USA,
+  2004.
+
+\bibitem{Janzen_Saiedian}
+David Janzen and Hossein Saiedian.
+\newblock Test-driven development: Concepts, taxonomy, and future direction.
+\newblock {\em Computer}, 38(9):43--50, 2005.
+
+\bibitem{judge}
+George~G. Judge, William~E. Griffiths, R.~Carter Hilla, Helmut Lütkepohl, and
+  Tsoung-Chao Lee.
+\newblock {\em The Theory and Practice of Econometrics (Wiley Series in
+  Probability and Statistics)}.
+\newblock Wiley, 1985.
+
+\bibitem{web:econsoftware}
+John Kane.
+\newblock Econometric software.
+\newblock \url{http://www.oswego.edu/~economic/econsoftware.htm}.
+
+\bibitem{kilov_crud}
+Haim Kilov.
+\newblock From semantic to object-oriented data modeling.
+\newblock In Ng et~al. \cite{DBLP:conf/icsi/1990}, pages 385--393.
+
+\bibitem{DBLP:conf/icsi/1990}
+Peter~A. Ng, C.~V. Ramamoorthy, Laurence~C. Seifert, and Raymond~T. Yeh,
+  editors.
+\newblock {\em Proceedings of the First International Conference on Systems
+  Integration, Morristown, NJ, USA, April 1990}. IEEE Computer Society, 1990.
+
+\bibitem{Prechelt}
+Lutz Prechelt.
+\newblock An empirical comparison of seven programming languages.
+\newblock {\em Computer}, 33(10):23--29, 2000.
+
+\bibitem{wikipedia:time_series}
+Wikipedia.
+\newblock Time series.
+\newblock
+  \url{http://en.wikipedia.org/w/index.php?title=Time_series&oldid=232223965}.
+
+\end{thebibliography}

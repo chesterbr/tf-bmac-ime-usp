@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{.125in}
+\setlength{\textwidth}{6.25in}
+
+\title{Trabalho de Formatura -- Projeto Inicial}
+\author{Carlos Duarte do Nascimento\\Aluno do Bacharelado em Matemática\\Aplicada e Computacional IME/USP}
+\date{5 de Maio de 2008}
+
+\begin{document}
+\maketitle
+
+\section {Tema}
+Uma Plataforma de Software para o Estudo Interativo de Métodos e Algoritmos Econométricos.
+
+\section {Orientador}
+Professor Doutor Cicely Moitinho Amaral, graduado pela USP em 1971, doutorado pela NCS University em 1979 e pós-doutorado pela UC Berkley em 1989, na área de Economia.
+
+\section {Resumo}
+O objetivo do trabalho é projetar e desenvolver uma plataforma de software que permita ao professor cadastrar procedimentos utilizados na econometria juntamente com as implementações dos algoritmos relacionados. O aluno poderia acessar este cadastro, executando o algoritmo com seus próprios dados, armazenando suas experiências e eventualmente modificando os algoritmos.
+
+\section {Motivação}
+A parte prática de um curso de Econometria exige o uso de um software capaz de trabalhar na prática os modelos vistos em sala de aula, efetuando as transformações e fazendo os diversos testes estatísticos relacionados. Tradicionalmente utiliza-se um pacote especializado, tal como o {\em EViews}, para este fim. 
+
+Apesar da vantagem prática de aproveitar o ensino de Econometria para treinar o aluno no uso de um software que ele irá encontrar no mercado, tal abordagem muitas vezes mascara os detalhes do processo matemático envolvido em cada aplicação, particularmente dos algoritmos utilizados. Isto não ocorre por acaso: o objetivo de tais softwares, voltados para o uso profissional, é justamente automatizar estas tarefas “básicas”.
+
+Outra dificuldade desta abordagem é que o acesso dos alunos a este tipo de software é limitado tanto pelo custo das licenças quanto pelos requisitos de hardware e sistema operacional. Além disto, esta abordagem é inviável para o ensino à distância.
+
+\section{Aspectos Técnicos}
+A meta de alcance universal sugere que a plataforma disponibilize os algoritmos através de um navegador (browser) web, através do qual o aluno poderia  aprender detalhes sobre o funcionamento dos algoritmos/métodos, executá-los com dados de exemplo ou com seus próprios dados, e, idealmente, até experimentar mudanças nos mesmos.
+
+Para o professor, a plataforma deve possibilitar um meio de cadastro e reuso dos algoritmos – tanto os já cadastrados quanto os eventualmente disponíveis em publicações acadêmicas. Para tanto é importante que os algoritmos sejam expressos usando uma linguagem de uso geral (ex.: Java, FORTRAN), e é desejável que a plataforma como um todo seja implementada na mesma linguagem, usando mecanismos pré-existentes para a execução sob demanda dos mesmo (Java, LISP e outras linguagens com mecanismos de auto-referência são ferramentas apropriadas neste sentido).
+\section {Plano de Trabalho}
+O trabalho pode ser dividido nas cinco fases descritas abaixo, acompanhadas das datas de término estimadas:
+
+\begin{itemize}
+
+\item {\em Fase 1: Projeto Técnico} (15/Mai)
+
+Nesta fase (já em andamento) o escopo da plataforma será definido, através de pesquisa de trabalhos já existentes, e, com base nele, os detalhes de arquitetura de software serão delineados.
+
+\item {\em Fase 2: Pesquisa de Algoritmos} (30/Jul)
+
+O trabalho (também já iniciado) consiste de seleção e refinamento dos métodos matemáticos e algoritmos que serão cadastrados no sistema. O critério será buscar algoritmos relevantes para o ensino de Econometria e os algoritmos dos quais os mesmos dependam (ex.: decomposição de matrizes).
+
+\item {\em Fase 3: Implementação} (15/Ago)
+
+Um subconjunto (tão abrangente quanto possível) das características definidas nos passos anteriores será implementado.
+
+\item {\em Fase 4: Cadastro de Algoritmos} (15/Set)
+
+Uma vez que se tenha um protótipo funcional, algoritmos poderão ser cadastrados nele, e isto ajudará a identificar eventuais melhorias tanto no tratamento dado pela plataforma, quanto na maneira com que estes algoritmos estão especificados.
+
+\item {\em Fase 5: Testes e Conclusões} (30/Out)
+
+Após a inserção de um conjunto de algoritmos no sistema, o mesmo poderá ser testado para verificar a adaptação dos algoritmos à estrutura, a performance e a eficácia do método.
+
+\end{itemize}
+\pagebreak
+\nocite{*}
+\bibliographystyle {plain}
+\bibliography {projeto_inicial}
+
+Esta é uma lista parcial - outras referências serão usadas de acordo com os métodos e algoritmos escolhidos na fase 2 do projeto.
+
+\end{document}

@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="NeoOffice 2.2  (Unix)">
+	<META NAME="CREATED" CONTENT="20080229;11305800">
+	<META NAME="CHANGED" CONTENT="20080229;14321300">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		P { margin-left: 1cm; margin-bottom: 0.51cm; line-height: 150%; text-align: justify; page-break-inside: avoid; page-break-before: auto }
+		P.cjk { font-size: 10pt }
+		H3 { margin-top: 0.42cm; margin-bottom: 0.41cm; page-break-inside: avoid; page-break-before: auto }
+		H3.western { font-family: "Arial", sans-serif }
+		H3.cjk { font-family: "MS Mincho" }
+		H4 { margin-top: 0.42cm; margin-bottom: 0.41cm; page-break-inside: avoid; page-break-before: auto }
+		H4.western { font-family: "Arial", sans-serif; font-size: 11pt; font-style: italic }
+		H4.cjk { font-family: "MS Mincho"; font-size: 11pt; font-style: italic }
+		H4.ctl { font-size: 11pt; font-style: italic }
+		H5 { margin-top: 0.42cm; margin-bottom: 0.41cm; page-break-inside: avoid; page-break-before: auto }
+		H5.western { font-family: "Arial", sans-serif; font-size: 11pt }
+		H5.cjk { font-family: "MS Mincho"; font-size: 11pt }
+		H5.ctl { font-size: 11pt }
+		H6 { margin-left: 1cm; margin-top: 0.42cm; margin-bottom: 0.41cm; page-break-inside: avoid; page-break-before: auto }
+		H6.western { font-family: "Arial", sans-serif; font-size: 10pt }
+		H6.cjk { font-family: "MS Mincho"; font-size: 10pt }
+		H6.ctl { font-size: 10pt }
+		P.sdfootnote { margin-left: 0.5cm; text-indent: -0.5cm; margin-bottom: 0cm; font-size: 10pt; line-height: 100%; text-align: left }
+		A.sdfootnoteanc { font-size: 57% }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="pt-BR" DIR="LTR">
+<H3 CLASS="western" ALIGN=CENTER>Uma Plataforma de Software para o
+Estudo<BR>Interativo de M&eacute;todos e Algoritmos
+Econom&eacute;tricos:<BR>Mecanismos de Arquitetura<BR><BR><FONT SIZE=2><I><SPAN STYLE="font-weight: medium">Draft
+Inicial (Fevereiro/2008) – Carlos Duarte do Nascimento</SPAN></I></FONT></H3>
+<H4 CLASS="western">Introdu&ccedil;&atilde;o</H4>
+<P CLASS="western">Este documento tem por objetivo detalhar as
+tecnologias (linguagens, ferramentas e frameworks) e metodologias
+(padr&otilde;es de projeto) escolhidas para a aplica&ccedil;&atilde;o
+que ir&aacute; implementar a plataforma proposta, expondo as 
+motiva&ccedil;&otilde;es por tr&aacute;s de cada escolha.</P>
+<P CLASS="western">As escolhas definidas aqui foram norteadas por
+dois pr&eacute; requisitos: que todas as metodologias tenham
+referencial acad&ecirc;mico e implementa&ccedil;&otilde;es
+bem-sucedidas; e que todas as ferramentas utilizadas sejam gratuitas
+e de c&oacute;digo livre, garantindo que a aplica&ccedil;&atilde;o 
+possa ser ampliada e modificada por qualquer entidade interessada,
+sem que hajam restri&ccedil;&otilde;es de qualquer natureza.</P>
+<H4 CLASS="western">Linguagem de Programa&ccedil;&atilde;o</H4>
+<P CLASS="western">&Eacute; necess&aacute;rio fazer duas escolhas
+neste t&oacute;pico: a da linguagem a ser utilizada para construir o
+aplicativo, e a da linguagem atrav&eacute;s da qual os algoritmos
+ser&atilde;o descritos para a mesma.</P>
+<P CLASS="western">Para o aplicativo, &eacute; preciso ter uma
+linguagem que ofere&ccedil;a performance, escalabilidade, suporte ao
+desenvolvimento para a web e facilidade para trabalhar com bancos de
+dados relacionais (ferramenta indispens&aacute;vel para o volume de
+dados gerado pelo uso em larga escala, vide adiante).</P>
+<P CLASS="western">J&aacute; o algoritmo exige uma linguagem que
+possa ser compilada ou interpretada dinamicamente, que tenha respaldo
+acad&ecirc;mico (para aproveitar o c&oacute;digo e, mais importante,
+o conhecimento pr&eacute;-existente no corpo docente) e,
+preferencialmente, que j&aacute; possua um ambiente de
+compila&ccedil;&atilde;o/runtime livre (a implementa&ccedil;&atilde;o
+de tal ambiente n&atilde;o as complexidades inerentes a este tipo de
+implementa&ccedil;&atilde;o fogem ao escopo deste trabalho). 
+</P>
+<P CLASS="western">Apesar das naturezas relativamente divergentes das
+demandas mencionadas acima, os avan&ccedil;os recentes em linguagens
+de programa&ccedil;&atilde;o [cita&ccedil;&atilde;o] oferecem
+linguagens e ambientes flex&iacute;veis o suficiente para atender a
+ambas as demandas – e o uso de uma linguagem &uacute;nica
+simplifica o projeto e reduz a barreira de entrada para novos
+desenvolvedores.</P>
+<P CLASS="western">Estes fatores nos levaram a escolher a linguagem
+<B>Java</B> para a primeira implementa&ccedil;&atilde;o. 
+Implementa&ccedil;&otilde;es futuras podem considerar linguagens
+din&acirc;micas como Ruby, Python ou LISP, bem como linguagens
+est&aacute;ticas com suporte &agrave; reflex&atilde;o, como C# ou
+Objective-C – observando-se o mapeamento das escolhas de
+arquitetura para recursos equivalentes em cada uma delas.</P>
+<H4 CLASS="western">Ambiente de Desenvolvimento, Compila&ccedil;&atilde;o
+e Publica&ccedil;&atilde;o</H4>
+<P CLASS="western">&Eacute; importante que o processo de compila&ccedil;&atilde;o
+e publica&ccedil;&atilde;o (<I><U>deploy</U></I>) da aplica&ccedil;&atilde;o
+sejam completamente automatizados, de forma que um novo desenvolvedor
+possa facilmente descarregar o c&oacute;digo existente de um
+reposit&oacute;rio, test&aacute;-lo e implementar novas
+caracter&iacute;sticas.</P>
+<P CLASS="western">A grande quantidade de frameworks envolvidos no
+processo gera uma dificuldade adicional: o gerenciamento de
+depend&ecirc;ncias. Tento isto em vista, usaremos o <B>Maven</B><SPAN STYLE="font-weight: medium">
+n&atilde;o apenas para executar a compila&ccedil;&atilde;o e
+publica&ccedil;&atilde;o, mas tamb&eacute;m para recuperar
+automaticamente todas as bibliotecas (.JAR) de frameworks utilizados
+a partir da Internet.</SPAN></P>
+<P CLASS="western">O c&oacute;digo-fonte n&atilde;o ir&aacute; exigir
+nenhum IDE (ambiente de desenvolvimento) em particular. No entanto, o
+<B>Eclipse</B> ser&aacute; utilizado como ferramenta base, sempre
+tomando o cuidado de n&atilde;o tornar a ferrametna dependente dele. 
+</P>
+<H5 CLASS="western">Testes Automatizados</H5>
+<P CLASS="western">&Eacute; muito importante que o sistema mantenha
+os resultados consistentes, mesmo com a implementa&ccedil;&atilde;o
+de novas funcionalidades. Para tanto, a cria&ccedil;&atilde;o de
+testes autom&aacute;ticos (unit&aacute;rios e funcionais) durante o
+processo de desenvolvimento (e n&atilde;o como um detalhe adicional)
+&eacute; indispens&aacute;vel [cita&ccedil;&atilde;o de test-driven
+development].</P>
+<P CLASS="western">O framework <B>JUnit</B> &eacute; uma escolha
+natural para a implementa&ccedil;&atilde;o de testes automatizados,
+devido &agrave; sua natureza n&atilde;o-intrusiva e ao uso difundido
+em projetos Java. Mesmo testes funcionais autom&aacute;ticos podem
+ser feitos atrav&eacute;s dele [considerar o uso de framework
+espec&iacute;fico ou extens&atilde;o do JUnit, tal como a JFunc]</P>
+<H4 CLASS="western">Arquitetura</H4>
+<P CLASS="western" STYLE="font-style: normal">Sob a perspectiva da
+arquitetura geral, o sistema &eacute; majoritariamente uma cole&ccedil;&atilde;o
+interativa de CRUDs<A CLASS="sdfootnoteanc" NAME="sdfootnote1anc" HREF="#sdfootnote1sym"><SUP>1</SUP></A>
+(as exce&ccedil;&otilde;es ficam por conta da execu&ccedil;&atilde;o
+interativa de algoritmos e da importa&ccedil;&atilde;o de dados),
+sendo, portanto, razo&aacute;vel trabalhar com a tradicional
+[cita&ccedil;&atilde;o] separa&ccedil;&atilde;o em tr&ecirc;s
+camadas:</P>
+<UL>
+	<LI><P CLASS="western" STYLE="font-style: normal">uma camada de
+	opera&ccedil;&otilde;es (back-end) tais como: armazenamento de
+	dados, execu&ccedil;&atilde;o de algoritmos e convers&atilde;o de
+	formatos, cuja implementa&ccedil;&atilde;o &eacute; detalhada
+	adiante;</P>
+	<LI><P CLASS="western" STYLE="font-style: normal">uma camada
+	intermedi&aacute;ria de “fachada” [cita&ccedil;&atilde;o:
+	Session Facade Pattern], agrupando as opera&ccedil;&otilde;es de
+	alto n&iacute;vel. Esta camada ser&aacute; implementada atrav&eacute;s
+	de classes e m&eacute;todos est&aacute;ticos simples [cita&ccedil;&atilde;o:
+	POJO];</P>
+	<LI><P CLASS="western" STYLE="font-style: normal">uma camada de
+	interface (front-end), utilizando MVC e outros princ&iacute;pios
+	detalhados a seguir.</P>
+</UL>
+<P CLASS="western">As melhores pr&aacute;ticas de desenvolvimento de
+software muitas vezes demandam a implementa&ccedil;&atilde;o de
+diversos padr&otilde;es de projeto [cita&ccedil;&atilde;o].
+Felizmente, a plataforma Java conta com diversos frameworks que
+implementam tais padr&otilde;es de projeto, economizando esfor&ccedil;o
+e tornando o c&oacute;digo mais enxuto e focado no problema
+educacional.</P>
+<P CLASS="western">O restante desta sess&atilde;o &eacute; dedicado a
+descrever e justificar algumas destas pr&aacute;ticas, definindo
+(quando aplic&aacute;vel) os frameworks selecionados para a
+implementa&ccedil;&atilde;o das mesmas.</P>
+<H6 CLASS="western">Mapeamento Objeto-Relacional</H6>
+<P CLASS="western">Ao longo das &uacute;ltimas d&eacute;cadas, os
+sistemas gerenciadores de banco de dados relacionais (RDBMS) 
+simplificaram o armazenamento de dados atrav&eacute;s da introdu&ccedil;&atilde;o
+da abordagem relacional de representa&ccedil;&atilde;o dos mesmos,
+implementada em pacotes de software de baixo custo, de forma isolada
+da aplica&ccedil;&atilde;o principal, permitindo ao desenvolvedor
+concentrar-se no dom&iacute;nio espec&iacute;fico do problema
+computacional a ser resolvido.</P>
+<P CLASS="western">Al&eacute;m disso, a populariza&ccedil;&atilde;o
+dos RDBMS permitiu o uso de recursos computacionais relativamente
+limitados (tais como microcomputadores) para a execu&ccedil;&atilde;o
+de tarefas de manipula&ccedil;&atilde;o de dados anteriormente
+restritas a sistemas de grande porte (e elevado custo de opera&ccedil;&atilde;o
+e manuten&ccedil;&atilde;o), raz&atilde;o pela qual o uso de um RDBMS
+&eacute; indicado em qualquer sistema no qual a manipula&ccedil;&atilde;o
+indireta dos dados n&atilde;o represente impacto na performance.</P>
+<P CLASS="western">Tal caracter&iacute;stica, aliada &agrave;
+import&acirc;ncia que os dados representam para as organiza&ccedil;&otilde;es
+(chegando, em muitos casos, a ser mais valiosos que os aplicativos ou
+os meios f&iacute;sicos nos quais eles s&atilde;o armazenados e
+processados), fez com que muitos dos sistemas projetados neste
+per&iacute;odo tivessem o modelo relacional de banco de dados como
+base do seu projeto – o <I>software</I><SPAN STYLE="font-style: normal">
+que manipularia estes dados era pensado de forma secund&aacute;ria,
+quase que conseq&uuml;&ecirc;ncia direta do desenho do banco.</SPAN></P>
+<P CLASS="western">Com a introdu&ccedil;&atilde;o das t&eacute;cnicas
+de desenvolvimento de software orientado a objeto – outro artefato
+que aumentou o n&iacute;vel de abstra&ccedil;&atilde;o com o qual os
+projetistas de software lidam com o dom&iacute;nio dos problemas (e,
+portanto, a sua produtividade) – surgiu uma nova abordagem:
+proponentes destas t&eacute;cnicas defendem que o sistema deve ser
+modelado sob o ponto de vista de suas classes, tratando o banco de
+dados como um mero armaz&eacute;m de objetos.</P>
+<P CLASS="western">A plataforma proposta neste trabalho segue esta
+nova abordagem, para a qual se coloca um problema: como representar a
+riqueza gramatical dos elementos da orienta&ccedil;&atilde;o a objeto
+(tais como heran&ccedil;a, polimorfismo e navegabilidade) dentro do
+sistema de modelagem relacional dos RDBMS? Esta quest&atilde;o tem
+dois matizes: a metodologia para mapear estas caracter&iacute;sticas
+e a forma de implement&aacute;-la (evitando a redund&acirc;ncia de
+c&oacute;digo).</P>
+<P CLASS="western">Este problema n&atilde;o &eacute; novo [cita&ccedil;&atilde;o],
+tampouco exclusivo desta aplica&ccedil;&atilde;o. A t&eacute;cnica
+para resolve-lo &eacute; denominada mapeamento objeto-relacional, e
+na plataforma Java existem diversos <SPAN STYLE="font-style: normal">framework</SPAN>
+que a implementam [citar exemplos].</P>
+<P CLASS="western">Dentre eles, optamos pelo <B>Hibernate</B>.
+Trata-se de um framework de c&oacute;digo totalmente livre, bastante
+flex&iacute;vel e amplamente utilizado pela comunidade Java. Al&eacute;m
+disso, a vers&atilde;o 3 permite o uso de <I>annotations</I><SPAN STYLE="font-style: normal">,
+isto &eacute;, do desenho do mapeamento sobre o pr&oacute;prio
+c&oacute;digo. Esta caracter&iacute;stica torna os arquivos de
+mapeamento (que usualmente demandam muito tempo e acrescentam um
+passo extra na compreens&atilde;o do c&oacute;digo) dispens&aacute;veis,
+o que, por si s&oacute;, j&aacute; justifica o seu uso.</SPAN></P>
+<H6 CLASS="western" STYLE="font-style: normal">Model / View /
+Controller</H6>
+<P CLASS="western" STYLE="font-style: normal">Devido &agrave; sua
+natureza de intera&ccedil;&atilde;o com o usu&aacute;rio, a camada de
+apresenta&ccedil;&atilde;o &eacute; uma das mais sujeitas a
+altera&ccedil;&otilde;es. Al&eacute;m disso, seu fluxo pode se tornar
+bastante complexo, o que favorece a duplica&ccedil;&atilde;o de
+c&oacute;digo desnecess&aacute;ria.</P>
+<P CLASS="western" STYLE="font-style: normal">O padr&atilde;o de
+projeto Model/View/Controller (MVC) tem se demonstrado &uacute;til na
+redu&ccedil;&atilde;o destes problemas. Nele, a camada de
+apresenta&ccedil;&atilde;o &eacute; segregada em dois tipos de
+componentes: <I>view</I> (composta pelas diversas interfaces<A CLASS="sdfootnoteanc" NAME="sdfootnote2anc" HREF="#sdfootnote2sym"><SUP>2</SUP></A>
+do sistema, <SPAN STYLE="font-style: normal">e desprovida de qualquer
+c&oacute;digo que n&atilde;o esteja relacionado &agrave; intera&ccedil;&atilde;o
+com o usu&aacute;rio e &agrave; pr&eacute;-valida&ccedil;&atilde;o
+dos dados introduzidos por ele) e </SPAN><I>model</I><SPAN STYLE="font-style: normal">
+(c&oacute;digo que responde a a&ccedil;&otilde;es imperativas do
+usu&aacute;rio, tais como submeter um formul&aacute;rio de dados ou
+solicitar uma funcionalidade).</SPAN></P>
+<P CLASS="western" STYLE="font-style: normal">View e Model operam de
+forma totalmente independente: componentes de model respondem &agrave;s
+solicita&ccedil;&otilde;es utilizando as camadas inferiores e
+retornando algum tipo de status (ex.: “sucesso”, “opera&ccedil;&atilde;o
+inv&aacute;lida”, etc.), e componentes de view apresentam dados
+anexados a eles e retornam os dados novos ou altera&ccedil;&otilde;es
+feitas pelos usu&aacute;rios.</P>
+<P CLASS="western" STYLE="font-style: normal">A conex&atilde;o entre
+eles &eacute; feita pelo controller: um componente que, para cada
+solicita&ccedil;&atilde;o da view, dispara um ou mais componentes do
+model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo
+&eacute; mantido neste componente (no c&oacute;digo ou em um arquivo
+de configura&ccedil;&atilde;o), desacoplando o c&oacute;digo e
+oferecendo uma vis&atilde;o de alto n&iacute;vel que torna f&aacute;cil
+identificar componentes reutiliz&aacute;veis e/ou o impacto de
+quaisquer mudan&ccedil;as [Cita&ccedil;&atilde;o MVC].</P>
+<P CLASS="western" STYLE="font-style: normal">DEFINIR FRAMEWORK MVC
+(Struts, Spring MVC, Stripes, VRaptor?)</P>
+<H6 CLASS="western" STYLE="font-style: normal">Invers&atilde;o de
+Controle / Inje&ccedil;&atilde;o de Depend&ecirc;ncias</H6>
+<P CLASS="western" STYLE="font-style: normal">Tendo em perspectiva
+que a aplica&ccedil;&atilde;o resultante deste projeto ser&aacute;
+uma base para o desenvolvimento de outros sistemas, &eacute;
+importante que a mesma seja de f&aacute;cil compreens&atilde;o e
+manuten&ccedil;&atilde;o.</P>
+<P CLASS="western" STYLE="font-style: normal">Um dos grandes
+obst&aacute;culos para a manuten&ccedil;&atilde;o de projetos de
+software &eacute; o acoplamento excessivo entre os seus diferentes
+m&oacute;dulos e camadas. Ainda que se use (e usamos) boas pr&aacute;ticas
+de separa&ccedil;&atilde;o das mesmas (tais como a arqutetura
+Model-View-Controller e o modelo de tr&ecirc;s camadas), se estas
+camadas apresentarem excessiva depend&ecirc;ncia cruzada, pequenas
+altera&ccedil;&otilde;es ir&atilde;o demandar grandes esfor&ccedil;os
+de recodifica&ccedil;&atilde;o e teste.</P>
+<P CLASS="western" STYLE="font-style: normal">A invers&atilde;o de
+controle [citar: Martin Fowler] (IoC) &eacute; uma t&eacute;cnica de
+projeto que aborda o problema do acoplamento subvertendo a maneira
+tradicional com que um m&oacute;dulo do sistema solicita
+funcionalidade a outro m&oacute;dulo (da&iacute; o nome). Ao inv&eacute;s
+de o m&oacute;dulo que oferece a funcionalidade definir uma interface
+em forma de fun&ccedil;&atilde;o/m&eacute;todo 
+</P>
+<P CLASS="western" STYLE="font-style: normal">EXPLICAR O PRINCIPIO
+HOLLYWOOD AQUI</P>
+<P CLASS="western" STYLE="font-style: normal">Existem v&aacute;rias
+formas de implementar o princ&iacute;pio de IoC, sendo que a Inje&ccedil;&atilde;o
+de Depend&ecirc;ncias &eacute; bastante popular por reduzir a
+quantidade de c&oacute;digo envolvida no processo. Nela, o m&oacute;dulo
+que oferece a funcionalidade apresenta uma interface n&atilde;o
+apenas para as tradicionais chamadas, mas tamb&eacute;m para as
+depend&ecirc;ncias delas (ex.: conex&otilde;es de banco de dados,
+canais de sa&iacute;da, etc.). O m&oacute;dulo que solicita a
+funcionalidade o faz como na programa&ccedil;&atilde;o tradicional
+(chamando o m&eacute;todo exposto), mas um framework media estas
+chamadas e fornece as depend&ecirc;ncias necess&aacute;rias de forma
+apropriada</P>
+<P CLASS="western" STYLE="font-style: normal">INSERIR EXEMPLOS</P>
+<P CLASS="western" STYLE="font-style: normal">Para trabalhar sob esta
+abordagem utilizamos o Spring – um framework que tornou-se
+refer&ecirc;ncia em aplica&ccedil;&otilde;es Java. Uma de suas
+vantagens &eacute; se integrar de forma automatizada com outros
+frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade
+de c&oacute;digo na nossa aplica&ccedil;&atilde;o. O uso ser&aacute;
+bastante comedido (evitando o anti-padr&atilde;o que duplica cada
+classe do sistema em uma interface [cita&ccedil;&atilde;o]), apenas
+nos pontos em que este uso se tornar vantajoso.</P>
+<H5 CLASS="western"></H5>
+<P CLASS="western"><BR><BR>
+</P>
+<DIV ID="sdfootnote1">
+	<P CLASS="sdfootnote"><I><A CLASS="sdfootnotesym" NAME="sdfootnote1sym" HREF="#sdfootnote1anc">1</A>Create-Read-Update-Delete,
+	</I><SPAN STYLE="font-style: normal">acr&ocirc;nimo para m&oacute;dulos
+	que efetuam estas quatro opera&ccedil;&otilde;es b&aacute;sicas
+	sobre algum tipo de entidade.</SPAN></P>
+</DIV>
+<DIV ID="sdfootnote2">
+	<P CLASS="sdfootnote"><A CLASS="sdfootnotesym" NAME="sdfootnote2sym" HREF="#sdfootnote2anc">2</A>Por
+	interfaces aqui entendemos as unidades da aplica&ccedil;&atilde;o
+	com os quais o usu&aacute;rio lida. Exemplos incluem “telas” de
+	mainframe, caixas de di&aacute;logo em aplica&ccedil;&otilde;es GUI
+	e (no nosso caso) p&aacute;ginas web.</P>
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,174 @@
+
+
+/*************************/
+/* Elementos principais */
+/***********************/
+
+h1{
+/*	float:left;*/
+	font-size:150%;
+	color:#999;
+	padding-left: 2px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	
+	margin-top:1cm;
+	margin-bottom: 5mm;
+	margin-left: 0;
+	margin-right: 12pt;
+	
+	
+}
+
+p{
+	font-family: Verdana, Arial, Sans-serif;
+	color: #000;
+	text-indent:5mm;
+	
+	
+}
+
+img{
+	border: 0px;
+}
+
+
+p.center{
+	text-align: center;
+}
+
+a.titulo{
+	color: gray;
+	
+}
+
+a:hover{
+	color: chocolate;
+	text-decoration: underline;
+}
+a{
+	color: green;
+	text-decoration: none;
+	
+}
+
+/*********************/
+/* Tabela Principal */
+/*******************/
+
+
+table.principal{
+	border: 0px solid #000;
+}
+
+tr.principal-logo{
+}
+
+
+td.principal-logo{
+	text-align: center;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+
+tr.principal{
+}
+
+td.principal-texto{
+	border-left: 1px solid #ccc;
+	text-align: justify;
+}
+
+td.principal-apoio{
+/*	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;*/
+	border-left: 1px dashed #ccc;
+	border-right: 1px solid #ccc;
+	text-align: center;
+}
+
+tr.principal-rodape{
+}
+td.principal-rodape{
+	text-align: right;
+	font-size: 50%;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+
+/*********/
+/* Menu */
+/*******/
+
+ul.menu{
+}
+
+li.menu_item{
+list-style-type: lower-greek;
+
+}
+
+/**************************/
+/* Lista de Palestrantes */
+/************************/
+
+ul.palestrantes{
+	
+}
+
+li.palestrante{
+	margin-top: 5mm;
+	font-weight: bold;
+	list-style-image: url("http://www.ime.usp.br/imagens/direita.png");
+}
+
+ul.detalhes{
+	font-weight: normal;
+}
+
+li.palestra{
+}
+
+
+
+
+/***********************/
+/* Tabela de Horários */
+/*********************/
+
+
+
+table.horario{
+	border: 1px solid #aaa;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+tr.horario{
+}
+
+
+th.titulo{
+	text-align: center;
+	background-color: white;
+	border: 1px solid #aaa;
+	font-variant: small-caps;
+	
+}
+th.horario{
+	text-align: center;
+	background-color: white;
+	border: 1px solid #aaa;
+	color: gray;
+	
+}
+
+td.horario{
+	border: 1px dotted #aaa;
+
+}
