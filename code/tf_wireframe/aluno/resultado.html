@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel='stylesheet' href='../stylesheets/layout.css' type='text/css' />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="cabecalho_id">Aluno: Fulano de Tal</div>
+<div>
+<h1>Aula: Regressão em Séries de Tempo</h1>
+<h2>Escolha dos Coeficientes - Resultado</h2>
+texto de saída do algoritmo<br/>
+texto de saída do algoritmo<br/>
+<br/>
+<h2>Resultado</h2>
+Ω = <img src="../img/matrix.png" style="vertical-align:middle"><br/>
+Você pode ir para o <input type="button" value="Próximo Passo" /> ou tentar novamente: <br/>
+<h2>Dados do Problema</h2>
+ß = <input type="text"/><br/>
+∑(<input type="text" class="campo_num_peq" value="3"/> x <input type="text" class="campo_num_peq" value="5"/>) =
+<table class="tb_matriz">
+<script>
+for (r=1;r<=3;r++) {
+  document.write('<tr>');
+  for (c=1;c<=5;c++)
+    document.write('<td><input type="text" class="campo_num_peq" /></td>');    
+  document.write('</tr>');
+}
+</script>
+<tr><td colspan="5"><input type="button" value="importar (Excel, txt)" /> <td></tr>
+</table>
+<div>
+<div class="botoes_submit">
+<input type="submit" value="Executar" />
+<input type="button" value="Salvar Dados" />
+<input type="button" value="Carregar Dados" />
+</div>
+</body>
+</html>
