@@ -10,6 +10,7 @@ package tf.model.data;
  */
 public class Entrada {
 
+	private String nome;
 	private Usuario usuario;
 	private Passo passo;
 
@@ -27,6 +28,14 @@ public class Entrada {
 
 	public void setPasso(Passo passo) {
 		this.passo = passo;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 
 }
