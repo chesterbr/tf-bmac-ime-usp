@@ -1,8 +1,8 @@
 package tf.model.data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.Entity;
 
 @Entity
 public class Parametro {
@@ -11,7 +11,7 @@ public class Parametro {
 	private String nome;
 	private int ordem;
 	private String classe;
-	private boolean entrada;
+	private boolean tipoEntrada;
 	
 	
 	@Id
@@ -39,12 +39,12 @@ public class Parametro {
 		return classe;
 	}
 
-	public void setEntrada(boolean entrada) {
-		this.entrada = entrada;
+	public void setTipoEntrada(boolean entrada) {
+		this.tipoEntrada = entrada;
 	}
 
-	public boolean isEntrada() {
-		return entrada;
+	public boolean isTipoEntrada() {
+		return tipoEntrada;
 	}
 
 	public void setOrdem(int ordem) {

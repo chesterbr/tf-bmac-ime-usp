@@ -3,30 +3,27 @@ package tf.model.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.AccessType;
-import org.hibernate.annotations.Entity;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.validator.Size;
 
 
 @Entity
 public class Aula {
-	
-	private long id;
-	
-	public long getId() {
+	private Long id;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Field(index=Index.NO, name="aaa")
 	public String titulo;
 
 	public String getTitulo() {
@@ -43,5 +40,8 @@ public class Aula {
 	public List<Passo> getPassos() {
 		return passos;
 	};
+
+
+	
 
 }
