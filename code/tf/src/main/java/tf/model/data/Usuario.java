@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import tf.helpers.EncryptionHelper;
+
 /**
  * Representa uma pessoa que interage com o sistema, contendo suas credenciais e
  * seu tipo (professor ou aluno)
@@ -26,11 +28,11 @@ public class Usuario {
 	}
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -63,5 +65,9 @@ public class Usuario {
 		this.professor = professor;
 	}
 
+	public boolean isSenhaValida(String senha) {
+		return EncryptionHelper.getInstance().gera_hash_senha(senha).equals(
+				this.hash_senha);
+	}
 
 }

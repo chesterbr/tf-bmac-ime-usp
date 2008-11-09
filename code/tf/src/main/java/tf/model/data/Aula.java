@@ -39,6 +39,10 @@ public class Aula {
 	@OneToMany()
 	public List<Passo> getPassos() {
 		return passos;
+	}
+
+	public void setPassos(List<Passo> passos) {
+		this.passos = passos;
 	};
 
 
