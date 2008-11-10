@@ -69,5 +69,9 @@ public class Usuario {
 		return EncryptionHelper.getInstance().gera_hash_senha(senha).equals(
 				this.hash_senha);
 	}
+	
+	public void setSenha(String senha) {
+		setHash_senha(EncryptionHelper.getInstance().gera_hash_senha(senha));
+	}
 
 }

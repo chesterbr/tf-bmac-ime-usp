@@ -77,6 +77,7 @@ public class AutenticacaoActionBean implements ActionBean {
 
 	@DefaultHandler
 	public Resolution login() {
+		context.getRequest().getSession().setAttribute("usuario", usuario);
 		if (usuario.isProfessor())
 			return new ForwardResolution("/professor/aulas.jsp");
 		else
