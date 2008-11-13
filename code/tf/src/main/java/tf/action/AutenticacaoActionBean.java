@@ -16,7 +16,7 @@ import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Usuario;
 
 /**
- * Actions relacionadas a autenticação (login, criação de usuário, etc.)
+ * Actions relacionadas a autenticaÔøΩÔøΩo (login, criaÔøΩÔøΩo de usuÔøΩrio, etc.)
  * 
  * @author chester
  */
@@ -56,7 +56,7 @@ public class AutenticacaoActionBean implements ActionBean {
 	}
 
 	/**
-	 * Esta validação verifica se o email/senha correspondem a um usuário (e já
+	 * Esta valida√ß√£o verifica se o email/senha correspondem a um usu√°rio (e j√°
 	 * guarda ele no bean)
 	 * 
 	 * @param errors
@@ -75,13 +75,14 @@ public class AutenticacaoActionBean implements ActionBean {
 		session.close();
 	}
 
+	/**
+	 * Guarda o usu√°rio autenticado na sess√£o (a valida√ß√£o j√° fez o trabalho
+	 * sujo aqui) e mostra a lista de aulas dele.
+	 */
 	@DefaultHandler
 	public Resolution login() {
 		context.getRequest().getSession().setAttribute("usuario", usuario);
-		if (usuario.isProfessor())
-			return new ForwardResolution("/professor/aulas.jsp");
-		else
-			return new ForwardResolution("/aluno/aulas.jsp");
+		return new ForwardResolution(AulasActionBean.class, "lista");
 	}
 
 	public void setUsuario(Usuario usuario) {

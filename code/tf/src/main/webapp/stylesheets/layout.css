@@ -8,6 +8,7 @@ body {
 
 input.error { background-color: yellow; }
 .erros_stripes { color:red;}
+.mensagens_stripes { color:green;}
 
 
 .cabecalho_id {

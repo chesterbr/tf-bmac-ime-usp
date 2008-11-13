@@ -8,14 +8,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
-
-import com.sun.tools.javac.util.Context;
+import tf.model.data.Usuario;
 
 /**
- * Garante que as p�ginas restritas v�o passar primeiro pela autentica��o
+ * Garante que as páginas restritas vão passar primeiro pela autenticação, e que
+ * alunos não terão acesso a áreas específicas de professores
+ * 
+ * TODO: se as áreas específicas forem fechadas nas actions, remover o
+ * comentário acima
  * 
  * @author chester
  * 
@@ -29,20 +30,33 @@ public class AcessoRestritoFilter implements javax.servlet.Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		// Se houver usu�rio autenticado na sess�o (ou se for a pr�pria p�gina
-		// de login
-		// ou seu back-end), beleza, sen�o exige autentica��o
 		HttpServletRequest req = (HttpServletRequest) request;
-		if (req.getServletPath().equals("/Autenticacao.action")
-				|| req.getServletPath().equals("/comum/login.jsp")
-				|| req.getServletPath().equals("/comum/popula.jsp")
-				|| req.getServletPath().startsWith("/stylesheets")
-				|| req.getServletPath().startsWith("/img")
-				|| (req.getSession().getAttribute("usuario") != null)) {
+		Usuario u = (Usuario) req.getSession().getAttribute("usuario");
+		String path = req.getServletPath();
+		boolean isAutenticado = (u != null);
+		boolean isProfessor = (isAutenticado && u.isProfessor());
+		boolean libera = true;
+
+		// Bloqueia páginas exclusivas para professores se não for um
+		if ((path.equals("/AulasProfessor.action") || path.equals("/outro_path"))
+				&& !isProfessor)
+			libera = false;
+
+		// Bloqueia qualquer página (exceto as abertas) se não for autenticado
+		if ((!isAutenticado)
+				&& !(req.getServletPath().equals("/Autenticacao.action")
+						|| req.getServletPath().equals("/comum/login.jsp")
+						|| req.getServletPath().equals("/comum/popula.jsp")
+						|| req.getServletPath().startsWith("/stylesheets") || req
+						.getServletPath().startsWith("/img")))
+			libera = false;
+
+		// Manda o usuário para a página, ou devolve para a tela de login
+		if (libera)
 			chain.doFilter(request, response);
-		} else {
-			req.getRequestDispatcher("/comum/login.jsp").forward(request, response);
-		}
+		else
+			req.getRequestDispatcher("/comum/login.jsp").forward(request,
+					response);
 
 	}
 

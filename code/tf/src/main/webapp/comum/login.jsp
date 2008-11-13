@@ -12,6 +12,7 @@
 <h1>Bem-vindo!</h1>
 <stripes:form beanclass="tf.action.AutenticacaoActionBean" focus="email">
 	<div class="erros_stripes"><stripes:errors /></div>
+	<div class="mensagens_stripes"><stripes:messages /></div>
 	<label for="email">e-mail</label>
 	<stripes:text name="email" />
 	<br />
