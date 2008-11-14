@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="tf.model.data.*,tf.helpers.*,org.hibernate.*"%>
+	import="tf.model.data.*,tf.helpers.*,org.hibernate.*,java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,10 +29,17 @@ Populando banco...
 
 	Aula a1 = new Aula();
 	a1.setTitulo("aula 1 com dois passos");
-	p1 = new Passo();
+	Passo p1 = new Passo();
 	p1.setNome("primeiro passo");
-	List<Passos> passos = new ArrayList<Passos>();
-	passos.
+	p1.setExplicacao_html("bla ble <b>bli</b><br/>blo blu");
+	p1.setCodigo_java("return 2+2;");
+	List<Passo> passos = new ArrayList<Passo>();
+	Passo p2 = new Passo();
+	p2.setNome("segundo passo");
+	p2.setExplicacao_html("asdfghjkl<img src=\"http://chester.blog.br/img/chester.gif\">");
+	p2.setCodigo_java("return false;");
+	passos.add(p1);
+	passos.add(p2);
 	a1.setPassos(passos);
 	s.save(a1);
 	
