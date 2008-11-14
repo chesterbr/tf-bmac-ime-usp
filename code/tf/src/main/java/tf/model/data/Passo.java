@@ -1,12 +1,19 @@
 package tf.model.data;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Passo {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public long getId() {
 		return id;
 	}
@@ -20,6 +27,7 @@ public class Passo {
 	private int ordem;
 	private String explicacao_html;
 	private String codigo_java;
+	private Aula aula;
 	
 	public String getNome() {
 		return nome;
@@ -51,6 +59,15 @@ public class Passo {
 
 	public void setCodigo_java(String codigo_java) {
 		this.codigo_java = codigo_java;
+	}
+
+	public void setAula(Aula aula) {
+		this.aula = aula;
+	}
+
+	@ManyToOne
+	public Aula getAula() {
+		return aula;
 	}
 
 

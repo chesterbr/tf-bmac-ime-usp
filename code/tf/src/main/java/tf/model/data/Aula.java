@@ -3,13 +3,18 @@ package tf.model.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
-import org.hibernate.search.annotations.Field;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 
 
 @Entity
@@ -38,7 +43,10 @@ public class Aula {
 
 	private List<Passo> passos = new ArrayList<Passo>();
 
-	@OneToMany()
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy="aula", cascade=CascadeType.ALL)
+	@JoinColumn(name="aula_id")
+	@OrderBy("ordem")
 	public List<Passo> getPassos() {
 		return passos;
 	}

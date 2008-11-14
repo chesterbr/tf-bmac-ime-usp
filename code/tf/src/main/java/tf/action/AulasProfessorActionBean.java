@@ -8,16 +8,21 @@ import net.sourceforge.stripes.validation.SimpleError;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.sun.tools.javac.util.Context;
+
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
+import tf.model.data.Passo;
 
 /**
- * Eventos sobre aulas de acesso exclusivo do professor
+ * Eventos do CRUD de aulas (e passos de aula) de acesso exclusivo do professor
  * 
  * @author chester
  */
 public class AulasProfessorActionBean extends AulasActionBean {
 
+	private Passo passo;
+	
 	/**
 	 * Permite ao professor entrar com os dados de uma nova aula
 	 * 
@@ -67,4 +72,40 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		return new ForwardResolution(AulasProfessorActionBean.class, "lista");
 	}
 
+	public Resolution novoPasso() {
+		this.setPasso(new Passo());
+		this.getPasso().setAula(this.aula);
+		return new ForwardResolution("/professor/passo.jsp");
+	}
+
+	public Resolution editarPasso() {
+		if (this.getPasso() == null)
+			return new ForwardResolution(AulasProfessorActionBean.class, "editar");
+		Session s = HibernateSessionHelper.getSession();
+		Transaction t = s.beginTransaction();
+		this.setPasso((Passo) s.get(Passo.class, this.getPasso().getId()));
+		t.commit();
+		return new ForwardResolution("/professor/passo.jsp");
+	}
+
+	public Resolution salvarPasso() {
+		Session s = HibernateSessionHelper.getSession();
+		Transaction t = s.beginTransaction();
+		s.merge(this.getPasso());
+		t.commit();
+		getContext().getMessages().add(
+				new SimpleMessage("Passo \"" + this.getPasso().getNome() + "\" salvo."));
+		return new ForwardResolution("/professor/aula.jsp");
+	}
+
+	public void setPasso(Passo passo) {
+		this.passo = passo;
+	}
+
+	public Passo getPasso() {
+		return passo;
+	}
+
+	
+	
 }
