@@ -12,7 +12,7 @@ Populando banco...
 <%
 	Session s = HibernateSessionHelper.getSession();
 	Transaction t = s.beginTransaction();
-
+/*
 	Usuario u = new Usuario();
 	u.setEmail("professor@usp.br");
 	u.setSenha("asdfgh");
@@ -26,9 +26,9 @@ Populando banco...
 	u.setProfessor(false);
 	u.setNome("Aluno Teste");
 	s.save(u);
-
+*/
 	Aula a1 = new Aula();
-	a1.setTitulo("aula 1 com dois passos");
+	a1.setTitulo("aula com dois passos");
 	s.save(a1);
 	Passo p1 = new Passo();
 	p1.setNome("primeiro passo");
@@ -44,11 +44,11 @@ Populando banco...
 	s.save(p1);
 	s.save(p2);
 	
-	/*
+	
 	Aula a2 = new Aula();
 	a2.setTitulo("aula 2");
 	s.save(a2);
-*/
+
 	t.commit();
 	
 %> pronto!

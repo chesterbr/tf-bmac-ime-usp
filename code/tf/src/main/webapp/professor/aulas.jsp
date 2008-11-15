@@ -8,13 +8,13 @@
 </head>
 <body>
 <stripes:form beanclass="tf.action.AulasProfessorActionBean"
-	focus="aula">
+	focus="aula.id">
 	<div class="cabecalho_id">${actionBean.usuario.nome} [Professor]</div>
 	<h1>Aulas</h1>
 	<div class="erros_stripes"><stripes:errors /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>
 	<div class="lista_esq">
-	<stripes:select name="aula.id" size="10">
+	<stripes:select name="aula.id" size="10" ondblclick="document.forms[0].editar.click()">
 		<stripes:options-collection collection="${actionBean.aulas}"
 			label="titulo" value="id" />
 	</stripes:select></div>

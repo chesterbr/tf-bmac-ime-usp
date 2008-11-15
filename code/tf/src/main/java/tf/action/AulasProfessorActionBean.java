@@ -8,8 +8,6 @@ import net.sourceforge.stripes.validation.SimpleError;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.sun.tools.javac.util.Context;
-
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
 import tf.model.data.Passo;
@@ -22,7 +20,7 @@ import tf.model.data.Passo;
 public class AulasProfessorActionBean extends AulasActionBean {
 
 	private Passo passo;
-	
+
 	/**
 	 * Permite ao professor entrar com os dados de uma nova aula
 	 * 
@@ -34,7 +32,7 @@ public class AulasProfessorActionBean extends AulasActionBean {
 	}
 
 	public Resolution salvar() {
-		if ((this.aula == null) || (this.aula.titulo==null)) {
+		if ((this.aula == null) || (this.aula.titulo == null)) {
 			getContext().getValidationErrors().add("titulo",
 					new SimpleError("Campos obrigatórios não-preenchidos"));
 			return new ForwardResolution("/professor/aula.jsp");
@@ -50,7 +48,8 @@ public class AulasProfessorActionBean extends AulasActionBean {
 
 	public Resolution editar() {
 		if (this.aula == null)
-			return new ForwardResolution(AulasProfessorActionBean.class, "lista");
+			return new ForwardResolution(AulasProfessorActionBean.class,
+					"lista");
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		this.aula = (Aula) s.get(Aula.class, this.aula.getId());
@@ -60,7 +59,8 @@ public class AulasProfessorActionBean extends AulasActionBean {
 
 	public Resolution apagar() {
 		if (this.aula == null)
-			return new ForwardResolution(AulasProfessorActionBean.class, "lista");
+			return new ForwardResolution(AulasProfessorActionBean.class,
+					"lista");
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		this.aula = (Aula) s.get(Aula.class, this.aula.getId());
@@ -80,7 +80,8 @@ public class AulasProfessorActionBean extends AulasActionBean {
 
 	public Resolution editarPasso() {
 		if (this.getPasso() == null)
-			return new ForwardResolution(AulasProfessorActionBean.class, "editar");
+			return new ForwardResolution(AulasProfessorActionBean.class,
+					"editar");
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		this.setPasso((Passo) s.get(Passo.class, this.getPasso().getId()));
@@ -91,11 +92,13 @@ public class AulasProfessorActionBean extends AulasActionBean {
 	public Resolution salvarPasso() {
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
-		s.merge(this.getPasso());
+		this.passo.setAula((Aula) s.get(Aula.class, this.aula.getId()));
+		s.merge(this.passo);
 		t.commit();
 		getContext().getMessages().add(
-				new SimpleMessage("Passo \"" + this.getPasso().getNome() + "\" salvo."));
-		return new ForwardResolution("/professor/aula.jsp");
+				new SimpleMessage("Passo \"" + this.getPasso().getNome()
+						+ "\" salvo."));
+		return new ForwardResolution(AulasProfessorActionBean.class, "editar");
 	}
 
 	public void setPasso(Passo passo) {
@@ -106,6 +109,4 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		return passo;
 	}
 
-	
-	
 }

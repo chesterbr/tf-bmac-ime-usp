@@ -19,25 +19,25 @@ document.write('<input type="button" value="Criar Novo" /><br/>');
 <body>
 <stripes:form beanclass="tf.action.AulasProfessorActionBean" 
 	focus="passo.titulo">
+<input type="hidden" name="aula.id" value="${actionBean.aula.id}" />
+<input type="hidden" name="passo.id" value="${actionBean.passo.id}" />	
 <div class="cabecalho_id">Professor: Sicrano</div>
-<h1>Aula:  - Passo: </h1>
+<h1>Aula: ${actionBean.aula.titulo} - Passo: ${actionBean.passo.nome} </h1>
 <div class="campos_lista">
-<label for="passo.titulo">Título</label>
-<stripes:text name="passo.titulo" /><br/>
-<label for="passo.descricao">Descrição</label>
-<stripes:textarea name="passo.descricao" rows="2"></stripes:textarea><br/>
-<label for="explicacao">Explicação</label>
-<stripes:textarea name="passo.explicacao" rows="8"></stripes:textarea><br/>
+<label for="passo.nome">Nome</label>
+<stripes:text name="passo.nome" /><br/>
+<label for="passo.explicacao_html">Explicação</label>
+<stripes:textarea name="passo.explicacao_html" rows="8"></stripes:textarea><br/>
 </div>
 <div class="algoritmo_campos">
 <h2>Dados de Entrada</h2>
 <script>campos(3);</script>
-<h2>Dados de SaÃ­da<h2/>
+<h2>Dados de Saída<h2/>
 <script>campos(2);</script>
 </div>
-<h2><label for="cÃ³digo">CÃ³digo</label><br/></h2>
+<h2><label for="passo.codigo_java">Código</label><br/></h2>
 <div class="algoritmo_codigo">
-<textarea name="codigo" rows="8" cols="80"></textarea>
+<stripes:textarea name="passo.codigo_java" rows="8" cols="80"></stripes:textarea>
 </div>
 <div class="botoes_dir">
 <input type="button" value="Verificar Sintaxe" />
@@ -45,7 +45,7 @@ document.write('<input type="button" value="Criar Novo" /><br/>');
 </div>
 <div class="botoes_submit">
 <stripes:submit name="salvarPasso" value="Salvar" />
-<input type="button" value="Cancelar" />
+<stripes:submit name="editar"  value="Cancelar" />
 </div>
 </stripes:form>
 </body>

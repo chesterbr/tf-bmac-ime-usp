@@ -19,9 +19,10 @@
 	<stripes:text name="aula.titulo" /><br />
 	</div>
 	<div class="botoes_submit"><stripes:submit name="salvar"
-		value="Salvar" /> <input type="button" value="Cancelar" /></div>
+		value="Salvar" /> <stripes:submit name="listar" value="Cancelar" /></div>
 	<h2>Passos</h2>
-	<div class="lista_esq"><stripes:select name="passo.id" size="10">
+	<div class="lista_esq"><stripes:select name="passo.id" size="10"
+		ondblclick="document.forms[0].editarPasso.click()">>
 		<stripes:options-collection collection="${actionBean.aula.passos}"
 			label="nome" value="id" />
 	</stripes:select></div>
