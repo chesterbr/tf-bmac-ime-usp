@@ -4,12 +4,15 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SimpleMessage;
 import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
+import tf.model.data.Parametro;
 import tf.model.data.Passo;
 
 /**
@@ -89,9 +92,19 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		return new ForwardResolution("/professor/passo.jsp");
 	}
 
+	public void setParam_nome(String s) {
+		System.out.println("CHESTER:" + s);
+	}
+
 	public Resolution salvarPasso() {
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
+		// Remove os parâmetros antigos, se houverem
+		if (this.passo.getId() != 0)
+			for (Parametro parametro : ((Passo) s.get(Passo.class, this.passo
+					.getId())).getParametros())
+				parametro.setPasso(null);
+		// Guarda o passo (e, implicitamente, os novos/editados parâmetros)
 		this.passo.setAula((Aula) s.get(Aula.class, this.aula.getId()));
 		s.merge(this.passo);
 		t.commit();
@@ -99,6 +112,36 @@ public class AulasProfessorActionBean extends AulasActionBean {
 				new SimpleMessage("Passo \"" + this.getPasso().getNome()
 						+ "\" salvo."));
 		return new ForwardResolution(AulasProfessorActionBean.class, "editar");
+	}
+
+	/**
+	 * Checa a sintaxe de um código, compilando-o
+	 * 
+	 * @param errors
+	 */
+	@ValidationMethod(on = "checarPasso")
+	public void validaSintaxe(ValidationErrors errors) {
+		this.passo.compila();
+		String erros = this.passo.getErrosDeCompilacao();
+		System.out.println("CHESTER: " + erros);
+		if (erros != null & erros.length() > 0) {
+			errors.add("passo.codigo_java", new SimpleError(
+					("Os seguintes erros foram encontrados:\n" + erros)
+							.replace("\n", "<br/>")));
+		}
+	}
+
+	/**
+	 * Salva os dados e exibe os erros do código (se houverem) - a checagem já
+	 * foi feita na validação
+	 * 
+	 * @see #validaSintaxe(ValidationErrors)
+	 * @return
+	 */
+	public Resolution checarPasso() {
+		salvarPasso();
+		return new ForwardResolution(AulasProfessorActionBean.class,
+				"editarPasso");
 	}
 
 	public void setPasso(Passo passo) {

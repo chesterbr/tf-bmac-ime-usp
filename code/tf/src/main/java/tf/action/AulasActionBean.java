@@ -1,14 +1,16 @@
 package tf.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
 
+import net.sf.json.JSONObject;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.validation.Validate;
-import net.sourceforge.stripes.validation.ValidateNestedProperties;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -82,6 +84,21 @@ public class AulasActionBean implements ActionBean {
 
 	public Aula getAula() {
 		return aula;
+	}
+
+	/**
+	 * Monta uma lista (fixa) de classes de dados possíveis para parâmetros de
+	 * entrada/saída dos passos de uma aula.
+	 * <p>
+	 * No futuro esta lista pode ter sua própria tabela/entidade, e esse método
+	 * passaria a ser apenas um helper
+	 * 
+	 * @return objeto JSON cujos campos são os tipos de dados (ex.:
+	 *         java.lang.Integer) e cujos valores as descrições dos tipos (ex.:
+	 *         "Número Inteiro").
+	 */
+	public String getClassesAsJSON() {
+		return "{\"java.lang.Integer\":\"Inteiro\",\"java.lang.Double\":\"Real\"}";
 	}
 
 }
