@@ -22,9 +22,9 @@
 	<stripes:submit name="login" value="Entrar" />
 </stripes:form>
 <script>
-document.forms[0].email.value="professor@usp.br";
+document.forms[0].email.value="aluno@usp.br";
 document.forms[0].senha.value="asdfgh";
-document.forms[0].submit();
+//document.forms[0].submit();
 </script>
 <br />
 </div>

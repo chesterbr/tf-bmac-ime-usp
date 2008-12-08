@@ -3,8 +3,11 @@ package tf.model.data;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,6 +30,8 @@ import net.sf.json.util.PropertyFilter;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import tf.codigodinamico.Base;
 
 @Entity
 public class Passo {
@@ -121,6 +126,44 @@ public class Passo {
 		return JSONArray.fromObject(getParametros(), jsonConfig).toString();
 	}
 
+	/**
+	 * Recupera apenas os parâmetros de entrada ou saída
+	 * 
+	 * @param isEntrada
+	 *            true se for para recuperar os de entrada, false se for os de
+	 *            saída
+	 * @return parâmetros do passo, filtrados de acordo com
+	 *         <code>isEntrada</code>
+	 */
+	@Transient
+	public List<Parametro> getParametrosPorTipo(boolean isEntrada) {
+		List<Parametro> filtrados = new ArrayList<Parametro>();
+		for (Parametro p : this.getParametros())
+			if (p.isTipoEntrada() == isEntrada)
+				filtrados.add(p);
+		return filtrados;
+	}
+
+	/**
+	 * Recupera apenas os parâmetros de entrada
+	 * 
+	 * @return
+	 */
+	@Transient
+	public List<Parametro> getParametrosEntrada() {
+		return getParametrosPorTipo(true);
+	}
+
+	/**
+	 * Recupera apenas os parâmetros de saída
+	 * 
+	 * @return
+	 */
+	@Transient
+	public List<Parametro> getParametrosSaida() {
+		return getParametrosPorTipo(false);
+	}
+
 	@SuppressWarnings("unchecked")
 	public void setParametrosAsJSON(String json) {
 		List<Parametro> params = (List<Parametro>) JSONArray.toCollection(
@@ -129,6 +172,22 @@ public class Passo {
 			parametro.setPasso(this);
 		}
 		this.setParametros(params);
+	}
+
+	/**
+	 * @return Nome da classe correspondente ao código deste passo
+	 */
+	@Transient
+	private String getNomeClasse() {
+		return "Passo" + getId();
+	}
+
+	/**
+	 * @return Nome do pacote correspondente ao código deste passo
+	 */
+	@Transient
+	private String getNomePackage() {
+		return "tf.codigodinamico";
 	}
 
 	/**
@@ -142,12 +201,11 @@ public class Passo {
 	public boolean compila() {
 
 		// Monta o código-fonte
-		String nomeClasse = "Passo" + getId(); // TODO gerar pelo objeto, c/
 		// sequencia se for 0
 		StringBuilder fonte = new StringBuilder();
-		fonte.append("package tf.codigodinamico;\n");
+		fonte.append("package " + this.getNomePackage() + ";\n");
 		fonte.append("import java.util.*;\n");
-		fonte.append("public class " + nomeClasse
+		fonte.append("public class " + this.getNomeClasse()
 				+ " extends tf.codigodinamico.Base {\n");
 		fonte
 				.append(" public Map<String, Object> executa(Map<String, Object> __entrada) {\n");
@@ -169,7 +227,8 @@ public class Passo {
 			}
 		// Enxerta o código escrito pelo professor
 		fonte.append('\n').append(this.getCodigo_java()).append('\n');
-		fonte.append(";\n"); // Importante para que os erros não "vazem" para a parte de baixo
+		fonte.append(";\n"); // Importante para que os erros não "vazem" para a
+		// parte de baixo
 		// Monta o mapa com os parâmetros de saída, com statements no formato:
 		// __saida.add("nome",nome);
 		fonte
@@ -187,8 +246,9 @@ public class Passo {
 		// Prepara o compilador
 		javax.tools.JavaCompiler compilador = ToolProvider
 				.getSystemJavaCompiler();
-		JavaSourceFromString javaString = new JavaSourceFromString(
-				"tf.codigodinamico." + nomeClasse, fonte.toString());
+		JavaSourceFromString javaString = new JavaSourceFromString(this
+				.getNomePackage()
+				+ "." + this.getNomeClasse(), fonte.toString());
 		ArrayList<JavaSourceFromString> al = new ArrayList<JavaSourceFromString>();
 		al.add(javaString);
 
@@ -201,8 +261,8 @@ public class Passo {
 		List<String> opcoes = new ArrayList<String>();
 		opcoes.add("-d");
 		opcoes.add("target/classes/");
-		 opcoes.add("-cp");
-		 opcoes.add("/Users/chester/Documents/workspace/tf/target/classes");
+		opcoes.add("-cp");
+		opcoes.add("/Users/chester/Documents/workspace/tf/target/classes");
 		// "myAppPath/WEB_INF/lib/test.jar;myAppPath/WEB_INF/lib/test2.jar");
 
 		// Compila
@@ -215,8 +275,38 @@ public class Passo {
 	}
 
 	public Set<Valor> executa(Entrada entrada) {
+		throw new RuntimeException("Não implementado!");
+	}
 
-		return null;
+	/**
+	 * Executa o código deste passo para uma entrada em memória
+	 * 
+	 * @param entrada
+	 *            Dados de entrada (chave=nome, objeto=valor)
+	 * @return Dados de saída (chave=nome, objeto=valor)
+	 * @throws ClassNotFoundException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
+	 */
+	public Map<String, Object> executa(Map<String, Object> entrada)
+			throws InstantiationException, IllegalAccessException,
+			ClassNotFoundException {
+		// TODO só fazer isso se não tiver sido feito ainda
+		if (!this.compila()) {
+			throw new ClassNotFoundException("Erro na compilação:"
+					+ this.getErrosDeCompilacao());
+		}
+		URL[] urls = {};
+		ClassLoader cl = new URLClassLoader(urls);
+		Base codigo;
+		codigo = (Base) cl.loadClass(
+				this.getNomePackage() + "." + this.getNomeClasse())
+				.newInstance();
+		Map<String, Object> resultado = codigo.executa(entrada);
+		cl = null;
+		System.gc();
+		System.gc();
+		return resultado;
 	}
 
 	public static void main(String args[]) {

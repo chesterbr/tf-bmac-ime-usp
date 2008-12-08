@@ -22,8 +22,6 @@ import tf.model.data.Passo;
  */
 public class AulasProfessorActionBean extends AulasActionBean {
 
-	private Passo passo;
-
 	/**
 	 * Permite ao professor entrar com os dados de uma nova aula
 	 * 
@@ -142,14 +140,6 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		salvarPasso();
 		return new ForwardResolution(AulasProfessorActionBean.class,
 				"editarPasso");
-	}
-
-	public void setPasso(Passo passo) {
-		this.passo = passo;
-	}
-
-	public Passo getPasso() {
-		return passo;
 	}
 
 }

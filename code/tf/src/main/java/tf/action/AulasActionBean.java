@@ -3,9 +3,7 @@ package tf.action;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
 
-import net.sf.json.JSONObject;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -17,6 +15,8 @@ import org.hibernate.Transaction;
 
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
+import tf.model.data.Parametro;
+import tf.model.data.Passo;
 import tf.model.data.Usuario;
 
 /**
@@ -30,6 +30,7 @@ public class AulasActionBean implements ActionBean {
 	private Usuario usuario;
 	private List<Aula> aulas;
 	protected Aula aula;
+	protected Passo passo;
 
 	private ActionBeanContext context;
 
@@ -62,6 +63,34 @@ public class AulasActionBean implements ActionBean {
 			return new ForwardResolution("/aluno/aulas.jsp");
 	}
 
+	/**
+	 * Inicia a execução de uma aula, abrindo seu primeiro passo
+	 * 
+	 * @return
+	 */
+	public Resolution abrir() {
+		if (this.aula == null)
+			return new ForwardResolution(AulasProfessorActionBean.class,
+					"lista");
+		Session s = HibernateSessionHelper.getSession();
+		Transaction t = s.beginTransaction();
+		this.aula = (Aula) s.get(Aula.class, this.aula.getId());
+		this.passo = this.aula.getPassos().get(0);
+		t.commit();
+		return new ForwardResolution("/aluno/passo.jsp");
+	}
+
+	public Resolution executarPasso() {
+		System.out.println("CHESTER:ENTROU");
+		Map<String, Object> entrada = new HashMap<String,Object>();
+		for(Parametro p:this.passo.getParametrosEntrada()) {
+			String valor = (String)this.getContext().getRequest().getAttribute(p.getNome());
+			System.out.println("CHESTER:"+p.getNome()+"="+valor);
+		}
+		//this.passo.executa(entrada);
+		return new ForwardResolution("/aluno/passo.jsp");		
+	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -84,6 +113,14 @@ public class AulasActionBean implements ActionBean {
 
 	public Aula getAula() {
 		return aula;
+	}
+
+	public void setPasso(Passo passo) {
+		this.passo = passo;
+	}
+
+	public Passo getPasso() {
+		return passo;
 	}
 
 	/**

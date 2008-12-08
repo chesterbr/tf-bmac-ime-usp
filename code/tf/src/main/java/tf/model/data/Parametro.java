@@ -1,16 +1,10 @@
 package tf.model.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-
-import net.sf.json.JSONObject;
 
 @Entity
 public class Parametro {
