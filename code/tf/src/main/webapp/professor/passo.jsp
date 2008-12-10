@@ -47,6 +47,11 @@
 		return s;
 	}
 
+	function atualiza_preview_html() {
+		$("#preview_html").html($("#campo_html").attr("value").replace(/\n/g, "<br/>"));
+		return true;
+	}
+
 	function atualiza_dados_submit() {
 		ordem_e = ordem_s = 1;
 		dados = new Array();
@@ -78,11 +83,12 @@
 	${actionBean.passo.nome}</h1>
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>
-	
+<div style="float:right; width:50%;">Visualizar:<br/><div id="preview_html" style="overflow:auto; border-width:1px; border-style:solid; width:400px; height:100px;"></div></div>	
 	<div class="campos_lista"><label for="passo.nome">Nome</label> <stripes:text
 		name="passo.nome" /><br />
 	<label for="passo.explicacao_html">Explicação</label> <stripes:textarea
-		name="passo.explicacao_html" rows="8"></stripes:textarea><br />
+		name="passo.explicacao_html" rows="8" id="campo_html" onkeyup="atualiza_preview_html()"></stripes:textarea> <br />
+		<script>atualiza_preview_html();</script>
 	</div>
 	<div class="algoritmo_campos">
 	<h2>Dados de Entrada</h2>

@@ -13,16 +13,29 @@
 <div>
 <h1>Aula: ${actionBean.aula.titulo}</h1>
 <h2>${actionBean.passo.nome}</h2>
-${actionBean.passo.explicacao_html} <br />
+${actionBean.passo.explicacao_html_formatada} <br />
+
+<h2>Resultados</h2>
+<c:forEach var="parametro" items="${actionBean.passo.parametrosSaida}">
+	${parametro.nome}: ${actionBean.valoresSaida[parametro.ordem]}
+	<br/>	
+</c:forEach>
+
+
 <br />
 Experimente!<br />
 <br />
+	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
+	<div class="mensagens_stripes"><stripes:messages /></div>
 <h2>Dados do Problema</h2>
 <stripes:form beanclass="tf.action.AulasActionBean" focus="passo.titulo">
+<input type="hidden" name="aula.id" value="${actionBean.aula.id}" />
+<input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
+
 <c:forEach var="parametro" items="${actionBean.passo.parametrosEntrada}">
-	<label for="${parametro.nome}">${parametro.nome}</label>: 
-	<c:if test="${parametro.classe=='java.lang.Integer'}"><stripes:text name="${parametro.nome}"></stripes:text></c:if>	
-	<c:if test="${parametro.classe=='java.lang.Double'}"><stripes:text name="${parametro.nome}"></stripes:text></c:if>
+	${parametro.nome}: 
+	<c:if test="${parametro.classe=='java.lang.Integer'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>	
+	<c:if test="${parametro.classe=='java.lang.Double'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>
 	<br/>	
 </c:forEach>
 <!--  

@@ -1,5 +1,6 @@
 package tf.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import net.sourceforge.stripes.action.ActionBeanContext;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.validation.SimpleError;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,6 +33,8 @@ public class AulasActionBean implements ActionBean {
 	private List<Aula> aulas;
 	protected Aula aula;
 	protected Passo passo;
+	private List<String> valoresEntrada;
+	private List<String> valoresSaida;
 
 	private ActionBeanContext context;
 
@@ -80,15 +84,59 @@ public class AulasActionBean implements ActionBean {
 		return new ForwardResolution("/aluno/passo.jsp");
 	}
 
+	/**
+	 * Recupera passo atual do banco (quando só vem o ID)
+	 */
+	protected void recuperaPasso() {
+		Session s = HibernateSessionHelper.getSession();
+		Transaction t = s.beginTransaction();
+		this.setPasso((Passo) s.get(Passo.class, this.getPasso().getId()));
+		t.commit();
+	}
+
+	/**
+	 * Roda o código correspondente ao passo, encaminhando o usuário para a tela
+	 * com os dados de retorno
+	 * 
+	 * @return
+	 */
 	public Resolution executarPasso() {
-		System.out.println("CHESTER:ENTROU");
-		Map<String, Object> entrada = new HashMap<String,Object>();
-		for(Parametro p:this.passo.getParametrosEntrada()) {
-			String valor = (String)this.getContext().getRequest().getAttribute(p.getNome());
-			System.out.println("CHESTER:"+p.getNome()+"="+valor);
+		// Monta o mapa com os dados de entrada, convertendo as strings para
+		// objetos apropriadamente
+		this.recuperaPasso();
+		Map<String, Object> entrada = new HashMap<String, Object>();
+		for (Parametro p : this.passo.getParametrosEntrada()) {
+			String valor = this.valoresEntrada.get(p.getOrdem());
+			if (p.getClasse().equals("java.lang.Integer")) {
+				entrada.put(p.getNome(), new Integer(valor));
+			} else if (p.getClasse().equals("java.lang.Double")) {
+				entrada.put(p.getNome(), new Double(valor));
+			} else {
+				entrada.put(p.getNome(), valor);
+			}
 		}
-		//this.passo.executa(entrada);
-		return new ForwardResolution("/aluno/passo.jsp");		
+		// Chama o código, retornando eventuais erros à página original
+		Map<String, Object> saida;
+		try {
+			saida = this.passo.executa(entrada);
+		} catch (Exception e) {
+			System.err.println("Erro ao rodar passo:");
+			e.printStackTrace();
+			this.getContext().getValidationErrors().addGlobalError(
+					new SimpleError(e.getMessage()));
+			return new ForwardResolution("/aluno/passo.jsp");
+		}
+		// Monta o array de saída (os índices correspondem à ordem do parâmetro
+		// e os elementos são os valores, como no de entrada)
+		valoresSaida = new ArrayList<String>();
+		for (Parametro p : this.passo.getParametrosSaida())
+			while (valoresSaida.size() < (p.getOrdem() + 1))
+				valoresSaida.add(null);
+		for (Parametro p : this.passo.getParametrosSaida()) {
+			// TODO adaptar quando aceitar tipos que o toString não lide bem
+			valoresSaida.set(p.getOrdem(), saida.get(p.getNome()).toString());
+		}
+		return new ForwardResolution("/aluno/passo.jsp");
 	}
 
 	public void setUsuario(Usuario usuario) {
@@ -136,6 +184,22 @@ public class AulasActionBean implements ActionBean {
 	 */
 	public String getClassesAsJSON() {
 		return "{\"java.lang.Integer\":\"Inteiro\",\"java.lang.Double\":\"Real\"}";
+	}
+
+	public void setValoresEntrada(List<String> valoresEntrada) {
+		this.valoresEntrada = valoresEntrada;
+	}
+
+	public List<String> getValoresEntrada() {
+		return valoresEntrada;
+	}
+
+	public void setValoresSaida(List<String> valoresSaida) {
+		this.valoresSaida = valoresSaida;
+	}
+
+	public List<String> getValoresSaida() {
+		return valoresSaida;
 	}
 
 }

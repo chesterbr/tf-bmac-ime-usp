@@ -2,6 +2,7 @@ package tf.model.data;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -73,6 +74,12 @@ public class Passo {
 
 	public String getExplicacao_html() {
 		return explicacao_html;
+	}
+
+	@Transient
+	public String getExplicacao_html_formatada() {
+		return getExplicacao_html().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
+
 	}
 
 	public void setExplicacao_html(String explicacao_html) {
@@ -296,8 +303,15 @@ public class Passo {
 			throw new ClassNotFoundException("Erro na compilação:"
 					+ this.getErrosDeCompilacao());
 		}
-		URL[] urls = {};
-		ClassLoader cl = new URLClassLoader(urls);
+		URL[] urls = new URL[1];
+		try {
+		 urls[0] = new URL("file:///Users/chester/Documents/workspace/tf/target/classes");
+		} catch (MalformedURLException e) {
+			System.err.println("CHESTER:ERROURL");
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		ClassLoader cl = new URLClassLoader(urls,Thread.currentThread().getContextClassLoader());
 		Base codigo;
 		codigo = (Base) cl.loadClass(
 				this.getNomePackage() + "." + this.getNomeClasse())

@@ -83,10 +83,7 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		if (this.getPasso() == null)
 			return new ForwardResolution(AulasProfessorActionBean.class,
 					"editar");
-		Session s = HibernateSessionHelper.getSession();
-		Transaction t = s.beginTransaction();
-		this.setPasso((Passo) s.get(Passo.class, this.getPasso().getId()));
-		t.commit();
+		this.recuperaPasso();
 		return new ForwardResolution("/professor/passo.jsp");
 	}
 
