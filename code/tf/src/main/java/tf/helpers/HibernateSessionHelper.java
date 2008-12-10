@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
  
 /**
- * Classe que simplifica o processo de obtenção de sessões no Hibernate,
+ * Classe que simplifica o processo de obtencao de sessoes no Hibernate,
  * garantindo que cada thread trabalhe com a sua session.
  * @author chester
  *
