@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+﻿<%@ page pageEncoding="utf-8"   contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="stripes"
 	uri="http://stripes.sourceforge.net/stripes.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -28,7 +28,7 @@ Experimente!<br />
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>
 <h2>Dados do Problema</h2>
-<stripes:form beanclass="tf.action.AulasActionBean" focus="passo.titulo">
+<stripes:form beanclass="${actionBean.usuario.professor?'tf.action.AulasProfessorActionBean':'tf.action.AulasActionBean'}" focus="passo.titulo">
 <input type="hidden" name="aula.id" value="${actionBean.aula.id}" />
 <input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
 
@@ -49,6 +49,7 @@ Experimente!<br />
 	-->
 	<div class="botoes_submit"><stripes:submit name="executarPasso" value="Executar"></stripes:submit> <input type="button"
 		value="Salvar Dados" /> <input type="button" value="Carregar Dados" />
+		<c:if test="${actionBean.usuario.professor}"><stripes:submit name="editarPasso" value="Voltar"></stripes:submit></c:if>
 	</div>
 </stripes:form>
 </body>

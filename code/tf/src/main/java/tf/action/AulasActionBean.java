@@ -55,13 +55,11 @@ public class AulasActionBean implements ActionBean {
 	@DefaultHandler
 	public Resolution lista() {
 		Session s = HibernateSessionHelper.getSession();
-		this.usuario = (Usuario) context.getRequest().getSession()
-				.getAttribute("usuario");
 		Transaction t = s.beginTransaction();
 		this.aulas = (List<Aula>) s.createQuery("from Aula order by titulo")
 				.list();
 		t.commit();
-		if (usuario.isProfessor())
+		if (this.getUsuario().isProfessor())
 			return new ForwardResolution("/professor/aulas.jsp");
 		else
 			return new ForwardResolution("/aluno/aulas.jsp");
@@ -81,6 +79,17 @@ public class AulasActionBean implements ActionBean {
 		this.aula = (Aula) s.get(Aula.class, this.aula.getId());
 		this.passo = this.aula.getPassos().get(0);
 		t.commit();
+		return new ForwardResolution("/aluno/passo.jsp");
+	}
+
+	/**
+	 * Abre o passo atual para experimentação
+	 * 
+	 * @return
+	 */
+	public Resolution abrirPasso() {
+		recuperaPasso();
+		this.aula = this.passo.getAula();
 		return new ForwardResolution("/aluno/passo.jsp");
 	}
 
@@ -144,7 +153,10 @@ public class AulasActionBean implements ActionBean {
 	}
 
 	public Usuario getUsuario() {
-		return usuario;
+		if (this.usuario == null)
+			this.usuario = (Usuario) context.getRequest().getSession()
+					.getAttribute("usuario");
+		return this.usuario;
 	}
 
 	public void setAulas(List<Aula> aulas) {

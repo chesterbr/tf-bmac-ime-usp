@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page pageEncoding="utf-8"   contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="stripes"
 	uri="http://stripes.sourceforge.net/stripes.tld"%>
 <html>
@@ -79,7 +79,7 @@
 	<input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
 	<input type="hidden" name="passo.parametrosAsJSON" id="params" value="x" />
 	<div class="cabecalho_id">Professor: Sicrano</div>
-	<h1>Aula: ${actionBean.aula.titulo} - Passo:
+	<h1>Aula: ${actionBean.aula.titulo} - Passo:ç
 	${actionBean.passo.nome}</h1>
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>

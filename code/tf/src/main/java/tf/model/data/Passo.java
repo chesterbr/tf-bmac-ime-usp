@@ -1,7 +1,11 @@
 package tf.model.data;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.OutputStreamWriter;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -267,7 +271,7 @@ public class Passo {
 		// TODO detectar o diretório correto (carregando a classe-base?)
 		List<String> opcoes = new ArrayList<String>();
 		opcoes.add("-d");
-		opcoes.add("target/classes/");
+		opcoes.add("/teste/");
 		opcoes.add("-cp");
 		opcoes.add("/Users/chester/Documents/workspace/tf/target/classes");
 		// "myAppPath/WEB_INF/lib/test.jar;myAppPath/WEB_INF/lib/test2.jar");
@@ -294,29 +298,50 @@ public class Passo {
 	 * @throws ClassNotFoundException
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> executa(Map<String, Object> entrada)
 			throws InstantiationException, IllegalAccessException,
-			ClassNotFoundException {
+			ClassNotFoundException, IllegalArgumentException,
+			SecurityException, InvocationTargetException, NoSuchMethodException {
 		// TODO só fazer isso se não tiver sido feito ainda
 		if (!this.compila()) {
 			throw new ClassNotFoundException("Erro na compilação:"
 					+ this.getErrosDeCompilacao());
 		}
+		// Carrega a classe
 		URL[] urls = new URL[1];
 		try {
-		 urls[0] = new URL("file:///Users/chester/Documents/workspace/tf/target/classes");
+			urls[0] = new File("/teste/").toURI().toURL();
 		} catch (MalformedURLException e) {
 			System.err.println("CHESTER:ERROURL");
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
-		ClassLoader cl = new URLClassLoader(urls,Thread.currentThread().getContextClassLoader());
+		ClassLoader cl = new URLClassLoader(urls, Thread.currentThread()
+				.getContextClassLoader());
+		Class<Base> classe;
 		Base codigo;
-		codigo = (Base) cl.loadClass(
-				this.getNomePackage() + "." + this.getNomeClasse())
-				.newInstance();
+		classe = (Class<Base>) cl.loadClass(this.getNomePackage() + "."
+				+ this.getNomeClasse());
+		codigo = (Base) classe.getConstructor(new Class[0]).newInstance(
+				new Object[0]);
+
+		// Executa o método
 		Map<String, Object> resultado = codigo.executa(entrada);
+
+		// Descarrega a classe (matando as referências ao objeto, a ela e ao
+		// classloader)
+		ReferenceQueue weakQueueCl = new ReferenceQueue();
+		WeakReference weakRefCl = new WeakReference(classe, weakQueueCl);
+		weakRefCl.enqueue();
+
+		codigo = null;
+		classe = null;
 		cl = null;
 		System.gc();
 		System.gc();

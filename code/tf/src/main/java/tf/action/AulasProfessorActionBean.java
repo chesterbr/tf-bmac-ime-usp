@@ -38,6 +38,8 @@ public class AulasProfessorActionBean extends AulasActionBean {
 					new SimpleError("Campos obrigatórios não-preenchidos"));
 			return new ForwardResolution("/professor/aula.jsp");
 		}
+		System.out.println(this.getContext().getRequest().getCharacterEncoding());
+		System.out.println("CHESTER:DEBUG:"+this.aula.titulo);
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		s.merge(this.aula);
@@ -137,6 +139,12 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		salvarPasso();
 		return new ForwardResolution(AulasProfessorActionBean.class,
 				"editarPasso");
+	}
+	
+	public Resolution testarPasso() {
+		salvarPasso();
+		this.getContext().getMessages().clear();
+		return abrirPasso();
 	}
 
 }
