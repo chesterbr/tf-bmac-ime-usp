@@ -13,16 +13,20 @@
 <div>
 <h1>Aula: ${actionBean.aula.titulo}</h1>
 <h2>${actionBean.passo.nome}</h2>
-${actionBean.passo.explicacao_html_formatada} <br />
-
-<h2>Resultados</h2>
-<c:forEach var="parametro" items="${actionBean.passo.parametrosSaida}">
-	${parametro.nome}: ${actionBean.valoresSaida[parametro.ordem]}
-	<br/>	
-</c:forEach>
-
+<div>
+${actionBean.passo.explicacao_html_formatada} </div><br />
 
 <br />
+
+<c:if test="${actionBean.valoresSaida!=null}" >
+<h2>Resultados</h2>
+<c:forEach var="parametro" items="${actionBean.passo.parametrosSaida}">
+	${parametro.nome}:
+	<pre>${actionBean.valoresSaida[parametro.ordem]}</pre>
+</c:forEach>
+Você pode tentar novamente.
+</c:if>
+
 Experimente!<br />
 <br />
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
@@ -36,6 +40,7 @@ Experimente!<br />
 	${parametro.nome}: 
 	<c:if test="${parametro.classe=='java.lang.Integer'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>	
 	<c:if test="${parametro.classe=='java.lang.Double'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>
+	<c:if test="${parametro.classe=='Jama.Matrix'}"><stripes:textarea name="valoresEntrada[${parametro.ordem}]"></stripes:textarea></c:if>
 	<br/>	
 </c:forEach>
 <!--  
@@ -49,7 +54,7 @@ Experimente!<br />
 	-->
 	<div class="botoes_submit"><stripes:submit name="executarPasso" value="Executar"></stripes:submit> <input type="button"
 		value="Salvar Dados" /> <input type="button" value="Carregar Dados" />
-		<c:if test="${actionBean.usuario.professor}"><stripes:submit name="editarPasso" value="Voltar"></stripes:submit></c:if>
+		<stripes:submit name="${actionBean.usuario.professor?'editarPasso':'listar'}" value="Voltar"></stripes:submit>
 	</div>
 </stripes:form>
 </body>

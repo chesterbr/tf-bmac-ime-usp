@@ -1,5 +1,7 @@
 package tf.action;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import tf.helpers.HibernateSessionHelper;
+import tf.helpers.MatrixHelper;
 import tf.model.data.Aula;
 import tf.model.data.Parametro;
 import tf.model.data.Passo;
@@ -120,6 +123,8 @@ public class AulasActionBean implements ActionBean {
 				entrada.put(p.getNome(), new Integer(valor));
 			} else if (p.getClasse().equals("java.lang.Double")) {
 				entrada.put(p.getNome(), new Double(valor));
+			} else if (p.getClasse().equals("Jama.Matrix")) {
+				entrada.put(p.getNome(), MatrixHelper.stringToMatrix(valor));
 			} else {
 				entrada.put(p.getNome(), valor);
 			}
@@ -142,8 +147,16 @@ public class AulasActionBean implements ActionBean {
 			while (valoresSaida.size() < (p.getOrdem() + 1))
 				valoresSaida.add(null);
 		for (Parametro p : this.passo.getParametrosSaida()) {
-			// TODO adaptar quando aceitar tipos que o toString não lide bem
-			valoresSaida.set(p.getOrdem(), saida.get(p.getNome()).toString());
+			Object valor = saida.get(p.getNome());
+			String strValor;
+			if (valor instanceof Jama.Matrix) {
+				StringWriter sw = new StringWriter();
+				((Jama.Matrix)valor).print(new PrintWriter(sw), 8, 4);
+				strValor = sw.toString();
+			} else {
+				strValor = valor.toString();
+			}
+			valoresSaida.set(p.getOrdem(), strValor);
 		}
 		return new ForwardResolution("/aluno/passo.jsp");
 	}
@@ -195,7 +208,7 @@ public class AulasActionBean implements ActionBean {
 	 *         "Número Inteiro").
 	 */
 	public String getClassesAsJSON() {
-		return "{\"java.lang.Integer\":\"Inteiro\",\"java.lang.Double\":\"Real\"}";
+		return "{\"java.lang.Integer\":\"Inteiro\",\"java.lang.Double\":\"Real\",\"Jama.Matrix\":\"Matriz\"}";
 	}
 
 	public void setValoresEntrada(List<String> valoresEntrada) {
