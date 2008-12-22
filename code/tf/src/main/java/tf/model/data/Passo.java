@@ -37,6 +37,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import tf.codigodinamico.Base;
+import tf.helpers.ConfigHelper;
 
 @Entity
 public class Passo {
@@ -271,9 +272,9 @@ public class Passo {
 		// TODO detectar o diretório correto (carregando a classe-base?)
 		List<String> opcoes = new ArrayList<String>();
 		opcoes.add("-d");
-		opcoes.add("/teste/");
+		opcoes.add(ConfigHelper.getClasspathDinamico());
 		opcoes.add("-cp");
-		opcoes.add("/Users/chester/Documents/workspace/tf/target/classes");
+		opcoes.add(ConfigHelper.getClaspathApp());
 		// "myAppPath/WEB_INF/lib/test.jar;myAppPath/WEB_INF/lib/test2.jar");
 
 		// Compila
@@ -316,7 +317,7 @@ public class Passo {
 		// Carrega a classe
 		URL[] urls = new URL[1];
 		try {
-			urls[0] = new File("/teste/").toURI().toURL();
+			urls[0] = new File(ConfigHelper.getClasspathDinamico()).toURI().toURL();
 		} catch (MalformedURLException e) {
 			System.err.println("CHESTER:ERROURL");
 			e.printStackTrace();
