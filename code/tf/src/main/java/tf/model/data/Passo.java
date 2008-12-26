@@ -239,7 +239,7 @@ public class Passo {
 			}
 		// Enxerta o código escrito pelo professor
 		fonte.append('\n').append(this.getCodigo_java()).append('\n');
-		fonte.append(";\n"); // Importante para que os erros não "vazem" para a
+		fonte.append(";;\n"); // Importante para que os erros não "vazem" para a
 		// parte de baixo
 		// Monta o mapa com os parâmetros de saída, com statements no formato:
 		// __saida.add("nome",nome);

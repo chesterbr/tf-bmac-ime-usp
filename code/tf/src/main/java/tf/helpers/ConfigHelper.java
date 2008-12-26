@@ -5,21 +5,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
  
 /**
- * Recupera configrações guardadas no tf.properties
+ * Recupera configraÃ§Ãµes guardadas no tf.properties
  * @author chester
  *
  */
 public class ConfigHelper {
     
 	/**
-	 * @return diretório com as classes da aplicação
+	 * @return diretÃ³rio com as classes da aplicaï¿½ï¿½o
 	 */
 	public static String getClaspathApp() {
 		return "c:\\java\\tf\\code\\target\\classes";
 	}
 	
 	/**
-	 * @return diretório no qual serão colocadas as classes compiladas dinamicamente
+	 * @return diretï¿½diretÃ³rio no qual serÃ£o colocadas as classes compiladas dinamicamente
 	 */
 	public static String getClasspathDinamico() {
 		return "c:\\java\\classes_dinamicas";

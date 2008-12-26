@@ -7,6 +7,7 @@ import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -38,8 +39,9 @@ public class AulasProfessorActionBean extends AulasActionBean {
 					new SimpleError("Campos obrigatórios não-preenchidos"));
 			return new ForwardResolution("/professor/aula.jsp");
 		}
-		System.out.println(this.getContext().getRequest().getCharacterEncoding());
-		System.out.println("CHESTER:DEBUG:"+this.aula.titulo);
+		System.out.println(this.getContext().getRequest()
+				.getCharacterEncoding());
+		System.out.println("CHESTER:DEBUG:" + this.aula.titulo);
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		s.merge(this.aula);
@@ -122,9 +124,10 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		String erros = this.passo.getErrosDeCompilacao();
 		System.out.println("CHESTER: " + erros);
 		if (erros != null & erros.length() > 0) {
-			errors.add("passo.codigo_java", new SimpleError(
-					("Os seguintes erros foram encontrados:\n" + erros)
-							.replace("\n", "<br/>")));
+			String msg = ("Os seguintes erros foram encontrados:\n" + StringEscapeUtils
+					.escapeHtml(erros)).replace("\n", "<br/>").replace("{",
+					"&#123;").replace("}", "&#125;");
+			errors.add("passo.codigo_java", new SimpleError(msg));
 		}
 	}
 
@@ -140,7 +143,7 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		return new ForwardResolution(AulasProfessorActionBean.class,
 				"editarPasso");
 	}
-	
+
 	public Resolution testarPasso() {
 		salvarPasso();
 		this.getContext().getMessages().clear();
