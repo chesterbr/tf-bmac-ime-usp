@@ -79,7 +79,7 @@
 	<input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
 	<input type="hidden" name="passo.parametrosAsJSON" id="params" value="x" />
 	<div class="cabecalho_id">Professor: Sicrano</div>
-	<h1>Aula: ${actionBean.aula.titulo} - Passo:ç
+	<h1>Aula: ${actionBean.passo.aula.titulo} - Passo:
 	${actionBean.passo.nome}</h1>
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>

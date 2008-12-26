@@ -1,10 +1,11 @@
 # Exemplo de arquivo de configuracao da aplicacao
 #
 # Copie este arquivo para tf.properties e coloque os valores apropriados
+# Note que a barra invertida tem que ser duplicada
 
 # Diretorio onde os .class da aplicacao podem ser encontrados
-classpath_app=c:\java\tf\code\target\classes
+classpath_app=c:\\java\\tf\\code\\target\\classes
 
 # Diretorio onde os .class dos algoritmos cadastrados serao gerados
 # (tem que estar fora do classpath_app)
-classpath_dinamico=c:\java\classes_dinamicas
+classpath_dinamico=c:\\java\\classes_dinamicas
