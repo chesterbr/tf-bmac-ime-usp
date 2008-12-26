@@ -1,15 +1,8 @@
 package tf.action;
 
-import net.sourceforge.stripes.action.ForwardResolution;
-import net.sourceforge.stripes.action.Resolution;
-import net.sourceforge.stripes.action.SimpleMessage;
-import net.sourceforge.stripes.validation.SimpleError;
-import net.sourceforge.stripes.validation.ValidationErrors;
-import net.sourceforge.stripes.validation.ValidationMethod;
+import java.util.List;
 
-import org.apache.commons.lang.StringEscapeUtils;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import net.sourceforge.stripes.*;
 
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
@@ -90,6 +83,16 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		this.recuperaPasso();
 		return new ForwardResolution("/professor/passo.jsp");
 	}
+	
+	public Resolution moverPassoAcima() {
+		if (this.getPasso() == null)
+			return new ForwardResolution(AulasProfessorActionBean.class,
+					"editar");
+		//this.recuperaPasso();
+		List<Passo> passos = this.getPasso().getAula().getPassos();
+		throw new RuntimeException(passos.size());
+		
+	}
 
 	public void setParam_nome(String s) {
 		System.out.println("CHESTER:" + s);
@@ -149,5 +152,7 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		this.getContext().getMessages().clear();
 		return abrirPasso();
 	}
+	
+
 
 }

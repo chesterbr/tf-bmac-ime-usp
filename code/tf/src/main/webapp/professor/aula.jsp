@@ -26,10 +26,10 @@
 		<stripes:options-collection collection="${actionBean.aula.passos}"
 			label="nome" value="id" />
 	</stripes:select></div>
-	<div class="botoes_dir"><input type="button" value="Mover Acima" /><br />
-	<input type="button" value="Mover Abaixo" /><br />
+	<div class="botoes_dir">
+	<stripes:submit name="moverPassoAcima" value="Mover Acima" /><br />
+	<stripes:submit name="moverPassoAbaixo" value="Mover Abaixo" /><br />
 	<stripes:submit name="novoPasso" value="Criar Novo" /><br />
-	<input type="button" value="Testar" /><br />
 	<stripes:submit name="editarPasso" value="Editar" /><br />
 	<stripes:submit name="apagarPasso" value="Apagar" /><br />
 	</div>
