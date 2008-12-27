@@ -105,6 +105,18 @@ public class AulasActionBean implements ActionBean {
 		this.aula = this.passo.getAula();
 		return new ForwardResolution("/aluno/passo.jsp");
 	}
+	
+	public Resolution abrirProximoPasso() {
+		recuperaPasso();
+		this.passo = this.passo.getProximo();
+		return new ForwardResolution("/aluno/passo.jsp");		
+	}
+
+	public Resolution abrirPassoAnterior() {
+		recuperaPasso();
+		this.passo = this.passo.getAnterior();
+		return new ForwardResolution("/aluno/passo.jsp");		
+	}
 
 	/**
 	 * Recupera passo atual do banco (quando só vem o ID)

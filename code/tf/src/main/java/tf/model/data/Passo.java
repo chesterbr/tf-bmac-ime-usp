@@ -33,11 +33,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 import net.sf.json.util.PropertyFilter;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import tf.codigodinamico.Base;
 import tf.helpers.ConfigHelper;
+import tf.helpers.HibernateSessionHelper;
 
 @Entity
 public class Passo {
@@ -317,7 +320,8 @@ public class Passo {
 		// Carrega a classe
 		URL[] urls = new URL[1];
 		try {
-			urls[0] = new File(ConfigHelper.getClasspathDinamico()).toURI().toURL();
+			urls[0] = new File(ConfigHelper.getClasspathDinamico()).toURI()
+					.toURL();
 		} catch (MalformedURLException e) {
 			System.err.println("CHESTER:ERROURL");
 			e.printStackTrace();
@@ -398,6 +402,33 @@ public class Passo {
 		public CharSequence getCharContent(boolean ignoreEncodingErrors) {
 			return code;
 		}
+	}
+
+	/**
+	 * @return passo seguinte dentro da aula, ou <code>null</code> se não houver
+	 */
+	@Transient
+	public Passo getProximo() {
+		return getVizinho(true);
+	}
+	
+	/**
+	 * @return passo anterior dentro da aula, ou <code>null</code> se não houver
+	 */
+	@Transient
+	public Passo getAnterior() {
+		return getVizinho(false);
+	}
+	
+	@Transient
+	private Passo getVizinho(boolean proximo) {
+		if (this.getAula() != null) {
+			List<Passo> passos = this.getAula().getPassos();
+			int posOutroPasso = passos.indexOf(this) + (proximo ? 1 : -1);
+			if (posOutroPasso >= 0 && posOutroPasso < passos.size())
+				return passos.get(posOutroPasso);
+		}
+		return null;
 	}
 
 }

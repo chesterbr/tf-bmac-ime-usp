@@ -11,7 +11,7 @@
 <body>
 <div class="cabecalho_id">${actionBean.usuario.nome} [Aluno]</div>
 <div>
-<h1>Aula: ${actionBean.aula.titulo}</h1>
+<h1>Aula: ${actionBean.passo.aula.titulo}</h1>
 <h2>${actionBean.passo.nome}</h2>
 <div>
 ${actionBean.passo.explicacao_html_formatada} </div><br />
@@ -19,43 +19,48 @@ ${actionBean.passo.explicacao_html_formatada} </div><br />
 <br />
 
 <c:if test="${actionBean.valoresSaida!=null}" >
-<h2>Resultados</h2>
+<h3>Resultado:</h3>
 <c:forEach var="parametro" items="${actionBean.passo.parametrosSaida}">
 	${parametro.nome}:
 	<pre>${actionBean.valoresSaida[parametro.ordem]}</pre>
 </c:forEach>
-Você pode tentar novamente.
+Você pode repetir/continuar a experiência:<br/>
 </c:if>
 
-Experimente!<br />
 <br />
 	<div class="erros_stripes"><stripes:errors globalErrorsOnly="true" /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>
-<h2>Dados do Problema</h2>
 <stripes:form beanclass="${actionBean.usuario.professor?'tf.action.AulasProfessorActionBean':'tf.action.AulasActionBean'}" focus="passo.titulo">
 <input type="hidden" name="aula.id" value="${actionBean.aula.id}" />
 <input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
 
+<c:if test="${not empty actionBean.passo.parametrosEntrada}">
+<c:if test="${actionBean.valoresSaida==null}" >
+<h3>Experimente:</h3>
+</c:if>
 <c:forEach var="parametro" items="${actionBean.passo.parametrosEntrada}">
 	${parametro.nome}: 
 	<c:if test="${parametro.classe=='java.lang.Integer'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>	
 	<c:if test="${parametro.classe=='java.lang.Double'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>
 	<c:if test="${parametro.classe=='Jama.Matrix'}"><stripes:textarea name="valoresEntrada[${parametro.ordem}]"></stripes:textarea></c:if>
 	<br/>	
-</c:forEach>
-<!--  
-<table class="tb_matriz">
-		<tr>
-			<td colspan="5"><input type="button"
-				value="importar (Excel, txt)" />
-			<td>
-		</tr>
-	</table>
-	-->
-	<div class="botoes_submit"><stripes:submit name="executarPasso" value="Executar"></stripes:submit> <input type="button"
-		value="Salvar Dados" /> <input type="button" value="Carregar Dados" />
-		<stripes:submit name="${actionBean.usuario.professor?'editarPasso':'listar'}" value="Voltar"></stripes:submit>
-	</div>
+</c:forEach><br/>
+	<stripes:submit name="executarPasso" value="Executar"></stripes:submit> 
+</c:if>
+	<!--  <input type="button"
+		value="Salvar Dados" /> <input type="button" value="Carregar Dados" />-->
+		<br/><br/>
+		<hr/>
+		<c:if test="${actionBean.passo.anterior != null}">
+		<stripes:submit name="abrirPassoAnterior" value="<< Passo Anterior" />
+		</c:if>
+		<c:if test="${actionBean.passo.proximo != null}">
+		<stripes:submit name="abrirProximoPasso" value="Proximo Passo >>" />
+		</c:if>
+		
+		<stripes:submit name="${actionBean.usuario.professor?'editarPasso':'listar'}" value="Editar/Voltar"></stripes:submit>
+	
 </stripes:form>
+
 </body>
 </html>
