@@ -14,7 +14,7 @@
 	<div class="erros_stripes"><stripes:errors /></div>
 	<div class="mensagens_stripes"><stripes:messages /></div>
 	<div class="lista_esq">
-	<stripes:select name="aula.id" size="10" ondblclick="document.forms[0].editar.click()">
+	<stripes:select name="aula.id" size="10" ondblclick="document.forms[0].abrir.click()">
 		<stripes:options-collection collection="${actionBean.aulas}"
 			label="titulo" value="id" />
 	</stripes:select></div>

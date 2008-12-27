@@ -77,6 +77,7 @@
 	focus="passo.titulo" onsubmit="return atualiza_dados_submit();">
 	<input type="hidden" name="aula.id" value="${actionBean.aula.id}" />
 	<input type="hidden" name="passo.id" value="${actionBean.passo.id}" />
+	<input type="hidden" name="passo.ordem" value="${actionBean.passo.ordem}" />
 	<input type="hidden" name="passo.parametrosAsJSON" id="params" value="x" />
 	<div class="cabecalho_id">Professor: Sicrano</div>
 	<h1>Aula: ${actionBean.passo.aula.titulo} - Passo:

@@ -80,6 +80,16 @@ public class AulasActionBean implements ActionBean {
 		Session s = HibernateSessionHelper.getSession();
 		Transaction t = s.beginTransaction();
 		this.aula = (Aula) s.get(Aula.class, this.aula.getId());
+		if (this.aula.getPassos().size() == 0) {
+			this
+					.getContext()
+					.getValidationErrors()
+					.addGlobalError(
+							new SimpleError(
+									"Aula incompleta [sem passos], entre em contato com o professor"));
+			t.commit();
+			return new ForwardResolution(AulasActionBean.class, "lista");
+		}
 		this.passo = this.aula.getPassos().get(0);
 		t.commit();
 		return new ForwardResolution("/aluno/passo.jsp");
@@ -151,7 +161,7 @@ public class AulasActionBean implements ActionBean {
 			String strValor;
 			if (valor instanceof Jama.Matrix) {
 				StringWriter sw = new StringWriter();
-				((Jama.Matrix)valor).print(new PrintWriter(sw), 8, 4);
+				((Jama.Matrix) valor).print(new PrintWriter(sw), 8, 4);
 				strValor = sw.toString();
 			} else {
 				strValor = valor.toString();

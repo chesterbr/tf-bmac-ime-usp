@@ -1,7 +1,7 @@
 package tf.helpers;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -15,8 +15,11 @@ public class ConfigHelper {
 	private static String getProperty(String nome) {
 		Properties props = new Properties();
 		try {
-			props.load(ConfigHelper.class.getClassLoader().getResourceAsStream(
-					"tf.properties"));
+			InputStream is = ConfigHelper.class.getClassLoader()
+					.getResourceAsStream("tf.properties");
+			if (is == null)
+				throw new IOException("arquivo tf.properties nao encontrado");
+			props.load(is);
 			String valor = props.getProperty(nome);
 			return (valor == null ? "" : valor);
 		} catch (IOException e) {

@@ -19,9 +19,9 @@
 			label="titulo" value="id" />
 	</stripes:select></div>
 	<div class="botoes_dir"><stripes:submit name="nova"
-		value="Criar Nova" /><br />
-	<input type="button" value="Testar" /><br />
+		value="Criar Nova" /><br /><br/>
 	<stripes:submit name="editar" value="Editar" /><br />
+	<stripes:submit name="testar" value="Testar" /><br />
 	<stripes:submit name="apagar" value="Apagar" /><br />
 	</div>
 </stripes:form>

@@ -36,6 +36,7 @@ Populando banco...
 	p1.setExplicacao_html("bla ble <b>bli</b><br/>blo blu");
 	p1.setCodigo_java("return 2+2;");
 	p1.setAula(a1);
+	p1.setOrdem(1);
 	s.save(p1);
 	
 	Passo p2 = new Passo();
@@ -43,6 +44,7 @@ Populando banco...
 	p2.setExplicacao_html("asdfghjkl<img src=\"http://chester.blog.br/img/chester.gif\">");
 	p2.setCodigo_java("return false;");
 	p2.setAula(a1);
+	p2.setOrdem(5);
 	s.save(p2);
 	
 	Parametro par1 = new Parametro();

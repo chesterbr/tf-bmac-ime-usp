@@ -2,7 +2,16 @@ package tf.action;
 
 import java.util.List;
 
-import net.sourceforge.stripes.*;
+import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SimpleMessage;
+import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
+
+import org.apache.commons.lang.StringEscapeUtils;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import tf.helpers.HibernateSessionHelper;
 import tf.model.data.Aula;
@@ -71,8 +80,18 @@ public class AulasProfessorActionBean extends AulasActionBean {
 	}
 
 	public Resolution novoPasso() {
-		this.setPasso(new Passo());
-		this.getPasso().setAula(this.aula);
+		// Garante que ele fique sempre no fim da lista
+		Session s = HibernateSessionHelper.getSession();
+		Transaction t = s.beginTransaction();
+		int ordem = (Integer) s.createQuery("select max(ordem) from Passo")
+				.uniqueResult();
+		t.commit();
+		ordem++;
+		// Cria o passo vazio e abre para editar
+		Passo p = new Passo();
+		p.setAula(this.aula);
+		p.setOrdem(ordem);
+		this.setPasso(p);
 		return new ForwardResolution("/professor/passo.jsp");
 	}
 
@@ -83,15 +102,50 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		this.recuperaPasso();
 		return new ForwardResolution("/professor/passo.jsp");
 	}
-	
+
+	public Resolution apagarPasso() {
+		if (this.getPasso() != null) {
+			this.recuperaPasso();
+			Session s = HibernateSessionHelper.getSession();
+			Transaction t = s.beginTransaction();
+			s.delete(passo);
+			t.commit();
+		}
+		return new ForwardResolution(AulasProfessorActionBean.class, "editar");
+	}
+
 	public Resolution moverPassoAcima() {
-		if (this.getPasso() == null)
-			return new ForwardResolution(AulasProfessorActionBean.class,
-					"editar");
-		//this.recuperaPasso();
-		List<Passo> passos = this.getPasso().getAula().getPassos();
-		throw new RuntimeException(passos.size());
-		
+		return moverPasso(true);
+	}
+
+	public Resolution moverPassoAbaixo() {
+		return moverPasso(false);
+	}
+
+	/**
+	 * Move um passo acima ou abaixo (o código é quase o mesmo)
+	 * 
+	 * @param acima
+	 * @return
+	 */
+	private Resolution moverPasso(boolean acima) {
+		if (this.getPasso() != null) {
+			this.recuperaPasso();
+			List<Passo> passos = this.getPasso().getAula().getPassos();
+			int posOutroPasso = passos.indexOf(passo) + (acima ? -1 : 1);
+			if (posOutroPasso >= 0 && posOutroPasso < passos.size()) {
+				Passo outroPasso = passos.get(posOutroPasso);
+				int temp = passo.getOrdem();
+				passo.setOrdem(outroPasso.getOrdem());
+				outroPasso.setOrdem(temp);
+				Session s = HibernateSessionHelper.getSession();
+				Transaction t = s.beginTransaction();
+				s.update(passo);
+				s.update(outroPasso);
+				t.commit();
+			}
+		}
+		return new ForwardResolution(AulasProfessorActionBean.class, "editar");
 	}
 
 	public void setParam_nome(String s) {
@@ -108,11 +162,12 @@ public class AulasProfessorActionBean extends AulasActionBean {
 				parametro.setPasso(null);
 		// Guarda o passo (e, implicitamente, os novos/editados parâmetros)
 		this.passo.setAula((Aula) s.get(Aula.class, this.aula.getId()));
-		s.merge(this.passo);
+		Passo novoPasso = (Passo) s.merge(this.passo);
 		t.commit();
 		getContext().getMessages().add(
 				new SimpleMessage("Passo \"" + this.getPasso().getNome()
 						+ "\" salvo."));
+		this.setPasso(novoPasso);
 		return new ForwardResolution(AulasProfessorActionBean.class, "editar");
 	}
 
@@ -143,8 +198,7 @@ public class AulasProfessorActionBean extends AulasActionBean {
 	 */
 	public Resolution checarPasso() {
 		salvarPasso();
-		return new ForwardResolution(AulasProfessorActionBean.class,
-				"editarPasso");
+		return new ForwardResolution("/professor/passo.jsp");
 	}
 
 	public Resolution testarPasso() {
@@ -152,7 +206,5 @@ public class AulasProfessorActionBean extends AulasActionBean {
 		this.getContext().getMessages().clear();
 		return abrirPasso();
 	}
-	
-
 
 }

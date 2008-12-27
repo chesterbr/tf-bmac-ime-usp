@@ -27,9 +27,9 @@
 			label="nome" value="id" />
 	</stripes:select></div>
 	<div class="botoes_dir">
+	<stripes:submit name="novoPasso" value="Criar Novo" /><br /><br/>
 	<stripes:submit name="moverPassoAcima" value="Mover Acima" /><br />
 	<stripes:submit name="moverPassoAbaixo" value="Mover Abaixo" /><br />
-	<stripes:submit name="novoPasso" value="Criar Novo" /><br />
 	<stripes:submit name="editarPasso" value="Editar" /><br />
 	<stripes:submit name="apagarPasso" value="Apagar" /><br />
 	</div>
