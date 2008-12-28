@@ -3,6 +3,7 @@ package tf.action;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import tf.model.data.Aula;
 import tf.model.data.Parametro;
 import tf.model.data.Passo;
 import tf.model.data.Usuario;
+import antlr.collections.Enumerator;
 
 /**
  * Eventos relacionados a aula (listar, executar, etc.) disponíveis para
@@ -105,17 +107,17 @@ public class AulasActionBean implements ActionBean {
 		this.aula = this.passo.getAula();
 		return new ForwardResolution("/aluno/passo.jsp");
 	}
-	
+
 	public Resolution abrirProximoPasso() {
 		recuperaPasso();
 		this.passo = this.passo.getProximo();
-		return new ForwardResolution("/aluno/passo.jsp");		
+		return new ForwardResolution("/aluno/passo.jsp");
 	}
 
 	public Resolution abrirPassoAnterior() {
 		recuperaPasso();
 		this.passo = this.passo.getAnterior();
-		return new ForwardResolution("/aluno/passo.jsp");		
+		return new ForwardResolution("/aluno/passo.jsp");
 	}
 
 	/**
@@ -180,7 +182,23 @@ public class AulasActionBean implements ActionBean {
 			}
 			valoresSaida.set(p.getOrdem(), strValor);
 		}
-		return new ForwardResolution("/aluno/passo.jsp");
+		// Atualiza a página com eventuais alterações nos parâmetros de entrada
+		// (para permitir múltiplas execuções, por exemplo, em métodos
+		// numéricos)
+		ForwardResolution res = new ForwardResolution("/aluno/passo.jsp");
+		for (Parametro p : this.passo.getParametrosEntrada()) {
+			Object valor = saida.get(p.getNome());
+			String strValor;
+			if (valor instanceof Jama.Matrix) {
+				StringWriter sw = new StringWriter();
+				((Jama.Matrix) valor).print(new PrintWriter(sw), 8, 4);
+				strValor = sw.toString();
+			} else {
+				strValor = valor.toString();
+			}
+			res.addParameter("valoresEntrada[" + p.getOrdem() + "]", strValor);
+		}
+		return res;
 	}
 
 	public void setUsuario(Usuario usuario) {

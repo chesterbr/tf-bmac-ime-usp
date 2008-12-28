@@ -250,9 +250,9 @@ public class Passo {
 				.append("  Map<String,Object> __saida = new HashMap<String,Object>();\n");
 		if (this.getParametros() != null)
 			for (Parametro p : this.getParametros())
-				if (!p.isTipoEntrada())
-					fonte.append("  __saida.put(\"").append(p.getNome())
-							.append("\",").append(p.getNome()).append(");\n");
+				// if (!p.isTipoEntrada())
+				fonte.append("  __saida.put(\"").append(p.getNome()).append(
+						"\",").append(p.getNome()).append(");\n");
 		fonte.append("  return __saida;\n");
 		fonte.append(" }\n");
 		fonte.append("}\n");
@@ -298,7 +298,7 @@ public class Passo {
 	 * 
 	 * @param entrada
 	 *            Dados de entrada (chave=nome, objeto=valor)
-	 * @return Dados de saída (chave=nome, objeto=valor)
+	 * @return Dados de entrada (que podem ter sido alterados) e de saída (chave=nome, objeto=valor)
 	 * @throws ClassNotFoundException
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
@@ -411,7 +411,7 @@ public class Passo {
 	public Passo getProximo() {
 		return getVizinho(true);
 	}
-	
+
 	/**
 	 * @return passo anterior dentro da aula, ou <code>null</code> se não houver
 	 */
@@ -419,7 +419,7 @@ public class Passo {
 	public Passo getAnterior() {
 		return getVizinho(false);
 	}
-	
+
 	@Transient
 	private Passo getVizinho(boolean proximo) {
 		if (this.getAula() != null) {
