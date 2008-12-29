@@ -42,7 +42,7 @@ Você pode repetir/continuar a experiência:<br/>
 	${parametro.nome}: 
 	<c:if test="${parametro.classe=='java.lang.Integer'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>	
 	<c:if test="${parametro.classe=='java.lang.Double'}"><stripes:text name="valoresEntrada[${parametro.ordem}]"></stripes:text></c:if>
-	<c:if test="${parametro.classe=='Jama.Matrix'}"><stripes:textarea name="valoresEntrada[${parametro.ordem}]"></stripes:textarea></c:if>
+	<c:if test="${parametro.classe=='Jama.Matrix'}"><stripes:textarea name="valoresEntrada[${parametro.ordem}]" cols="60" rows="8"></stripes:textarea></c:if>
 	<br/>	
 </c:forEach><br/>
 	<stripes:submit name="executarPasso" value="Executar"></stripes:submit> 
