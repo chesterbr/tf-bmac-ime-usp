@@ -69,6 +69,10 @@ h2 {
 	width: 40px;
 }
 
+.titulo_campo_menor {
+	font-size: 10px;
+}
+
 .tb_matriz {
 	margin-left: +8px;
 }

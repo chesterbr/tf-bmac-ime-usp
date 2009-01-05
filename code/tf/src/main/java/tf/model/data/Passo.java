@@ -60,6 +60,7 @@ public class Passo {
 	private int ordem;
 	private String explicacao_html;
 	private String codigo_java;
+	private String codigo_java_auxiliar;
 	private Aula aula;
 	private List<Parametro> parametros = new ArrayList<Parametro>();
 	private String errosDeCompilacao;
@@ -100,6 +101,14 @@ public class Passo {
 
 	public void setCodigo_java(String codigo_java) {
 		this.codigo_java = codigo_java;
+	}
+
+	public void setCodigo_java_auxiliar(String codigo_java_auxiliar) {
+		this.codigo_java_auxiliar = codigo_java_auxiliar;
+	}
+
+	public String getCodigo_java_auxiliar() {
+		return codigo_java_auxiliar;
 	}
 
 	public void setAula(Aula aula) {
@@ -220,6 +229,7 @@ public class Passo {
 		StringBuilder fonte = new StringBuilder();
 		fonte.append("package " + this.getNomePackage() + ";\n");
 		fonte.append("import java.util.*;\n");
+		fonte.append("import Jama.*;\n");
 		fonte.append("public class " + this.getNomeClasse()
 				+ " extends tf.codigodinamico.Base {\n");
 		fonte
@@ -255,6 +265,12 @@ public class Passo {
 						"\",").append(p.getNome()).append(");\n");
 		fonte.append("  return __saida;\n");
 		fonte.append(" }\n");
+		
+		// Enxerta o código auxiliar
+		fonte.append('\n').append(this.getCodigo_java_auxiliar()).append('\n');
+		fonte.append(";;\n"); // Importante para que os erros não "vazem" para a
+		// parte de baixo
+
 		fonte.append("}\n");
 		System.out.println(fonte);
 

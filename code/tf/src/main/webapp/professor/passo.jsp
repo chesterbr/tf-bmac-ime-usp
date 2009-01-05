@@ -101,14 +101,18 @@
 	campos(false);
 </script>
 	</div>
-	<h2><label for="passo.codigo_java">Código</label><br />
+	<h2><label for="passo.codigo_java">Algoritmo</label><br />
 	</h2>
 	<div class="erros_stripes"><stripes:errors field="passo.codigo_java"/></div>
 	<div class="algoritmo_codigo"><stripes:textarea
-		name="passo.codigo_java" rows="8" cols="80"></stripes:textarea></div>
+		name="passo.codigo_java" rows="8" cols="80"></stripes:textarea><br/><br/>
+		<span class="titulo_campo_menor">Código auxiliar (não será executado, mas fica disponível)<br/>
+		<stripes:textarea
+		name="passo.codigo_java_auxiliar" rows="4" cols="80"></stripes:textarea>
+		</div>
 	<div class="botoes_dir"><stripes:submit name="checarPasso" value="Verificar Sintaxe"/> <stripes:submit name="testarPasso" value="Testar" />
 	</div>
-	<div class="botoes_submit"><stripes:submit name="salvarPasso"
+	<div class="botoes_submit"><br/><stripes:submit name="salvarPasso"
 		value="Salvar" /> <stripes:submit name="editar" value="Cancelar" />
 	</div>
 </stripes:form>
