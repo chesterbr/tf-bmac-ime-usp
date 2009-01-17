@@ -1,19 +1,25 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2008.8.10)  20 SEP 2008 13:19
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.5.18)  17 JAN 2009 10:42
 entering extended mode
+\write18 enabled.
  %&-line parsing enabled.
 **trabalho_full.tex
 (./trabalho_full.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
-yphenation, loaded.
-(/usr/share/texmf/tex/latex/abntex/abnt.cls
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-Document Class: abnt 2006/09/09 v1.32 Classe abnt (NBR6024, NBR6027, NBR6028, N
-BR14724)
-(/usr/share/texmf-texlive/tex/latex/base/ifthen.sty
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/Users/chester/Library/texmf/tex/latex/abntex/abnt.cls
+(/Users/chester/Library/texmf/tex/latex/abntex/cvs-id.def)
+Document Class: abnt 2004/11/02 v1.27.2.1 Classe abnt (NBR6024, NBR6027, NBR602
+8, NBR14724)
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2005/08/06 v4.2 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count79
 \calc@Bcount=\count80
@@ -26,7 +32,7 @@ LaTeX Info: Redefining \addtolength on input line 76.
 \calc@Ccount=\count81
 \calc@Cskip=\skip43
 )
-(/usr/share/texmf-texlive/tex/latex/tools/multicol.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2006/05/18 v1.6g multicolumn formatting (FMi)
 \c@tracingmulticols=\count82
 \mult@box=\box26
@@ -73,51 +79,9 @@ Package: multicol 2006/05/18 v1.6g multicolumn formatting (FMi)
 \mult@nat@firstbox=\box50
 \colbreak@box=\box51
 )
-(/usr/share/texmf/tex/latex/abntex/abntex-abrev.sty
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-Package: abntex-abrev 2005/11/14 v1.4 Abreviacoes
-
-(/usr/share/texmf/tex/latex/abntex/nbr10522-1988.def
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-File: nbr10522-1988.def 2003/10/13 v1.2 Abreviacoes bibliograficas (NBR10522:19
-88)
-)
-(/usr/share/texmf/tex/latex/abntex/abntex-abrev-pt_BR.def
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-File: abntex-abrev-pt_BR.def 2005/11/14 v1.3 definicao de abntex-abrev, traduca
-o de termos en_US/pt_BR
-))
-(/usr/share/texmf/tex/latex/abntex/abntex-text.sty
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-Package: abntex-text 2005/11/14 v1.1 abnTeX text replacements
-
-(/usr/share/texmf/tex/latex/abntex/abntex-text-pt_BR.def
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-File: abntex-text-pt_BR.def 2005/12/21 v1.2 Definicao de nomes em Portugues/Bra
-sil (pt_BR)
-))
-(/usr/share/texmf/tex/latex/abntex/abntex-default-design.sty
-(/usr/share/texmf/tex/latex/abntex/cvs-id.def)
-Package: abntex-default-design 2005/06/22 v1.2 Definicoes de design padrao do a
-bntex
-
-(/usr/share/texmf-texlive/tex/latex/ltxmisc/relsize.sty
-Package: relsize 2003/07/04 ver 3.1
-
-
-Package relsize Warning: Failed to get list of font sizes.
-(relsize)                Falling back to old definition. on input line 81.
-
-)
-\ABNTanapindent=\skip46
-\ABNTsignwidth=\skip47
-\ABNTsignthickness=\skip48
-\ABNTsignskip=\skip49
-) (/usr/share/texmf/tex/latex/abntex/nbr6027-1989.def)
-(/usr/share/texmf/tex/latex/abntex/nbr14724-2001.def)
-(/usr/share/texmf-texlive/tex/latex/base/report.cls
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2005/09/16 v1.4f Standard LaTeX document class
-(/usr/share/texmf-texlive/tex/latex/base/size12.clo
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
 )
 \c@part=\count90
@@ -129,81 +93,43 @@ File: size12.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
 \c@subparagraph=\count96
 \c@figure=\count97
 \c@table=\count98
-\abovecaptionskip=\skip50
-\belowcaptionskip=\skip51
+\abovecaptionskip=\skip46
+\belowcaptionskip=\skip47
 \bibindent=\dimen112
 )
-(/usr/share/texmf-texlive/tex/latex/setspace/setspace.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2000/12/01 6.7 Contributed and Supported LaTeX2e package
 
 Package: `setspace' 6.7 <2000/12/01>
-) (/usr/share/texmf-texlive/tex/latex/psnfss/mathptmx.sty
-Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
-LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
-LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
-\symbold=\mathgroup4
-\symitalic=\mathgroup5
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
-LaTeX Info: Redefining \hbar on input line 50.
 )
-(/usr/share/texmf-texlive/tex/latex/psnfss/helvet.sty
-Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
-
-(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
-))
-(/usr/share/texmf-texlive/tex/latex/tools/indentfirst.sty
+\ABNTanapindent=\skip48
+\ABNTsignwidth=\skip49
+\ABNTsignthickness=\skip50
+\ABNTsignskip=\skip51
+ (/usr/local/texlive/2007/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 ))
-(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2005/11/23 v3.8h The Babel package
 
-(/usr/share/texmf-texlive/tex/generic/babel/portuges.ldf
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/portuges.ldf
 Language: portuges 2005/03/31 v1.2p Portuguese support from the babel system
 
-(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+(/usr/local/texlive/2007/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2005/11/23 v3.8h Babel common definitions
 \babel@savecnt=\count99
 \U@D=\dimen113
 )
-
-Package babel Warning: No hyphenation patterns were loaded for
-(babel)                the language `Portuguese'
-(babel)                I will use the patterns loaded for \language=0 instead.
-
-\l@portuges = a dialect from \language0
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
-)) (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+))
+(/usr/local/texlive/2007/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2002/07/08 v3.2 Page Geometry
+
+(/usr/local/texlive/2007/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
 \Gm@cnth=\count100
 \Gm@cntv=\count101
 \c@Gm@tempcnt=\count102
@@ -212,20 +138,21 @@ Package: geometry 2002/07/08 v3.2 Page Geometry
 \Gm@odd@mp=\dimen116
 \Gm@even@mp=\dimen117
 \Gm@dimlist=\toks15
-)
-(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+
+(/usr/local/texlive/2007/texmf-dist/tex/xelatex/xetexconfig/geometry.cfg))
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2006/05/05 v1.1b Input encoding file
 \inpenc@prehook=\toks16
 \inpenc@posthook=\toks17
 
-(/usr/share/texmf-texlive/tex/latex/base/utf8.def
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2006/03/30 v1.1i UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encodingT1
 
-(/usr/share/texmf-texlive/tex/latex/base/t1enc.dfu
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/t1enc.dfu
 File: t1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -375,7 +302,7 @@ File: t1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encodingOT1
 
-(/usr/share/texmf-texlive/tex/latex/base/ot1enc.dfu
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/ot1enc.dfu
 File: ot1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -406,7 +333,7 @@ File: ot1enc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encodingOMS
 
-(/usr/share/texmf-texlive/tex/latex/base/omsenc.dfu
+(/usr/local/texlive/2007/texmf-dist/tex/latex/base/omsenc.dfu
 File: omsenc.dfu 2006/03/30 v1.1i UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
@@ -430,47 +357,46 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/etc/texmf/tex/latex/config/graphics.cfg
+(/usr/local/texlive/2007/texmf/tex/latex/config/graphics.cfg
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
-Package graphics Info: Driver file: dvips.def on input line 90.
+Package graphics Info: Driver file: pdftex.def on input line 90.
 
-(/usr/share/texmf-texlive/tex/latex/graphics/dvips.def
-File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+(/usr/local/texlive/2007/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2007/01/08 v0.04d Graphics/color for pdfTeX
+\Gread@gobject=\count103
 ))
 \Gin@req@height=\dimen118
 \Gin@req@width=\dimen119
 )
-(/usr/share/texmf-texlive/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2002/01/22 v2.2d
 
-(/usr/share/texmf-texlive/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2001/10/25 v2.2f
 \@emptytoks=\toks18
-\symAMSa=\mathgroup6
-\symAMSb=\mathgroup7
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
 ))
-(/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf.sty
+(/usr/local/texlive/2007/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2006/08/26 v1.3 Conversion with epstopdf on the fly (HO)
-
-
-Package epstopdf Warning: Graphics driver file `pdftex.def' not found.
-
-) (/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+)
+(/usr/local/texlive/2007/texmf-dist/tex/latex/ltxmisc/url.sty
 \Urlmuskip=\muskip10
 Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
-) (./trabalho_full.aux)
+)
+(./trabalho_full.aux)
 \openout1 = `trabalho_full.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
@@ -485,12 +411,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 27.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
-\big@size=\dimen120
 -------------------- Geometry parameters
 paper: class default
 landscape: --
@@ -508,7 +428,7 @@ truedimen: --
 includehead: --
 includefoot: --
 includemp: --
-driver: 
+driver: pdftex
 -------------------- Page layout dimensions and switches
 \paperwidth  597.50787pt
 \paperheight 845.04684pt
@@ -530,60 +450,33 @@ driver:
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 28
-.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/ot1ztmcm.fd
-File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+(/usr/local/texlive/2007/texmf-dist/tex/context/base/supp-pdf.tex
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count104
+\scratchdimen=\dimen120
+\scratchbox=\box52
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen121
+\MPnumerator=\count108
+\everyMPtoPDFconversion=\toks19
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 28
-.
-
-(/usr/share/texmf-texlive/tex/latex/psnfss/omlztmcm.fd
-File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+ (/usr/local/texlive/2007/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 28
-.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/omsztmcm.fd
-File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
-)
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 28
-.
+(/usr/local/texlive/2007/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+) [1
 
-(/usr/share/texmf-texlive/tex/latex/psnfss/omxztmcm.fd
-File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20.74> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 28.
-
-Underfull \hbox (badness 2698) in paragraph at lines 28--28
-[]\OT1/ptm/m/n/12 [melhorar]Projeto e de-sen-volvi-mento de
- []
-
-[1
+{/usr/local/texlive/2007/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [3
 
 ]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 34.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 34.
- [3
-
-] (./trabalho_full.toc
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 2.
- [4
+(./trabalho_full.toc [4
 
 ])
 \tf@toc=\write3
@@ -591,136 +484,50 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 
  [5]
 Cap\'{\i }tulo 1.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 51.
-
-Overfull \hbox (9.4193pt too wide) in paragraph at lines 55--56
-[]\OT1/ptm/m/n/12 Neste sen-tido, []e im-por-tante que o aluno tenha con-hec-i-
-mento tanto da teo-ria econ[]omica
- []
-
-
-Overfull \hbox (13.08223pt too wide) in paragraph at lines 55--56
-\OT1/ptm/m/n/12 en-volvida quanto do in-stru-men-tal matem[]atico necess[]ario 
-para a mod-e-lagem dos fen[]omenos
- []
-
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
-
-Overfull \hbox (30.24086pt too wide) in paragraph at lines 59--60
-\OT1/ptm/m/n/12 tas profis-sion-ais: elas au-tom-a-ti-zam muitos dos pro-ces-so
-s alg[]ebricos (regress[]oes, aproxima[][]oes
- []
-
-
-Overfull \hbox (14.16017pt too wide) in paragraph at lines 61--62
-[]\OT1/ptm/m/n/12 No ex-tremo oposto, h[]a pro-fes-sores que pref-erem o uso de
- um am-bi-ente de programa[][]ao
- []
-
 [6
 
 
-]
-Overfull \hbox (30.33852pt too wide) in paragraph at lines 63--64
-\OT1/ptm/m/n/12 pr[]oprios da-dos e sug-erir mudan[]as nos al-go-rit-mos (caso 
-tenha o con-hec-i-mento de programa[][]ao
- []
-
-
-Overfull \hbox (1.71425pt too wide) in paragraph at lines 74--75
-[]\OT1/ptm/m/n/12 A introdu[][]ao do ma-te-rial did[]atico (daqui em di-ante re
-f-er-en-ci-ado sim-ples-mente como
- []
-
-[7]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 76.
- (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
+] [7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 79.
+ (/usr/local/texlive/2007/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
- [8] [9]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 79.
+ [8]
+Overfull \hbox (10.98114pt too wide) in paragraph at lines 93--94
+[]\OT1/cmr/m/n/12 Em pa-ra-lelo, foi se-le-ci-o-nado um pro-blema de eco-no-me-
+tria com solu^^Xc~oes num^^Sericas
+ []
+
+[9]
 Cap\'{\i }tulo 2.
 [10
 
 ]
-Overfull \hbox (5.12389pt too wide) in paragraph at lines 121--122
-[]\OT1/ptm/m/n/12 Tem a seu fa-vor um ex-ce-lente balan[]o en-tre per-for-mance
- e fa-cil-i-dade de programa[][]ao
+Overfull \hbox (1.64651pt too wide) in paragraph at lines 111--112
+[]\OT1/cmr/m/n/12 Embora exis-tam lin-gua-gens de dom^^S^^Pnio es-pec^^S^^Pfico
+ para al-go-rit-mos ma-tem^^Saticos,
  []
 
-[11] [12]
-Overfull \hbox (32.35324pt too wide) in paragraph at lines 133--133
-[]\OT1/ptm/b/n/17.28 Ambiente de De-sen-volvi-mento, Compila[][]ao e Publica[][
-]ao 
- []
-
-
-Overfull \hbox (6.47743pt too wide) in paragraph at lines 139--140
-\OT1/ptm/m/n/12 ($\OT1/cmtt/m/n/12 http : / / eclipse . org$\OT1/ptm/m/n/12 ) s
-er[]a uti-lizado como fer-ra-menta base, sem-pre tomando o cuidado
- []
-
-[13]
-Overfull \hbox (15.6377pt too wide) in paragraph at lines 152--153
-[]\OT1/ptm/m/n/12 Uma ca-mada de opera[][]oes (back-end) tais como: ar-mazena-m
-ento de da-dos, execu[][]ao
- []
-
-[14]
-Overfull \hbox (7.17479pt too wide) in paragraph at lines 178--179
-[]\OT1/ptm/m/n/12 Tal car-ac-ter[]^^Pstica, ali-ada []a im-port[]ancia que os d
-a-dos rep-re-sen-tam para as organiza[][]oes
- []
-
-
-Underfull \hbox (badness 6876) in paragraph at lines 180--180
-[][]\OT1/ptm/m/n/10 Citar $\OT1/cmtt/m/n/10 http : / / www . agiledata . org / 
-essays / mappingObjects . html$ \OT1/ptm/m/n/10 se n[]ao hou-ver nada
- []
-
-[15]
-Overfull \hbox (1.11792pt too wide) in paragraph at lines 182--183
-\OT1/ptm/m/n/12 coloca um prob-lema: como rep-re-sen-tar a riqueza gra-mat-i-ca
-l dos el-e-men-tos da orienta[][]ao
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
-[][]\OT1/ptm/m/n/10 Uma lista am-pla pode ser en-con-trada em $\OT1/cmtt/m/n/10
+[11] [12] [13] [14] [15]
+Underfull \hbox (badness 2057) in paragraph at lines 184--184
+[][]\OT1/cmr/m/n/10 Uma lista am-pla pode ser en-con-trada em $\OT1/cmtt/m/n/10
  http : / / java-[]source . net / open-[]source /
  []
 
-[16]
-Overfull \hbox (14.9507pt too wide) in paragraph at lines 188--189
-[]\OT1/ptm/m/n/12 Uma outra t[]ecnica para im-ple-men-tar o con-ceito de per-si
-st[]encia []e a chamada preval[]encia
- []
-
-
-Overfull \hbox (9.2265pt too wide) in paragraph at lines 198--199
-[]\OT1/ptm/m/n/12 A conex[]ao en-tre eles []e feita pelo con-troller: um com-po
--nente que, para cada solicita[][]ao
- []
-
-[17]
-Overfull \hbox (0.14453pt too wide) in paragraph at lines 203--204
-\OT1/ptm/m/n/12 bib-lioteca de apresenta[][]ao bas-tante rica e evolu[][]ao con
--stante. Sua maior limita[][]ao
- []
-
-[18] [19] [20]
+[16] [17] [18] [19] [20]
 Cap\'{\i }tulo 3.
 [21
 
 ]
 Cap\'{\i }tulo 4.
+
+Overfull \hbox (12.77834pt too wide) in paragraph at lines 240--241
+[]\OT1/cmr/m/n/12 S^^Series de Tempo con-sis-tem em con-jun-tos de ob-serva^^Xc
+~oes dis-cre-tas de um fen^omeno
+ []
+
 [22
 
 ] [23]
@@ -735,21 +542,38 @@ Cap\'{\i }tulo 6.
 Apendice A.
 (./trabalho_full.bbl [26
 
+] [27
+
 ])
 +-------------------------------------------------------------------+
 | Comentario, sugestao ou critica sobre o abnTeX? Entre em contato: |
 |                  http://abntex.codigolivre.org.br                 |
 +-------------------------------------------------------------------+
-[27
-
-] (./trabalho_full.aux) ) 
+[28] (./trabalho_full.aux) ) 
 Here is how much of TeX's memory you used:
- 2708 strings out of 95087
- 35935 string characters out of 1183278
- 89081 words of memory out of 1500000
- 5794 multiletter control sequences out of 10000+50000
- 36815 words of font info for 96 fonts, out of 1200000 for 2000
- 28 hyphenation exceptions out of 8191
- 30i,8n,41p,793b,312s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 2714 strings out of 94073
+ 35192 string characters out of 1162984
+ 91882 words of memory out of 1500000
+ 5937 multiletter control sequences out of 10000+50000
+ 20084 words of font info for 75 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 28i,8n,24p,914b,312s stack positions out of 5000i,500n,6000p,200000b,5000s
+</usr/local/texlive/2007/texmf-dist/fonts/type1/blu
+esky/cm/cmbx12.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/c
+mbxti10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmcsc10.
+pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi12.pfb></usr
+/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/local/tex
+live/2007/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></usr/local/texlive/2007/
+texmf-dist/fonts/type1/bluesky/cm/cmr12.pfb></usr/local/texlive/2007/texmf-dist
+/fonts/type1/bluesky/cm/cmr7.pfb></usr/local/texlive/2007/texmf-dist/fonts/type
+1/bluesky/cm/cmr8.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/c
+m/cmsy10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmti10.
+pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmti12.pfb></usr
+/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmtt10.pfb></usr/local/te
+xlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmtt12.pfb>
+Output written on trabalho_full.pdf (27 pages, 158478 bytes).
+PDF statistics:
+ 145 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on trabalho_full.dvi (26 pages, 59168 bytes).

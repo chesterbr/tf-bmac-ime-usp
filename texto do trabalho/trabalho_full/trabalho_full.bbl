@@ -1,16 +1,49 @@
 \begin{thebibliography}{10}
 
+\bibitem{web:ambler}
+Scott~W. Ambler.
+\newblock Mapping objects to relational databases: O/r mapping in detail.
+\newblock http://www.agiledata.org/essays/mappingObjects.html.
+
+\bibitem{IeeeExperience}
+Kent Beck, Ron Crocker, Gerard Meszaros, John Vlissides, James~O. Coplien, Lutz
+  Dominick, and Francis Paulisch.
+\newblock Industrial experience in design patterns.
+\newblock In {\em Proceedings of the 18th International Conference on Software
+  Engineering: March 25-29, 1996 Berlin, Germany}. IEEE Computer Society, 1996.
+
 \bibitem{BullSmithPottageFreeman}
 J.~M. Bull, L.~A. Smith, L.~Pottage, and R.~Freeman.
 \newblock Benchmarking java against c and fortran for scientific applications.
 \newblock In {\em In ACM 2001 Java Grande/ISCOPE Conf}, pages 97--105. ACM
   Press, 2001.
 
+\bibitem{Codd1970}
+E.~F. Codd.
+\newblock A relational model of data for large shared data banks.
+\newblock {\em Commun. ACM}, 13(6):377--387, 1970.
+
 \bibitem{Eckerson1995}
 Wayne~W. Eckerson.
 \newblock Three tier client/server architecture: Achieving scalability,
   performance, and efficiency in client server applications.
 \newblock {\em Open Information Systems}, 10(1), 1995.
+
+\bibitem{FowlerIoc}
+Martin Fowler.
+\newblock Inversion of control.
+\newblock \\http://martinfowler.com/bliki/InversionOfControl.html.
+
+\bibitem{FowlerInjdep}
+Martin Fowler.
+\newblock Inversion of control containers and the dependency injection pattern.
+\newblock http://martinfowler.com/articles/injection.html.
+
+\bibitem{Gamma1995}
+Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
+\newblock {\em Design Patterns: Elements of Reusable Object-Oriented Software}.
+\newblock { Addison-Wesley} Professional Computing Series. { Addison-Wesley}
+  Publishing Company, New York, NY, 1995.
 
 \bibitem{Jacobson}
 Ivar Jacobson.

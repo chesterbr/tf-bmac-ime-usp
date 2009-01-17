@@ -18,7 +18,7 @@
 \titulo{Uma Plataforma de Software para o Estudo Interativo de Métodos e Algoritmos Econométricos}
 \autor{Carlos Duarte do Nascimento}
 \orientador{Professor Doutor Cicely Moitinho Amaral}
-\comentario{[melhorar]Projeto e desenvolvimento de uma plataforma de software que permita a manipulação de procedimentos utilizados na econometria e implementações de metodos numéricos relacionados.}
+\comentario{Projeto e desenvolvimento de uma plataforma de software que permita o cadastro e a manipulação de procedimentos utilizados na econometria e implementações de metodos numéricos relacionados; Teste de um exemplo usando métodos numéricos em Econometria.}
 \instituicao{Universidade de São Paulo}
 \local{São Paulo}
 \data{2008} 
@@ -50,13 +50,13 @@ Propõe uma plataforma de \textit{software} cujo objetivo é servir de ao ensino
 
 \section{Motivação}
 
-Dentre os objetivos de um curso de Econometria de nivel superior está a capacitação do aluno para compreender, construir e analisar modelos econométricos, utilizando-os como ferramentas para o planejamento estratético e a tomada de decisões dentro de uma empresa.
+Dentre os objetivos de um curso de Econometria de nivel superior está a capacitação do aluno para compreender, construir e analisar modelos econométricos, utilizando-os como ferramentas para o planejamento estratético e a tomada de decisões relacionadas aos fenômenos estudados nestes modelos.
 
-Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econômica envolvida quanto do instrumental matemático necessário para a modelagem dos fenômenos analisados. Esta meta só pode ser atingida se, aliada a uma sólida base teórica, o aluno puder experimentar na prática a interação com estes modelos.
+Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econômica envolvida quanto do instrumental matemático necessário para a modelagem dos fenômenos analisados. Esta meta só pode ser atingida se, aliada a uma sólida base teórica, o aluno puder interagir com estes modelos, realizando experiências e comparando resultados.
 
 Tradicionalmente os cursos expoem o aluno a um pacote de software especializado, tal como o \em{EViews} ou o \em{SPSS}\footnote{Uma lista completa e atualizada de pacotes do gênero está disponível em \cite{web:econsoftware}}. Esta abordagem tem como principal vantagem a capacitação do aluno em uma ferramenta que ele possivelmente irá usar no seu dia-a-dia. 
 
-Não é por acaso que tais ferramentas são adotadas universalmente por econometristas profissionais: elas automatizam muitos dos processos algébricos (regressões, aproximações numéricas) e estatísticos (testes de hipóteses, cálculo de estimadores qualitativos) envolvidos na modelagem econométrica. Entretanto, é exatamente este poder que as torna menos do que ideais para o uso didático: por mais importante que seja a visão geral do processo, a formação do aluno fica prejudicada se ele não é exposto aos detalhes computacionais do processo.
+Não é por acaso que tais ferramentas são adotadas universalmente por econometristas profissionais: elas automatizam muitos dos processos algébricos (regressões, aproximações numéricas) e estatísticos (testes de hipóteses, cálculo de estimadores qualitativos) envolvidos na modelagem econométrica. Entretanto, é exatamente este poder de simplificação que cria barreiras para o uso didático das mesmas: por mais importante que seja a visão geral do processo, a formação do aluno fica prejudicada se ele não é exposto aos detalhes computacionais do processo.
 
 No extremo oposto, há professores que preferem o uso de um ambiente de programação tradicional, levando o aluno a construir suas próprias ferramentas e apresentar seus resultados na forma de "exercícios-programa". Esta abordagem permite maior aprofundamento, mas há a questão do tempo (a programação de um algoritmo de regressão simples, por exemplo, pode consumir boa parte do tempo de um curso básico de séries de tempo, por exemplo) e do interesse do aluno (que não pretende necessariamente se tornar um programador, mas apenas compreender a lógica do processo).
 
@@ -66,35 +66,33 @@ Esta abordagem não é particularmente inédita: [.. falar um pouco do EconJava 
 
 \section{Proposta Funcional}
 
-O objetivo do sistema é facilitar o estudo de conceitos e técnicas de econometria. Suas principais áreas funcionais\footnote{Estas áreas foram definidas de forma superficial propositalmente, com o objetivo de não prjeudicar o caráter experimental do trabalho. Um produto de software mais objetivo deveria seguir a linha proposta por Jacobson\cite{Jacobson}.} seriam:
+O objetivo do sistema é facilitar o estudo de conceitos e técnicas de econometria. Suas principais áreas funcionais\footnote{Tais áreas estão propositalmente definidas de forma superficial, com o objetivo de não prjeudicar o caráter experimental do trabalho. Um produto de software mais objetivo deveria seguir a linha proposta por Jacobson\cite{Jacobson}.} seriam:
 
 \subsection{Usuários}
 O sistema irá identificar os usuários no sistema, qualificando-os entre aqueles que irão introduzir o material a ser trabalhado (doravante denominados \textit{professores}) e aqueles que irão trabalhar este material (que chamaremos de \textit{alunos}).
-\subsection{Introdução do Material (Cadastro)}
-A introdução do material didático (daqui em diante referenciado simplesmente como \textit{material}) no sistema é feita pelo professor. Este material é dividido em uma ou mais \textit{fases}, e consiste em:
+\subsection{Aulas}
+A introdução do material didático no sistema é feita pelo professor. Para fins de organização, cada tópico abordado será tratado como uma \textit{aula}, dividida em um ou mais \textit{passos}, que serão apresentados sequencialmente ao aluno quando ele selecionar uma determinada aula.
+
+Cada passo da aula consiste em:
+, e consiste em:
 \begin{itemize}
 \item Parte teórica: Conteúdo textual/HTML simples, explicando o que será executado; 
-\item Algoritmo: Consiste em um trecho de código que irá executar alguma operação compreensível para o aluno, usando dados gerados em fases anteriores e/ou dados inseridos na fase atual. Sua saída é um conjunto de dados e a lista das possíveis fases seguintes. 
+\item Parte prática: Abaixo do texto teórico, o aluno encontrará campos onde poderá entrar com dados e executar um código previamente preparado pelo professor, obtendo resultados imediatamente. Esta execução pode ser feita repetidas vezes, variando os dados ou mesmo observando múltiplas iterações de um determinado algoritmo, até que o aluno decida avançar para o passo seguinte.
 \end{itemize}
 
-Desta forma, o professor pode programar possibilidades experimentais para o aluno, tornando o experimento tão amplo quanto deseje. É necessário codificar apenas a parte matemática/econométrica (muitas vezes já praticamente pronta na literatura) e o fluxo desejado.
+Desta forma, o professor pode programar possibilidades experimentais para o aluno, tornando o experimento tão amplo quanto deseje. É necessário codificar apenas a parte matemática/econométrica (muitas vezes já praticamente pronta na literatura) - sendo que a plataforma irá cuidar dos detalhes relacionados a compilação, fluxo e apresentação ao aluno.
 
-\subsection{Interação com o Material (Execução)}
+Para o aluno tudo fica simplificado também - não há exposição ao código, apenas ao texto e à ferramenta para experimentar. Uma possibilidade é salvar os dados de entrada/saída para uso futuro (ou para avaliação do professor). Também é interessante que o aluno possa carregar dados pré-existentes disponibilizados pelo professor (por exemplo, dados reais aplicados em um modelo).
 
-Como parte do material cadastrado, o professor irá introduzir o algoritmo que será executado pelo aluno. Este algoritmo consiste em uma ou mais fases. Em cada fase ocorre a seguinte interação:
-\begin{itemize}
-\item O sistema apresenta ao aluno uma explicação teórica;
-\item O aluno introduz, se necessário, dados adicionais;
-\item O sistema executa o algoritmo (código Java) correspondente àquela fase (que terá acesso aos dados introduzidos e calculados até o momento;
-\item O sistema exibe ao aluno os resultados retornados pelo algoritmo;
-\item O sistema executa a proxima fase (de acordo com o retorno do algoritmo). Caso haja mais de uma possibilidade, elas são apresentadas ao aluno e ele decide.
-\end{itemize}
+\section{Histórico de Trabalho}
 
-Ao final (ou quando o aluno decidir), os dados utilizados podem ser salvos no sistema para uso futuro (ou para avaliação do professor). Também é possível ao aluno carregar dados pré-existentes disponibilizados pelo professor.
+O trabalho se iniciou com a definição do escopo funcional da plataforma, através de pesquisa de trabalhos já existentes (incluindo o já mencionado trabalho do Prof. Cicely). Com base neste, os detalhes da arquitetura de software foram traçados.
 
-\section{Proposta de Trabalho}
+Foi feita alguma pesquisa para implementar a compilação dinâmica em Java (de forma multiplataforma e baseada em API oficial), e para a escolha dos frameworks utilizados no código da plataforma, e deu-se início à implementação de fato.
 
-[... descrever aqui os passos que tomamos à medida em que for feito progresso ...]
+Em paralelo, foi selecionado um problema de econometria com soluções numéricas conhecidas, e estas foram implementadas isoladamente da plataforma. Desta forma, passou-se a contar com uma base para testar a plataforma (convertendo este código para o cadastro de uma aula interativa).
+
+Finalmente, este teste foi executado, e as conclusões foram registradas neste documento.
 
 \chapter{Mecanismos de Arquitetura}
 \section{Introdução}
@@ -138,22 +136,24 @@ A grande quantidade de frameworks envolvidos no processo gera uma dificuldade ad
 
 O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a ferramenta dependente dele. 
 
-\section{Testes Automatizados}
+%\section{Testes Automatizados}
 
-É muito importante que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é indispensável - de fato, a técnica de desenvolvimento orientado a testes automáticos (\textit{Test-Driven Development}) delineada por Janzen e Saiedian\cite{Janzen_Saiedian} foi inspiração para a codificação utilizada.
+%É muito importante que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é desejável - de fato, a técnica de desenvolvimento orientado a testes automáticos (\textit{Test-Driven Development}) delineada por Janzen e Saiedian\cite{Janzen_Saiedian} foi inspiração para a codificação utilizada.
 
-Neste momento, e considerando a plataforma utilizada, o framework JUnit\footnote{\url{http://junit.org}} é uma escolha natural para a implementação deste tipo de teste, devido à sua natureza não-intrusiva e ao uso difundido em projetos Java. Mesmo testes funcionais automáticos podem ser feitos através dele (havendo a possibilidade de expandi-lo com o uso da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}).
+%Neste momento, e considerando a plataforma utilizada, o framework JUnit\footnote{\url{http://junit.org}} é uma escolha natural para a implementação deste tipo de teste, devido à sua natureza não-intrusiva e ao uso difundido em projetos Java. Mesmo testes funcionais automáticos podem ser feitos através dele (havendo a possibilidade de expandi-lo com o uso da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}).
 
 \section{Arquitetura}
 
 Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud})}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}:
 
 \begin{itemize}
+\item Uma camada de interface (front-end), utilizando MVC e outros princípios detalhados a seguir.
+
+\item Uma camada intermediária de “fachada”, agrupando as operações de alto nível. Esta será implementada parcialmente através do mecanismo de MVC e (onde o reuso justificar) em classes de apoio através de objetos simples\footnote{\textit{POJO}, isto é, Plain Old Java Objects};
+
 \item Uma camada de operações (back-end) tais como: armazenamento de dados, execução de algoritmos e conversão de formatos, cuja implementação é detalhada adiante;
 
-\item Uma camada intermediária de “fachada” \footnote{citação: Session Facade Pattern}, agrupando as operações de alto nível. Esta camada será implementada através de classes e métodos estáticos simples \footnote{citação: POJO};
 
-\item Uma camada de interface (front-end), utilizando MVC e outros princípios detalhados a seguir.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -165,37 +165,37 @@ DESENHAR
 \end{figure}
 
 
-As melhores práticas de desenvolvimento de software muitas vezes demandam a implementação de diversos padrões de projeto \footnote{CITAÇÃO}. Felizmente, a plataforma Java conta com diversos frameworks que implementam tais padrões de projeto, economizando esforço e tornando o código mais enxuto e focado no problema educacional.
+As melhores práticas de desenvolvimento de software muitas vezes demandam a implementação de diversos padrões de projeto\footnote{Dados empíricos mostram\cite{IeeeExperience} a relação entre este tipo de padrão e a qualidade do software}. Felizmente, a plataforma Java conta com diversos frameworks que implementam tais padrões de projeto, economizando esforço e tornando o código mais enxuto e focado no problema educacional.
 
 O restante desta sessão é dedicado a descrever e justificar algumas destas práticas, definindo (quando aplicável) os frameworks selecionados para a implementação das mesmas.
 
 \subsection{Mapeamento Objeto-Relacional}
 
-Ao longo das últimas décadas, os sistemas gerenciadores de banco de dados relacionais (RDBMS)  simplificaram o armazenamento de dados através da introdução da abordagem relacional de representação dos mesmos, implementada em pacotes de software de baixo custo, de forma isolada da aplicação principal, permitindo ao desenvolvedor concentrar-se no domínio específico do problema computacional a ser resolvido\footnote{Referëncia seminal: E. F. Codd (1983). `A relational model of data for large shared data banks'. Commun. ACM 26(1):64-69. (na verdade é de 1970, esse é reprint)}.
+Ao longo das últimas décadas, os sistemas gerenciadores de banco de dados relacionais (RDBMS)  simplificaram o armazenamento de dados através da introdução da abordagem relacional de representação dos mesmos, implementada em pacotes de software de baixo custo, de forma isolada da aplicação principal, permitindo ao desenvolvedor concentrar-se no domínio específico do problema computacional a ser resolvido\footnote{Para uma perspectiva histórica, consulte Codd\cite{Codd1970}}.
 
 Além disso, a popularização dos RDBMS permitiu o uso de recursos computacionais relativamente limitados (tais como microcomputadores) para a execução de tarefas de manipulação de dados anteriormente restritas a sistemas de grande porte (e elevado custo de operação e manutenção), razão pela qual o uso de um RDBMS é indicado em qualquer sistema no qual a manipulação indireta dos dados não represente impacto na performance.
 
 Tal característica, aliada à importância que os dados representam para as organizações (chegando, em muitos casos, a ser mais valiosos que os aplicativos ou os meios físicos nos quais eles são armazenados e processados), fez com que muitos dos sistemas desenvolvidos entre as décadas de 80 e 90 tivessem o modelo relacional de banco de dados como base do seu projeto – o software que manipularia estes dados era pensado de forma secundária, quase que conseqüência direta do desenho do banco.
 
-Com a introdução das técnicas de desenvolvimento de software orientado a objeto – outro artefato que aumentou o nível de abstração com o qual os projetistas de software lidam com o domínio dos problemas (e, portanto, a sua produtividade) – surgiu uma nova abordagem: proponentes destas técnicas defendem que o sistema deve ser modelado sob o ponto de vista de suas classes – o armazenamento em meio não-volátil dos objetos destas classes (agora denominado \textit{persistência}) passa a ser visto apenas como uma capacidade adicional das mesmas, e o banco de dados torna-se um mero armazém de objetos\footnote{Citar \url{http://www.agiledata.org/essays/mappingObjects.html} se não houver nada acadêmico anterior.}.
+Com a introdução das técnicas de desenvolvimento de software orientado a objeto – outro artefato que aumentou o nível de abstração com o qual os projetistas de software lidam com o domínio dos problemas (e, portanto, a sua produtividade) – surgiu uma nova abordagem: proponentes destas técnicas defendem que o sistema deve ser modelado sob o ponto de vista de suas classes – o armazenamento em meio não-volátil dos objetos destas classes (agora denominado \textit{persistência}) passa a ser visto apenas como uma capacidade adicional das mesmas, e o banco de dados torna-se um mero armazém de objetos\footnote{Uma descrição isenta de plataforma deste tipo de mapeamento é dada por Ambler\cite{web:ambler}}.
 
 A plataforma proposta neste trabalho segue esta nova abordagem, para a qual se coloca um problema: como representar a riqueza gramatical dos elementos da orientação a objeto (tais como herança, polimorfismo e navegabilidade) dentro do sistema de modelagem relacional dos RDBMS? Esta questão se divide em dois aspectos: o da busca da metodologia para mapear estas características e o da forma de implementá-la (evitando a redundância de código).
 
-Este problema não é novo\footnote{Kilov novamente}, tampouco exclusivo desta aplicação. A técnica para resolve-lo é denominada mapeamento objeto-relacional, e na plataforma Java existem diversos frameworks de código livre que a implementam\footnote{Uma lista ampla pode ser encontrada em \url{http://java-source.net/open-source/persistence}}. Neste caso uma análise mais aprofundada pôde ser dispensada, visto o Hibernate\footnote{LINK} é o padrão de facto adotado pela comunidade Java para sistemas com características de persistência convencionais, tais como este.
+Este problema não é novo\footnote{Kilov novamente}, tampouco exclusivo desta aplicação. A técnica para resolve-lo é denominada mapeamento objeto-relacional, e na plataforma Java existem diversos frameworks de código livre que a implementam\footnote{Uma lista ampla pode ser encontrada em \url{http://java-source.net/open-source/persistence}}. Neste caso uma análise mais aprofundada pôde ser dispensada, visto que o Hibernate\footnote{\url{http://www.hibernate.org}} é o padrão de facto adotado pela comunidade Java para sistemas com características de persistência convencionais, tais como este.
 
 O Hibernate é um framework de código totalmente livre, que gera automaticamente e em tempo de execução as declarações SQL necessárias para persistir e recuperar objetos no RDBMS. O código SQL gerado é geralmente muito otimizado, e é possível customizar qualquer declaração que não seja aceitável. Além disso, a Versão 3 permite o uso de annotations, isto é, do desenho do mapeamento sobre o próprio código. Esta característica torna os arquivos de mapeamento (que usualmente demandam muito tempo e acrescentam um passo extra na compreensão do código) dispensáveis, o que, por si só, já justifica o seu uso.
 
-Uma outra técnica para implementar o conceito de persistência é a chamada prevalência - nela, o estado dos objetos é armazenado em sistemas de arquivo tradicionais, num misto de serialização e de aualizações de estado (balanceando segurança dos dados e performance). Tal abordagem pode ser implementada usando um framework como Prevayler\footnote{LINK} para adicionar a capacidade de prevalência às classes de domínio. Embora esta técnica simplifique o deploy por dispensar um SGBD, a quantidade de memória RAM necessária para manter todo o grafo de objetos em memória tornaria inviável o uso da aplicação em larga escala.
+Uma outra técnica para implementar o conceito de persistência é a chamada prevalência - nela, o estado dos objetos é armazenado em sistemas de arquivo tradicionais, num misto de serialização e de aualizações de estado (balanceando segurança dos dados e performance). Tal abordagem pode ser implementada usando um framework como Prevayler\footnote{\url{http://www.prevayler.org}} para adicionar a capacidade de prevalência às classes de domínio. Embora esta técnica simplifique o deploy por dispensar um SGBD, a quantidade de memória RAM necessária para manter todo o grafo de objetos em memória tornaria inviável o uso da aplicação em larga escala.
 
 \subsection{Apresentação e MVC (Model / View / Controller)}
 
 Devido à sua natureza de interação com o usuário, a camada de apresentação é uma das mais sujeitas a alterações. Além disso, seu fluxo pode se tornar bastante complexo, o que favorece a duplicação de código desnecessária.
 
-O padrão de projeto Model/View/Controller (MVC) tem se demonstrado útil na redução destes problemas1. Nele, a camada de apresentação é segregada em dois tipos de componentes: view (composta pelas diversas interfaces2 do sistema, e desprovida de qualquer código que não esteja relacionado à interação com o usuário e à pré-validação dos dados introduzidos por ele) e model (código que responde a ações imperativas do usuário, tais como submeter um formulário de dados ou solicitar uma funcionalidade).
+O padrão de projeto Model/View/Controller (MVC) tem se demonstrado útil na redução destes problemas. Nele, a camada de apresentação é segregada em dois tipos de componentes: view (composta pelas diversas interfaces do sistema, e desprovida de qualquer código que não esteja relacionado à interação com o usuário e à pré-validação dos dados introduzidos por ele) e model (código que responde a ações imperativas do usuário, tais como submeter um formulário de dados ou solicitar uma funcionalidade).
 
 View e Model operam de forma totalmente independente: componentes de model respondem às solicitações utilizando as camadas inferiores e retornando algum tipo de status (ex.: “sucesso”, “operação inválida”, etc.), e componentes de view apresentam dados anexados a eles e retornam os dados novos ou alterações feitas pelos usuários.
 
-A conexão entre eles é feita pelo controller: um componente que, para cada solicitação da view, dispara um ou mais componentes do model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo é mantido neste componente (no código ou em um arquivo de configuração), desacoplando o código e oferecendo uma visão de alto nível que torna fácil identificar componentes reutilizáveis e/ou o impacto de quaisquer mudanças \footnote{Citação MVC}.
+A conexão entre eles é feita pelo controller: um componente que, para cada solicitação da view, dispara um ou mais componentes do model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo é mantido neste componente (no código ou em um arquivo de configuração), desacoplando o código e oferecendo uma visão de alto nível que torna fácil identificar componentes reutilizáveis e/ou o impacto de quaisquer mudanças\footnote{Tygre descreve sua primeira implementação de MVC na interface gráfica original da Xerox, mas a consolidação do modelo em sistemas web é atribuída a Gamma / Helm / Johnson / Vlissides\cite{Gamma1995}}.
 
 Embora seja possível adotar a filosofia MVC através do desenvolvimento direto, muito trabalho pode ser popupado através do uso de um framework MVC que, dentre outras coisas, implemente um controller configurável e auxilie na passagem de dados entre model e view (tarefa que se torna complexa à medida em que se considera a generalidade do HTML no tocante a formulários de dados, e o desejo de usar técnicas como AJAX para aumentar a usabilidade da aplicação). De início, foram considerados os frameworks mais utilizados atualmente, a saber:
 
@@ -214,19 +214,20 @@ Tendo em perspectiva que a aplicação resultante deste projeto será uma base p
 
 Um dos grandes obstáculos para a manutenção de projetos de software é o acoplamento excessivo entre os seus diferentes módulos e camadas. Ainda que se use (e usamos) boas práticas de separação das mesmas (tais como a arquitetura Model-View-Controller e o modelo de três camadas), se estas camadas apresentarem excessiva dependência cruzada, pequenas alterações irão demandar grandes esforços de codificação e teste.
 
-A inversão de controle\footnote{Fowler \url{http://martinfowler.com/bliki/InversionOfControl.html} define a IoC como uma característica comum em frameworks, mas uma vez identificada, esta passou a ser usada como técnica de projeto } (IoC) é uma técnica de projeto que aborda o problema do acoplamento subvertendo a maneira tradicional com que um módulo do sistema solicita funcionalidade a outro módulo (daí o nome). O princípio fundamental é que um módulo que dependa de outro para executar a sua funcionalidade não o chama explicitamente – ao invés disso ele manifesta esta dependência de alguma forma, e o ambiente operacional cuida de oferecer o componente que melhor ofereça o tipo de serviço necessário.
+A inversão de controle\footnote{Fowler\cite{FowlerIoc} define a IoC como uma característica comum em frameworks, mas uma vez identificada, esta passou a ser usada como técnica de projeto } (IoC) é uma técnica de projeto que aborda o problema do acoplamento subvertendo a maneira tradicional com que um módulo do sistema solicita funcionalidade a outro módulo (daí o nome). O princípio fundamental é que um módulo que dependa de outro para executar a sua funcionalidade não o chama explicitamente – ao invés disso ele manifesta esta dependência de alguma forma, e o ambiente operacional cuida de oferecer o componente que melhor ofereça o tipo de serviço necessário.
 
 Isso faz com que o módulo se concentre na sua própria funcionalidade – ao invés de misturar este código com o código que cuidará da iteração com a dependência. Há um ligeiro aumento na quantidade de código devido à necessidade de formalizar a dependência através de suas características (e não através da chamada direta do módulo que satisfaz a dependência) – o exemplo canônico de Fowler mostra essa diferença. Mas isto é largamente compensado pelo desacoplamento obtido, e a clareza do código não é prejudicada.
 
-Existem várias formas de implementar o princípio de IoC, sendo que a Injeção de Dependências é bastante popular por reduzir a quantidade de código envolvida no processo\footnote{Fowler novamente: \url{http://martinfowler.com/articles/injection.html}}. Nela, o módulo que oferece a funcionalidade apresenta uma interface não apenas para as tradicionais chamadas, mas também para as dependências delas (ex.: conexões de banco de dados, canais de saída, etc.). O módulo que solicita a funcionalidade o faz como na programação tradicional (chamando o método exposto), mas um framework media estas chamadas e fornece as dependências necessárias de forma apropriada.
+Existem várias formas de implementar o princípio de IoC, sendo que a Injeção de Dependências é bastante popular por reduzir a quantidade de código envolvida no processo\footnote{Fowler descreve esta implementação na forma de um padrão de projeto\cite{FowlerInjdep}}. Nela, o módulo que oferece a funcionalidade apresenta uma interface não apenas para as tradicionais chamadas, mas também para as dependências delas (ex.: conexões de banco de dados, canais de saída, etc.). O módulo que solicita a funcionalidade o faz como na programação tradicional (chamando o método exposto), mas um framework media estas chamadas e fornece as dependências necessárias de forma apropriada. O Spring\footnote{\url{http://www.springsource.org/}} tem se tornado um padrão no mundo Java para esta tarefa, a exemplo do que o Hibernate faz no mapeamento objeto-relacional.
 
-Para trabalhar sob esta abordagem utilizamos o Spring – um framework que tornou-se referência em aplicações Java. Uma de suas vantagens é se integrar de forma automatizada com outros frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade de código na nossa aplicação. O uso será feito de forma comedida (para evitar a introdução de complexidade desnecessária), limitando-se aos pontos em que uma eventual substituição de componentes se mostre como uma possibilidade interessante.
+%Para trabalhar sob esta abordagem utilizamos o Spring – um framework que tornou-se referência em aplicações Java. Uma de suas vantagens é se integrar de forma automatizada com outros frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade de código na nossa aplicação. O uso será feito de forma comedida (para evitar a introdução de complexidade desnecessária), limitando-se aos pontos em que uma eventual substituição de componentes se mostre como uma possibilidade interessante.
 
-\chapter {Projeto de Software}
+\chapter {Implementação}
 
 
 [... modelo de dados e/ou de classes ...]
 [... casos de uso? telas? ...]
+[... limitações: ex.: não usamos spring, não salvamos/recuperamos dados ...]
 
 \chapter {Métodos e Modelos}
 
@@ -274,7 +275,7 @@ Os seguintes passos permitem a configuração de um ambiente para trabalhar com 
 \item Adicionar ao Eclipse o suporte a Maven (\url{http://m2eclipse.codehaus.org/});
 \item Adicionar ao Eclipse o componente Web Tools Platform (WTP, \url{http://www.eclipse.org/webtools/});
 \item Baixar o código fonte e abrir;
-\item Instalar o Tomcat 6.0 ou superior (\url{http://tomcat.apache.org);
+\item Instalar o Tomcat 6.0 ou superior (\url{http://tomcat.apache.org});
 \end{itemize}
 
 \nocite{*}
