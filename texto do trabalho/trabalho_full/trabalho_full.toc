@@ -18,11 +18,17 @@
 \contentsline {subsection}{\numberline {2.4.2}Apresenta\IeC {\c c}\IeC {\~a}o e MVC (Model / View / Controller)}{17}
 \contentsline {subsection}{\numberline {2.4.3}Invers\IeC {\~a}o de Controle / Inje\IeC {\c c}\IeC {\~a}o de Depend\IeC {\^e}ncias}{19}
 \contentsline {chapter}{\numberline {3}Implementa\IeC {\c c}\IeC {\~a}o}{21}
-\contentsline {chapter}{\numberline {4}M\IeC {\'e}todos e Modelos}{22}
-\contentsline {section}{\numberline {4.1}Modelo Econom\IeC {\'e}trico: S\IeC {\'e}ries de Tempo}{22}
-\contentsline {section}{\numberline {4.2}M\IeC {\'e}todos Num\IeC {\'e}ricos}{23}
-\contentsline {chapter}{\numberline {5}Experimentos e Resultados}{24}
-\contentsline {chapter}{\numberline {6}Conclus\IeC {\~o}es}{25}
-\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{26}
-\contentsline {section}{\numberline {A.1}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{26}
-\contentsline {chapter}{Refer\^encias}{27}
+\contentsline {section}{\numberline {3.1}Modelagem}{21}
+\contentsline {section}{\numberline {3.2}Complia\IeC {\c c}\IeC {\~a}o Din\IeC {\^a}mica}{21}
+\contentsline {section}{\numberline {3.3}Limita\IeC {\c c}\IeC {\~o}es}{21}
+\contentsline {chapter}{\numberline {4}Um Problema Econom\IeC {\'e}trico}{23}
+\contentsline {section}{\numberline {4.1}Modelo Econom\IeC {\'e}trico: S\IeC {\'e}ries de Tempo}{23}
+\contentsline {section}{\numberline {4.2}M\IeC {\'e}todos Num\IeC {\'e}ricos}{24}
+\contentsline {subsection}{\numberline {4.2.1}Newton-Raphson}{25}
+\contentsline {subsection}{\numberline {4.2.2}Gauss-Newton}{25}
+\contentsline {subsection}{\numberline {4.2.3}Marquardt}{25}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{26}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{27}
+\contentsline {section}{\numberline {A.1}Listagens de Software}{27}
+\contentsline {section}{\numberline {A.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{27}
+\contentsline {chapter}{Refer\^encias}{29}

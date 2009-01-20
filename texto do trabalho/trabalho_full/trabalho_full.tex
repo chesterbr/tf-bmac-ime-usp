@@ -13,6 +13,16 @@
 \usepackage{url}
 %\usepackage{abntcite}
 
+% Formatação de código fonte - chupado descaradamente de http://www.kronto.org/thesis/tips/listings.html
+\newenvironment{mylisting}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\scriptsize\bfseries}
+{\end{list}}
+
+\newenvironment{mytinylisting}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\tiny\bfseries}
+{\end{list}}
+
+
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 \titulo{Uma Plataforma de Software para o Estudo Interativo de Métodos e Algoritmos Econométricos}
@@ -220,16 +230,29 @@ Isso faz com que o módulo se concentre na sua própria funcionalidade – ao in
 
 Existem várias formas de implementar o princípio de IoC, sendo que a Injeção de Dependências é bastante popular por reduzir a quantidade de código envolvida no processo\footnote{Fowler descreve esta implementação na forma de um padrão de projeto\cite{FowlerInjdep}}. Nela, o módulo que oferece a funcionalidade apresenta uma interface não apenas para as tradicionais chamadas, mas também para as dependências delas (ex.: conexões de banco de dados, canais de saída, etc.). O módulo que solicita a funcionalidade o faz como na programação tradicional (chamando o método exposto), mas um framework media estas chamadas e fornece as dependências necessárias de forma apropriada. O Spring\footnote{\url{http://www.springsource.org/}} tem se tornado um padrão no mundo Java para esta tarefa, a exemplo do que o Hibernate faz no mapeamento objeto-relacional.
 
-%Para trabalhar sob esta abordagem utilizamos o Spring – um framework que tornou-se referência em aplicações Java. Uma de suas vantagens é se integrar de forma automatizada com outros frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade de código na nossa aplicação. O uso será feito de forma comedida (para evitar a introdução de complexidade desnecessária), limitando-se aos pontos em que uma eventual substituição de componentes se mostre como uma possibilidade interessante.
+Para trabalhar sob esta abordagem o mais indicado é usar o Spring – um framework que tornou-se referência em aplicações Java. Uma de suas vantagens é se integrar de forma automatizada com outros frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade de código na nossa aplicação. O uso será feito de forma comedida (para evitar a introdução de complexidade desnecessária), limitando-se aos pontos em que uma eventual substituição de componentes se mostre como uma possibilidade interessante.
 
 \chapter {Implementação}
 
+\section {Modelagem}
 
-[... modelo de dados e/ou de classes ...]
-[... casos de uso? telas? ...]
-[... limitações: ex.: não usamos spring, não salvamos/recuperamos dados ...]
+[... diagrama de classes ...]
 
-\chapter {Métodos e Modelos}
+[... mock-up de telas ...]
+
+\section {Compliação Dinâmica}
+
+\section {Limitações}
+
+Dado o objetivo de demostrar a viabilidade da construção e permitir o teste da eficiência da implementação da plataforma, e também levando em conta os limites naturais de um trabalho de graduação, é natural que nem todos os recursos que uma plataforma completa poderia oferecer tenham sido implementados.
+
+Ao priorizar, portanto, o conjunto básico de funcionalidades, algumas não foram implementadas. Mais notavelmente: um cadastro de usuários, a possibilidade de salvar e recuperar dados, e a possibilidade de o código influir na ordem em que os passos são executados.
+
+É importante notar que o sistema comporta a inclusão de todas estas características, sem prejuízo das já existentes, ou sem a necessidade de refatoração em larga escala.
+
+Sob o ponto de vista técnico, a inversão de controle foi aplicada de forma bastante moderada, sem o uso de um framework específico. Também não há uma rotina formal de testes unitários, apenas testes ad-hoc no próprio código. No entanto, a aplicação dos outros padrões e boas práticas, aliadas ao tamanho relativamente pequeno do código, permitem ações de reengenharia para introduzir estes conceitos sem maiores dificuldades.
+
+\chapter {Um Problema Econométrico}
 
 Seria difícil avaliar a eficácia da plataforma de software sem a implementação de um exemplo prático, o que nos leva a trabalhar nela um modelo econométrico de interesse e um instrumental matemático associado. Este capítulo aborda os detalhes matemáticos destas escolhas.
 
@@ -255,15 +278,50 @@ Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{
 
 \[ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} \]
 
-A abordagem adotada é a de usar métodos de gradiente para que [... continuar ...]
+O método torna-se completo quando determinamos uma condição de parada. Idealmente o faríamos quando a função objetivo não puder mais ser minimizada. Para fins práticos, paramos quando a redução passar a ser insignificante, por exemplo, se, para um $\epsilon > 0$ suficientemente pequeno e um $l$ inteiro e positivo tivermos uma das seguintes condições:
+
+\begin{enumerate}
+\item $ ( \theta_{n+l} - \theta_n )'( \theta_{n+l} - \theta_n ) < \epsilon$
+\item $ H(  \theta_n )- H (\theta_{n+l} ) < \epsilon$
+\item $  [\frac{\delta H}{\delta \theta}\vert_{\theta_n}]'[\frac{\delta H}{\delta \theta}\vert_{\theta_n}] < \epsilon$
+\end{enumerate}
+
+Além disso, devemos impor limites no número de passos e/ou tempo de compilação, e tentar novos valores iniciais quando este tipo de condição ocorrer.
+
+A diferença principal entre os vários métodos de gradiente se dá no critério para a escolha da direção do passo, isto é, da matriz de direções $P_n$.
+
+\subsection{Newton-Raphson}
+
+Este algoritmo consiste em usar o inverso da matriz Heissiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
+
+\[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n} \]
+
+O código utilizado é o seguinte:
 
 
-\chapter {Experimentos e Resultados}
+			double[][] hess = hess(theta1, theta2);
+			Matrix invHess = new Matrix(hess).inverse();
+			Matrix grad = new Matrix(gradH(theta1, theta2), 2);
+			Matrix passo = invHess.times(grad);
 
-\chapter {Conclusões}
+
+\subsection{Gauss-Newton}
+
+\subsection{Marquardt}
+
+[... colocar apenas a parte core de cada listagem, deixar funções auxiliares e outros lances para o apêndice de listagens de software ...]
+
+
+\chapter {Conclusão}
 
 \appendix
 \chapter {Apêndice I - Listagens de Software}
+\section {Listagens de Software}
+
+[... métodos numéricos e funções auxiliares OU java da implementação original ...]
+
+[... trecho que faz compilação dinâmica ...]
+
 \section {Configuração do Ambiente de Trabalho}
 
 Os seguintes passos permitem a configuração de um ambiente para trabalhar com o código desenvolvido:

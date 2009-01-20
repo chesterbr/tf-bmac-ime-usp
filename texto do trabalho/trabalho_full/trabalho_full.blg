@@ -2,13 +2,9 @@ This is BibTeX, Version 0.99c (Web2C 7.5.6)
 The top-level auxiliary file: trabalho_full.aux
 The style file: plain.bst
 Database file #1: trabalho_full.bib
-Name 3 in "Kent Beck and Ron Crocker and Gerard Meszaros, and John Vlissides and James O. Coplien and Lutz Dominick and Francis Paulisch" has a comma at the end for entry IeeeExperience
-while executing---line 1049 of file plain.bst
-Name 3 in "Kent Beck and Ron Crocker and Gerard Meszaros, and John Vlissides and James O. Coplien and Lutz Dominick and Francis Paulisch" has a comma at the end for entry IeeeExperience
-while executing---line 1090 of file plain.bst
 You've used 16 entries,
             2118 wiz_defined-function locations,
-            594 strings with 6606 characters,
+            594 strings with 6605 characters,
 and the built_in function-call counts, 4635 in all, are:
 = -- 440
 > -- 220
@@ -47,4 +43,3 @@ warning$ -- 0
 while$ -- 40
 width$ -- 18
 write$ -- 166
-(There were 2 error messages)
