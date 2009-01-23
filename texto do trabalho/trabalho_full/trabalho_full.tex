@@ -256,23 +256,52 @@ Sob o ponto de vista técnico, a inversão de controle foi aplicada de forma bas
 
 Seria difícil avaliar a eficácia da plataforma de software sem a implementação de um exemplo prático, o que nos leva a trabalhar nela um modelo econométrico de interesse e um instrumental matemático associado. Este capítulo aborda os detalhes matemáticos destas escolhas.
 
-[Não sei se vai ser exatamente séries de tempo, mas o trecho abaixo é só pra dar uma idéia do "clima" do texto]
 
-\section {Modelo Econométrico: Séries de Tempo}
+%\section {Modelo Econométrico: Séries de Tempo}
 
-Séries de Tempo consistem em conjuntos de observações discretas de um fenômeno feitas ao longo de um período de tempo. Elas diferem de outros conjuntos de dados por apresentar dependências entre observações vizinhas, relações sazonais e outras caraterísticas únicas que podem ser aproveitadas na sua análise.
+%Séries de Tempo consistem em conjuntos de observações discretas de um fenômeno feitas ao longo de um período de tempo. Elas diferem de outros conjuntos de dados por apresentar dependências entre observações vizinhas, relações sazonais e outras caraterísticas únicas que podem ser aproveitadas na sua análise.
 
-Tal análise permite a criação de modelos que permitem a elaboração de previsões, que são do maior interesse para pesquisadores e para o público em geral. Exemplos econométricos característicos incluem a previsão do comportamento de ações em bolsas de valores\cite{wikipedia:time_series}, ou a determinação do impacto de fatores qualitativos em vendas de produtos.
-
-[... completar com a descrição matemática de uma série de tempo? ... ]
+%Tal análise permite a criação de modelos que permitem a elaboração de previsões, que são do maior interesse para pesquisadores e para o público em geral. Exemplos econométricos característicos incluem a previsão do comportamento de ações em bolsas de valores\cite{wikipedia:time_series}, ou a determinação do impacto de fatores qualitativos em vendas de produtos.
 
 
 
-\section {Métodos Numéricos}
+
+\section {O Problema}
 
 Judge, Griffiths, Hill e Lütkepohl\cite{judge} apresentam de forma sucinta e didática o uso de métodos numéricos de otimização para a estimação de parâmetros em modelos estatísticos no geral (tendo em vista os modelos econométricos apresentados ao longo do livro).
 
-Para o nosso exemplo, a parte de interesse são os métodos de gradiente, aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam uma função-objetivo conveniente $H(\theta)$.
+Para fins ilustrativos, eles resgatam um problema de [FALAR COM PROF. CICELY, é referenciado na pág. 956, mas não tenho a nota bibliográfica], que considera o modelo estatístico não-linear:
+
+\[ y_t = \theta_1^* + \theta_2^* x_{t2} + (\theta_2^*)^2 x_{t3} +e_t , t = 1,2,...,20 \]
+\[ y = f(\theta^*)+e\]
+
+onde $y = (y_1, y_2, ..., y_{20})'$, $\theta^* = (\theta_1^*, \theta_2^*)'$ é o vetor de parâmetros, $e = (e_1, e_2, ..., e_{20})'$ e
+
+\[ f(\theta)=
+	\left( \begin{array}{ccc}
+\theta1 + \theta_2 x_{12} + \theta_2^2 x_{13} \\
+\theta1 + \theta_2 x_{22} + \theta_2^2 x_{23} \\
+.\\
+.\\
+.\\
+\theta1 + \theta_2 x_{20,2} + \theta_2^2 x_{20,3} \\
+
+
+\end{array} \right)\
+ \]
+ 
+ O objetivo é encontrar um estimador de mínimos quadrados para $\theta^*$, e para tanto devemos minimizar a função:
+ 
+ \[ H(\theta) = [y - f(\theta)]'[y - f(\theta)] \]
+
+
+
+[PERGUNTAR AO PROF.: vale a pena incluir os dados do experimento, ou apenas comentar que eles estão no livro? E neste caso vale a pena incluir as respostas do nosso programa, para mostrar que estão coerentes?]
+
+
+\section {Resolução: Métodos de Gradiente}
+
+O problema descrito pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$.
 
 Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho de passo $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para o passo seguinte, isto é:
 
@@ -290,26 +319,71 @@ Além disso, devemos impor limites no número de passos e/ou tempo de compilaç�
 
 A diferença principal entre os vários métodos de gradiente se dá no critério para a escolha da direção do passo, isto é, da matriz de direções $P_n$.
 
+A seguir apresentamos alguns métodos detalhados pelos autores, acompanhados do código Java correspondente. Estes trechos de código podem ser usados diretamente na construção de uma aula sobre o assunto na plataforma.
+
 \subsection{Newton-Raphson}
 
 Este algoritmo consiste em usar o inverso da matriz Heissiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
 
 \[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n} \]
 
-O código utilizado é o seguinte:
+O código abaixo calcula, para um par \textit{theta1} / \textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana, encontra-se nos apêndices}:
 
-
+\begin{mylisting}
+\begin{verbatim}
 			double[][] hess = hess(theta1, theta2);
 			Matrix invHess = new Matrix(hess).inverse();
 			Matrix grad = new Matrix(gradH(theta1, theta2), 2);
 			Matrix passo = invHess.times(grad);
-
+\end{verbatim}
+\end{mylisting}
 
 \subsection{Gauss-Newton}
 
-\subsection{Marquardt}
+Este método utiliza uma particularidade da forma da função objetivo, calculando o passo como:
 
-[... colocar apenas a parte core de cada listagem, deixar funções auxiliares e outros lances para o apêndice de listagens de software ...]
+\[ \theta_{n+1} = \theta_{n} + [Z(\theta_n)'Z(\theta_n)]^{-1}[Z(\theta_n)'Z(\theta_n)] \]
+
+onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$. O texto supra mencionado mostra como este algoritmo pode ser visto como uma sequência de regressões lineares (sendo $\theta_{n+1}$ o estimador de mínimos quadrados para o modelo $\bar y(\theta_{n})=Z(\theta_{n})\theta + e$). Uma implementação possível para o cálculo do passo seria:
+
+\begin{mylisting}
+\begin{verbatim}
+			// Elementos da fórmula (assumimos a matriz y)
+			Matrix Z = new Matrix(Z(theta1, theta2));
+			Matrix Zt = Z.transpose();
+			Matrix f = new Matrix(f(theta1, theta2), 20);
+			// Calcula o passo e devolve negativo (pois será subtraído)
+			Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f));
+			passo = passo.times(-1);
+\end{verbatim}
+\end{mylisting}
+
+\subsection{Marquardt-Levenberg}
+
+Este método é uma modificação de algoritmos que não garantem uma matriz de direção $P_n$ definida positiva, utilizando a matriz $P_n + \lambda_n\bar P_n$ (que é sempre definida positiva se $\bar P_n$ o for e o escalar for suficientemente grande. Uma idéia sugerida pelos autores é aplicar esta idéia no método de Gauss, i.e.:
+
+\[ P_n = [Z(\theta_n)'Z(\theta_n) + \lambda_n\bar P_n]^{-1} \]
+
+Ou, de forma similar, modificar o Hessiano da função objetivo e usar, como matriz de direção:
+
+\[ P_n = [\mathcal{H}_n+\lambda_nI_K]^-1 \]
+
+Novamente, o código-fonte utilizado:
+
+\begin{mylisting}
+\begin{verbatim}
+			double[] h = f(theta1, theta2);
+			Matrix F = new Matrix(h, 20);
+			Matrix z = y.minus(F);
+			double[][] b = gradF(theta1, theta2);
+			Matrix gradient = new Matrix(b);
+			Matrix gradientPrime = gradient.transpose();
+			Matrix invHess = gradientPrime.times(gradient);
+			Matrix I = Matrix.identity(2, 2);
+			I = I.times(0.7); // pode ser reduzido com o tempo para otimizar
+			Matrix passo = invHess.minus(I).inverse().time(gradientPrime.times(z)).times(-1);
+\end{verbatim}
+\end{mylisting}
 
 
 \chapter {Conclusão}

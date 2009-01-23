@@ -22,13 +22,13 @@
 \contentsline {section}{\numberline {3.2}Complia\IeC {\c c}\IeC {\~a}o Din\IeC {\^a}mica}{21}
 \contentsline {section}{\numberline {3.3}Limita\IeC {\c c}\IeC {\~o}es}{21}
 \contentsline {chapter}{\numberline {4}Um Problema Econom\IeC {\'e}trico}{23}
-\contentsline {section}{\numberline {4.1}Modelo Econom\IeC {\'e}trico: S\IeC {\'e}ries de Tempo}{23}
-\contentsline {section}{\numberline {4.2}M\IeC {\'e}todos Num\IeC {\'e}ricos}{24}
+\contentsline {section}{\numberline {4.1}O Problema}{23}
+\contentsline {section}{\numberline {4.2}Resolu\IeC {\c c}\IeC {\~a}o: M\IeC {\'e}todos de Gradiente}{24}
 \contentsline {subsection}{\numberline {4.2.1}Newton-Raphson}{25}
-\contentsline {subsection}{\numberline {4.2.2}Gauss-Newton}{25}
-\contentsline {subsection}{\numberline {4.2.3}Marquardt}{25}
-\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{26}
-\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{27}
-\contentsline {section}{\numberline {A.1}Listagens de Software}{27}
-\contentsline {section}{\numberline {A.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{27}
-\contentsline {chapter}{Refer\^encias}{29}
+\contentsline {subsection}{\numberline {4.2.2}Gauss-Newton}{26}
+\contentsline {subsection}{\numberline {4.2.3}Marquardt-Levenberg}{26}
+\contentsline {chapter}{\numberline {5}Conclus\IeC {\~a}o}{28}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{29}
+\contentsline {section}{\numberline {A.1}Listagens de Software}{29}
+\contentsline {section}{\numberline {A.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{29}
+\contentsline {chapter}{Refer\^encias}{31}
