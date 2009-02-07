@@ -64,7 +64,7 @@ Dentre os objetivos de um curso de Econometria de nivel superior está a capacit
 
 Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econômica envolvida quanto do instrumental matemático necessário para a modelagem dos fenômenos analisados. Esta meta só pode ser atingida se, aliada a uma sólida base teórica, o aluno puder interagir com estes modelos, realizando experiências e comparando resultados.
 
-Tradicionalmente os cursos expoem o aluno a um pacote de software especializado, tal como o \em{EViews} ou o \em{SPSS}\footnote{Uma lista completa e atualizada de pacotes do gênero está disponível em \cite{web:econsoftware}}. Esta abordagem tem como principal vantagem a capacitação do aluno em uma ferramenta que ele possivelmente irá usar no seu dia-a-dia. 
+Tradicionalmente os cursos expoem o aluno a um pacote de software especializado, tal como o \em{EViews} ou o \em{SPSS}\footnote{Uma lista completa e atualizada de pacotes do gênero é mantida por Kane\cite{web:econsoftware}}. Esta abordagem tem como principal vantagem a capacitação do aluno em uma ferramenta que ele possivelmente irá usar no seu dia-a-dia. 
 
 Não é por acaso que tais ferramentas são adotadas universalmente por econometristas profissionais: elas automatizam muitos dos processos algébricos (regressões, aproximações numéricas) e estatísticos (testes de hipóteses, cálculo de estimadores qualitativos) envolvidos na modelagem econométrica. Entretanto, é exatamente este poder de simplificação que cria barreiras para o uso didático das mesmas: por mais importante que seja a visão geral do processo, a formação do aluno fica prejudicada se ele não é exposto aos detalhes computacionais do processo.
 
@@ -222,28 +222,29 @@ Sistema Java costumam usar o framework JUnit\footnote{\url{http://junit.org}} pa
 
 \subsection{Padrões de Projeto}
 
-Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}:
+Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}, ilustrada na Figura \ref{deployment} e detalhada da seguinte forma:
 
-\begin{itemize}
-\item Uma camada de interface (front-end), utilizando MVC e outros princípios detalhados a seguir.
-
-\item Uma camada intermediária de “fachada”, agrupando as operações de alto nível. Esta será implementada parcialmente através do mecanismo de MVC e (onde o reuso justificar) em classes de apoio através de objetos simples\footnote{\textit{POJO}, isto é, Plain Old Java Objects};
-
-\item Uma camada de operações (back-end) tais como: armazenamento de dados, execução de algoritmos e conversão de formatos, cuja implementação é detalhada adiante;
-
-
-\end{itemize}
-
-\begin{figure}[htbp]
+\begin{figure}
 \begin{center}
-DESENHAR
-\caption{Diagrama da Arquitetura}
-\label{default}
+\includegraphics[scale=0.8]{deployment.eps}
+\caption{{\bf Diagrama de Componentes da aplicação, separado por camadas}}
+\label{deployment}
 \end{center}
 \end{figure}
 
 
-As melhores práticas de desenvolvimento de software muitas vezes demandam a implementação de diversos padrões de projeto\footnote{Dados empíricos mostram\cite{IeeeExperience} a relação entre este tipo de padrão e a qualidade do software}. Felizmente, a plataforma Java conta com diversos frameworks que implementam tais padrões de projeto, economizando esforço e tornando o código mais enxuto e focado no problema educacional.
+\begin{itemize}
+\item Uma camada de apresentação, que irá isolar a interface da aplicação das camadas inferiores, utilizando MVC e outros princípios detalhados a seguir.
+
+\item Uma camada intermediária de lógica de negócio, que irá interfacear com as \textit{actions} MVC e delegar as operações às classes de apoio (\textit{helpers}) através de objetos simples\footnote{\textit{POJO}, isto é, Plain Old Java Objects}, a bibliotecas matemáticas como a Jama e às classes de entidade.
+
+\item Uma camada de armazenamento (\textit{back-end}), que, entre outras coisas, garante a independência da aplicação de detalhes específicos de cada banco de dados e abriga as classes de entidade (tornando sua interação com o banco natural).
+
+\end{itemize}
+
+
+
+As melhores práticas de desenvolvimento de software muitas vezes demandam a implementação de diversos padrões de projeto\footnote{Dados empíricos mostram\cite{IeeeExperience} a relação entre este tipo de padrão e a qualidade do software}. Felizmente, a plataforma Java conta com diversos frameworks que implementam tais padrões de projeto, economizando esforço e tornando o código mais enxuto e focado no problema educacional/econométrico.
 
 O restante desta sessão é dedicado a descrever e justificar algumas destas práticas, definindo (quando aplicável) os frameworks selecionados para a implementação das mesmas.
 
@@ -306,6 +307,8 @@ Existem várias formas de implementar o princípio de IoC, sendo que a Injeção
 
 %Tal análise permite a criação de modelos que permitem a elaboração de previsões, que são do maior interesse para pesquisadores e para o público em geral. Exemplos econométricos característicos incluem a previsão do comportamento de ações em bolsas de valores\cite{wikipedia:time_series}, ou a determinação do impacto de fatores qualitativos em vendas de produtos.
 
+%@Misc{wikipedia:time_series,author = {Wikipedia},title = {Time Series},howpublished = {\url{http://en.wikipedia.org/w/index.php?title=Time_series&oldid=232223965}}}
+
 
 
 
@@ -341,14 +344,14 @@ Este algoritmo consiste em usar o inverso da matriz Heissiana para especificar a
 
 \[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n} \]
 
-O código abaixo calcula, para um par \textit{theta1} / \textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana, encontra-se nos apêndices}:
+O código abaixo calcula, para um par \textit{theta1} / \textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana para a função objetivo no ponto, encontra-se no Apêndice A - bem como o de outras funções de apoio como esta.}:
 
 \begin{mylisting}
 \begin{verbatim}
-			double[][] hess = hess(theta1, theta2);
-			Matrix invHess = new Matrix(hess).inverse();
-			Matrix grad = new Matrix(gradH(theta1, theta2), 2);
-			Matrix passo = invHess.times(grad);
+double[][] hess = hess(theta1, theta2, y, x2, x3);
+Matrix invHess = new Matrix(hess).inverse();
+Matrix grad = new Matrix(gradH(theta1, theta2, y, x2, x3), 2);
+Matrix passo = invHess.times(grad);
 \end{verbatim}
 \end{mylisting}
 
@@ -362,13 +365,10 @@ onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$. O texto supra men
 
 \begin{mylisting}
 \begin{verbatim}
-			// Elementos da fórmula (assumimos a matriz y)
-			Matrix Z = new Matrix(Z(theta1, theta2));
-			Matrix Zt = Z.transpose();
-			Matrix f = new Matrix(f(theta1, theta2), 20);
-			// Calcula o passo e devolve negativo (pois será subtraído)
-			Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f));
-			passo = passo.times(-1);
+Matrix Z = Z(theta1, theta2, x2, x3); 
+Matrix Zt = Z.transpose(); 
+Matrix f = f(theta1, theta2, x2, x3); 
+Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f)).times(-1); 
 \end{verbatim}
 \end{mylisting}
 
@@ -386,16 +386,13 @@ Novamente, o código-fonte utilizado:
 
 \begin{mylisting}
 \begin{verbatim}
-			double[] h = f(theta1, theta2);
-			Matrix F = new Matrix(h, 20);
-			Matrix z = y.minus(F);
-			double[][] b = gradF(theta1, theta2);
-			Matrix gradient = new Matrix(b);
-			Matrix gradientPrime = gradient.transpose();
-			Matrix invHess = gradientPrime.times(gradient);
-			Matrix I = Matrix.identity(2, 2);
-			I = I.times(0.7); // pode ser reduzido com o tempo para otimizar
-			Matrix passo = invHess.minus(I).inverse().time(gradientPrime.times(z)).times(-1);
+Matrix F = f(theta1, theta2, x2, x3);
+Matrix z = y.minus(F);
+Matrix gradient = Z(theta1, theta2, x2, x3);
+Matrix gradientPrime = gradient.transpose();
+Matrix invHess = gradientPrime.times(gradient);
+Matrix I = Matrix.identity(2, 2).times(0.7);
+Matrix passo = invHess.minus(I).inverse().times(gradientPrime.times(z)).times(-1);
 \end{verbatim}
 \end{mylisting}
 
@@ -435,14 +432,72 @@ Sob o ponto de vista técnico, a inversão de controle foi aplicada de forma bas
 **** jogar um blá aqui, acenar e sorrir ***
 
 \appendix
-\chapter {Apêndice I - Listagens de Software}
-\section {Listagens de Software}
+\chapter {Complementos Técnicos}
+\section{Listagens de Software}
+O código-fonte completo do protótipo contém cerca de 5000 linhas de código\footnote{excluindo comentários, segundo relatório obtido através do software \textit{cloc}, em \url{http://cloc.sourceforge.net/}}, tornando sua reprodução aqui pouco produtiva. Optamos por reproduzir os trechos relevantes, disponibilizando o código completo para download  no endereço \url{http://chester.blog.br/tf}.
 
-[... métodos numéricos e funções auxiliares OU java da implementação original ...]
+\subsection{Funções de Apoio Para Métodos Numéricos}
 
-[... trecho que faz compilação dinâmica ...]
+Para criar passos de aula usando os trechos de código apresentados para a resolução do problema proposto através de métodos numéricos, é preciso inserir na seção "Código Auxiliar" as funções abaixo (que, respectivamente, calculam a função objetivo, seu hessiano, o gradiente e $\partial f/ \partial \theta'\vert_{\theta}$ num ponto particular $\theta=(\theta_1,\theta_2)$).
 
-\section {Configuração do Ambiente de Trabalho}
+\begin{mylisting}
+\begin{verbatim}
+private static Matrix f(double theta1, double theta2, Matrix x2, Matrix x3) {
+  Matrix f = new Matrix(20,1);
+  for (int t = 0; t <= 19; t++) {
+    f.set(t, 0, theta1 + theta2 * x2.get(t,0) + (theta2 * theta2) * x3.get(t,0));
+  }
+  return f;
+}
+
+private static double[][] hess(double theta1, double theta2, Matrix y, Matrix x2, Matrix x3) {
+  double[][] hess = new double[2][2];
+  for (int t = 0; t <= 19; t++) {
+    double f = f(theta1, theta2, x2, x3).get(t,0);
+    hess[0][0] += 2;
+    hess[0][1] += 2 * (x2.get(t,0) + 2 * theta2 * x3.get(t,0));
+    hess[1][0] += 2 * x2.get(t,0) + 4 * theta2 * x3.get(t,0);
+    hess[1][1] += 4 * x3.get(t,0) * (f - y.get(t,0))
+		+ (x2.get(t,0) + 2 * theta2 * x3.get(t,0))
+		* (2 * x2.get(t,0) + 4 * theta2 * x3.get(t,0));
+  }
+  return hess;
+}
+
+private static double[] gradH(double theta1, double theta2, Matrix y, Matrix x2, Matrix x3) {
+  double[] gradH = new double[2];
+  for (int t = 0; t <= 19; t++) {
+    double f = f(theta1, theta2, x2, x3).get(t,0);
+    gradH[0] += -2 * y.get(t,0) + 2 * f;
+    gradH[1] += 2 * (x2.get(t,0) + 2 * theta2 * x3.get(t,0)) * (f - y.get(t,0));
+  }
+  return gradH;
+}
+
+private static Matrix Z(double theta1, double theta2, Matrix x2, Matrix x3) {
+  Matrix Z = new Matrix(20,2);
+  for (int t = 0; t <= 19; t++) {
+      Z.set(t, 0, 1);
+      Z.set(t, 1, x2.get(t,0) + 2 * theta2 * x3.get(t,0));
+  }
+  return Z;
+}
+
+
+\end{verbatim}
+\end{mylisting}
+
+\subsection{Compilação Dinâmica}
+[...]
+
+\section {Guia do Desenvolvedor}
+
+Esta seção procura auxiliar pessoas interessadas em expandir as capacidades do protótipo, facilitando a configuração do ambiente de trabalho.
+
+\subsection {Requisitos}
+[...]
+\subsection {Configuração do Ambiente}
+[...]
 
 Os seguintes passos permitem a configuração de um ambiente para trabalhar com o código desenvolvido:
 

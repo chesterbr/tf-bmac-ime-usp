@@ -22,20 +22,24 @@
 \contentsline {subsection}{\numberline {3.1.2}Ambiente de Desenvolvimento, Compila\IeC {\c c}\IeC {\~a}o e Publica\IeC {\c c}\IeC {\~a}o}{18}
 \contentsline {section}{\numberline {3.2}Testes Automatizados}{18}
 \contentsline {subsection}{\numberline {3.2.1}Padr\IeC {\~o}es de Projeto}{19}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Mapeamento Objeto-Relacional}{20}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Apresenta\IeC {\c c}\IeC {\~a}o e MVC (Model / View / Controller)}{22}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Invers\IeC {\~a}o de Controle / Inje\IeC {\c c}\IeC {\~a}o de Depend\IeC {\^e}ncias}{24}
-\contentsline {chapter}{\numberline {4}Resolu\IeC {\c c}\IeC {\~a}o do Problema}{26}
-\contentsline {section}{\numberline {4.1}M\IeC {\'e}todos de Gradiente}{26}
-\contentsline {subsection}{\numberline {4.1.1}Newton-Raphson}{27}
-\contentsline {subsection}{\numberline {4.1.2}Gauss-Newton}{27}
-\contentsline {subsection}{\numberline {4.1.3}Marquardt-Levenberg}{28}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Mapeamento Objeto-Relacional}{21}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Apresenta\IeC {\c c}\IeC {\~a}o e MVC (Model / View / Controller)}{23}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Invers\IeC {\~a}o de Controle / Inje\IeC {\c c}\IeC {\~a}o de Depend\IeC {\^e}ncias}{25}
+\contentsline {chapter}{\numberline {4}Resolu\IeC {\c c}\IeC {\~a}o do Problema}{27}
+\contentsline {section}{\numberline {4.1}M\IeC {\'e}todos de Gradiente}{27}
+\contentsline {subsection}{\numberline {4.1.1}Newton-Raphson}{28}
+\contentsline {subsection}{\numberline {4.1.2}Gauss-Newton}{28}
+\contentsline {subsection}{\numberline {4.1.3}Marquardt-Levenberg}{29}
 \contentsline {chapter}{\numberline {5}Resultados e Conclus\IeC {\~o}es}{30}
 \contentsline {section}{\numberline {5.1}Aula: M\IeC {\'e}todos Num\IeC {\'e}ricos}{30}
 \contentsline {section}{\numberline {5.2}Compila\IeC {\c c}\IeC {\~a}o Din\IeC {\^a}mica}{30}
 \contentsline {section}{\numberline {5.3}Limita\IeC {\c c}\IeC {\~o}es}{30}
 \contentsline {section}{\numberline {5.4}Conclus\IeC {\~a}o Final}{31}
-\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{32}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Complementos T\IeC {\'e}cnicos}{32}
 \contentsline {section}{\numberline {A.1}Listagens de Software}{32}
-\contentsline {section}{\numberline {A.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{32}
-\contentsline {chapter}{Refer\^encias}{34}
+\contentsline {subsection}{\numberline {A.1.1}Fun\IeC {\c c}\IeC {\~o}es de Apoio Para M\IeC {\'e}todos Num\IeC {\'e}ricos}{32}
+\contentsline {subsection}{\numberline {A.1.2}Compila\IeC {\c c}\IeC {\~a}o Din\IeC {\^a}mica}{33}
+\contentsline {section}{\numberline {A.2}Guia do Desenvolvedor}{34}
+\contentsline {subsection}{\numberline {A.2.1}Requisitos}{34}
+\contentsline {subsection}{\numberline {A.2.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente}{34}
+\contentsline {chapter}{Refer\^encias}{35}
