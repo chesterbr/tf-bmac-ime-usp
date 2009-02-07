@@ -132,9 +132,15 @@ Para o aluno tudo fica simplificado também - não há exposição ao código, a
 \section {Modelagem}
 
 \subsection{Diagrama de Classes de Entidade}
-As principais entidades são modeladas conforme o diagrama a seguir
+As principais entidades são modeladas de acordo com o diagrama na Figura \ref{classes}.
 
-[... diagrama de classes ...]
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.8]{classes.eps}
+\caption{{\bf Classes de Entidade do Sistema}}
+\label{classes}
+\end{center}
+\end{figure}
 
 \textbf{Passo} é a entidade mais importante do sistema, representando cada tela com a qual o usuário interage, incluindo o código-fonte (algoritmo) que será experimentado pelo aluno. Uma \textbf{Aula} agrupa um conjunto de passos, permitindo a organização do conteúdo didático.
 
@@ -142,15 +148,22 @@ Cada variável que o professor determina que o aluno poderá inserir ou recupera
 
 \subsection{Casos de Uso}
 
-[... diagrama de casos de uso ...]
+No geral, as iterações mais importantes do sistema são os casos de uso apresentados na Figura \ref{casos}, cujos passos são descritos\footnote{Tradicionalmente, Casos de Uso são descritos através de vários campos-padrão (nome, atores, pré-requisitos, passos, etc.), seguindo as linhas gerais delineadas por Jacobson\cite{Jacobson}. Tendo em vista o foco do trabalho, optamos por uma descrição mais sucinta, focada nos passos e em linguagem natural} em seguida.
 
 \begin{figure}[htbp]
 \begin{center}
-\epsfile{file=casos,scale=0.8}
-\caption{{\bf default}}
-\label{default}
+\includegraphics[scale=0.75]{casos.eps}
+\caption{{\bf Casos de Uso do Sistema}}
+\label{casos}
 \end{center}
 \end{figure}
+
+\subsubsection{UC1. Criar Aula}
+Após dividir o conteúdo didático em aula, o professor insere cada uma delas no sistema, atribuindo um nome e uma descrição breve.
+\subsubsection{UC2. Adicionar Passo}
+Cada aula é dividida pelo professor em um ou mais passos, que serão executados sequencialmente pelo aluno. Para cada passo adicionado, o professor dá um nome, cadastra um texto explicativo e um algoritmo que será executado como exercício ao final da leitura do texto, com parâmetros de entrada e saída também definidos pelo professor.
+\subsubsection{UC3. Interagir com Aula}
+Uma vez tendo o material preparado, o aluno pode entrar no sistema e visualizar a lista de todas as aulas. Ao selecionar uma delas, o primeiro passo tem seu texto explicativo exibido, e, ao final, o aluno pode entrar com os dados e verificar os resultados, como programado pelo professor.
 
 
 Um projeto de software mais elaborado poderia documentar 
@@ -161,7 +174,7 @@ Para maior clareza, seguem algumas das páginas \footnote{Um projeto de software
 
 
 \section{Tecnologias}
-Uma vez definida a funcionalidade desejada, foi necessário selecionar tecnologias (linguagens, ferramentas e frameworks) e metodologias (padrões de projeto) que facilitem a criação da plataforma de software desejada de forma eficiente, e, acima de tudo, de forma expansível para acomodar necessidades futuras.
+Uma vez definida a funcionalidade desejada, faz-se necessário selecionar tecnologias (linguagens, ferramentas e frameworks) e metodologias (padrões de projeto) que facilitem a criação da plataforma de software desejada de forma eficiente, e, acima de tudo, de forma expansível para acomodar necessidades futuras.
 
 As escolhas definidas aqui foram norteadas por dois pré requisitos: que todas as metodologias tenham referencial acadêmico e implementações bem-sucedidas; e que todas as ferramentas utilizadas sejam gratuitas e de código livre, garantindo que a aplicação  possa ser ampliada e modificada por qualquer entidade interessada, sem que hajam restrições de qualquer natureza.
 \subsection{Linguagem de Programação}
@@ -201,15 +214,15 @@ A grande quantidade de frameworks envolvidos no processo gera uma dificuldade ad
 
 O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a ferramenta dependente dele. 
 
-%\section{Testes Automatizados}
+\section{Testes Automatizados}
 
-%É muito importante que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é desejável - de fato, a técnica de desenvolvimento orientado a testes automáticos (\textit{Test-Driven Development}) delineada por Janzen e Saiedian\cite{Janzen_Saiedian} foi inspiração para a codificação utilizada.
+É muito importante que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é desejável - de fato, autores como Janzen e Saiedian\cite{Janzen_Saiedian} defendem a idéia de que o desenvolvimento como um todo deve ser pensado com foco nos testes, alegando que esta abordagem (\textit{Test-Driven Development}) teria impacto positivo na qualidade do código gerado e do produto final.
 
-%Neste momento, e considerando a plataforma utilizada, o framework JUnit\footnote{\url{http://junit.org}} é uma escolha natural para a implementação deste tipo de teste, devido à sua natureza não-intrusiva e ao uso difundido em projetos Java. Mesmo testes funcionais automáticos podem ser feitos através dele (havendo a possibilidade de expandi-lo com o uso da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}).
+Sistema Java costumam usar o framework JUnit\footnote{\url{http://junit.org}} para implementação de testes unitários automáticos, devido à sua natureza não-intrusiva (mantendo o código de testes separado do restante) e seu amplo leque de capacidades embutidas, mantendo o código de testes bastante sucinto. Mesmo testes funcionais automáticos podem ser feitos através dele (uma estratégia é expandi-lo através da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}, desenhada para este fim).
 
 \subsection{Padrões de Projeto}
 
-Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud})}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}:
+Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}:
 
 \begin{itemize}
 \item Uma camada de interface (front-end), utilizando MVC e outros princípios detalhados a seguir.
@@ -283,10 +296,7 @@ A inversão de controle\footnote{Fowler\cite{FowlerIoc} define a IoC como uma ca
 
 Isso faz com que o módulo se concentre na sua própria funcionalidade – ao invés de misturar este código com o código que cuidará da iteração com a dependência. Há um ligeiro aumento na quantidade de código devido à necessidade de formalizar a dependência através de suas características (e não através da chamada direta do módulo que satisfaz a dependência) – o exemplo canônico de Fowler mostra essa diferença. Mas isto é largamente compensado pelo desacoplamento obtido, e a clareza do código não é prejudicada.
 
-Existem várias formas de implementar o princípio de IoC, sendo que a Injeção de Dependências é bastante popular por reduzir a quantidade de código envolvida no processo\footnote{Fowler descreve esta implementação na forma de um padrão de projeto\cite{FowlerInjdep}}. Nela, o módulo que oferece a funcionalidade apresenta uma interface não apenas para as tradicionais chamadas, mas também para as dependências delas (ex.: conexões de banco de dados, canais de saída, etc.). O módulo que solicita a funcionalidade o faz como na programação tradicional (chamando o método exposto), mas um framework media estas chamadas e fornece as dependências necessárias de forma apropriada. O Spring\footnote{\url{http://www.springsource.org/}} tem se tornado um padrão no mundo Java para esta tarefa, a exemplo do que o Hibernate faz no mapeamento objeto-relacional.
-
-Para trabalhar sob esta abordagem o mais indicado é usar o Spring – um framework que tornou-se referência em aplicações Java. Uma de suas vantagens é se integrar de forma automatizada com outros frameworks (notadamente Hibernate), reduzindo ainda mais a quantidade de código na nossa aplicação. O uso será feito de forma comedida (para evitar a introdução de complexidade desnecessária), limitando-se aos pontos em que uma eventual substituição de componentes se mostre como uma possibilidade interessante.
-
+Existem várias formas de implementar o princípio de IoC, sendo que a Injeção de Dependências é bastante popular por reduzir a quantidade de código envolvida no processo\footnote{Fowler descreve esta implementação na forma de um padrão de projeto\cite{FowlerInjdep}}. Nela, o módulo que oferece a funcionalidade apresenta uma interface não apenas para as tradicionais chamadas, mas também para as dependências delas (ex.: conexões de banco de dados, canais de saída, etc.). O módulo que solicita a funcionalidade o faz como na programação tradicional (chamando o método exposto), mas um framework media estas chamadas e fornece as dependências necessárias de forma apropriada. O Spring\footnote{\url{http://www.springsource.org/}} tem se tornado um padrão no mundo Java para esta tarefa, a exemplo do que o Hibernate faz no mapeamento objeto-relacional. No entanto, isso deve ser balanceado com a real neceissade do sistema, evitando torná-lo mais complexo que o necessário.
 
 
 
@@ -305,7 +315,7 @@ Para trabalhar sob esta abordagem o mais indicado é usar o Spring – um framew
 
 \section {Métodos de Gradiente}
 
-O problema descrito pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$.
+O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$.
 
 Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho de passo $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para o passo seguinte, isto é:
 

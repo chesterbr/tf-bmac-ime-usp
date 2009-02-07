@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 20001102//EN' 'http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd'>
+<svg height="296" width="660" xmlns="http://www.w3.org/2000/svg">
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="165">
+Professor</text>
+<ellipse cx="47" cy="111" rx="8.0" ry="7.5" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="47" cy="111" rx="7.0" ry="6.5" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="47" x2="47" y1="119" y2="134"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="37" x2="57" y1="124" y2="124"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="47" x2="42" y1="134" y2="149"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="47" x2="52" y1="134" y2="149"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="530" y="157">
+Aluno</text>
+<ellipse cx="548" cy="103" rx="8.0" ry="7.5" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="548" cy="103" rx="7.0" ry="6.5" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="548" x2="548" y1="111" y2="126"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="538" x2="558" y1="116" y2="116"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="548" x2="543" y1="126" y2="141"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="548" x2="553" y1="126" y2="141"/>
+<ellipse cx="302" cy="44" rx="120.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="302" cy="44" rx="119.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<ellipse cx="302" cy="44" rx="120.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="302" cy="44" rx="119.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="253" y="48">
+UC1. Criar Aula</text>
+<ellipse cx="246" cy="172" rx="120.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="246" cy="172" rx="119.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<ellipse cx="246" cy="172" rx="120.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="246" cy="172" rx="119.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="179" y="176">
+UC2. Adicionar Passo</text>
+<ellipse cx="517" cy="252" rx="119.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="517" cy="252" rx="118.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<ellipse cx="517" cy="252" rx="119.0" ry="30.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="517" cy="252" rx="118.0" ry="29.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="441" y="256">
+UC3. Interagir com Aula</text>
+<polyline points="56,111 220,66" style="fill:none; stroke:#000000; stroke-width:1"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="258" x2="260" y1="142" y2="138"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="262" x2="264" y1="133" y2="129"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="266" x2="268" y1="124" y2="119"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="270" x2="272" y1="115" y2="110"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="274" x2="276" y1="106" y2="101"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="278" x2="280" y1="96" y2="92"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="282" x2="284" y1="87" y2="83"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="286" x2="288" y1="78" y2="73"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="289" x2="288" y1="86" y2="73"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="276" x2="288" y1="81" y2="73"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="440" x2="436" y1="229" y2="228"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="431" x2="426" y1="227" y2="225"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="421" x2="417" y1="224" y2="222"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="412" x2="407" y1="221" y2="219"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="402" x2="397" y1="218" y2="217"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="393" x2="388" y1="215" y2="214"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="383" x2="378" y1="212" y2="211"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="373" x2="369" y1="209" y2="208"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="364" x2="359" y1="207" y2="205"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="354" x2="349" y1="204" y2="202"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="345" x2="340" y1="201" y2="199"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="335" x2="330" y1="198" y2="197"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="325" x2="323" y1="195" y2="194"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="336" x2="323" y1="190" y2="194"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="332" x2="323" y1="204" y2="194"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="486" x2="483" y1="222" y2="219"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="479" x2="476" y1="216" y2="212"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="472" x2="469" y1="209" y2="205"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="465" x2="461" y1="202" y2="198"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="458" x2="454" y1="195" y2="191"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="451" x2="447" y1="188" y2="184"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="443" x2="440" y1="181" y2="177"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="436" x2="433" y1="174" y2="170"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="429" x2="425" y1="167" y2="163"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="422" x2="418" y1="160" y2="156"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="415" x2="411" y1="153" y2="149"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="407" x2="404" y1="146" y2="142"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="400" x2="397" y1="139" y2="135"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="393" x2="389" y1="132" y2="129"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="386" x2="382" y1="125" y2="122"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="379" x2="375" y1="118" y2="115"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="371" x2="368" y1="111" y2="108"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="364" x2="361" y1="104" y2="101"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="357" x2="353" y1="97" y2="94"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="350" x2="346" y1="90" y2="87"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="343" x2="339" y1="83" y2="80"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="335" x2="332" y1="76" y2="73"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="345" x2="332" y1="76" y2="73"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="335" x2="332" y1="86" y2="73"/>
+<polyline points="524,222 543,141" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polyline points="52,149 137,159" style="fill:none; stroke:#000000; stroke-width:1"/>
+</svg>

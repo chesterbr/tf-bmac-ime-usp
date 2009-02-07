@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 20001102//EN' 'http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd'>
+<svg height="685" width="604" xmlns="http://www.w3.org/2000/svg">
+<rect height="97" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="208" x="14" y="14"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="208" x="14" y="14"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="208" x="14" y="14"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="208" x="14" y="14"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="104" y="30">
+Aula</text>
+<rect height="27" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="207" x="15" y="83"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="15" x2="222" y1="83" y2="83"/>
+<rect height="44" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="207" x="15" y="38"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="15" x2="222" y1="38" y2="38"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="55">
+titulo : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="71">
+passos : List</text>
+<rect height="97" style="fill: none; stroke:#000000; stroke-width:1" width="208" x="14" y="14"/>
+<rect height="121" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="114" x="406" y="238"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="114" x="406" y="238"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="114" x="406" y="238"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="114" x="406" y="238"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="439" y="254">
+Entrada</text>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="113" x="407" y="335"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="407" x2="520" y1="335" y2="335"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="113" x="407" y="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="407" x2="520" y1="262" y2="262"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="410" y="279">
+id : long</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="410" y="295">
+nome : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="410" y="311">
+usuario : Usuario</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="410" y="327">
+passo : Passo</text>
+<rect height="121" style="fill: none; stroke:#000000; stroke-width:1" width="114" x="406" y="238"/>
+<rect height="169" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="142" x="54" y="502"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="142" x="54" y="502"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="142" x="54" y="502"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="142" x="54" y="502"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="93" y="518">
+Parametro</text>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="141" x="55" y="647"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="55" x2="196" y1="647" y2="647"/>
+<rect height="120" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="141" x="55" y="526"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="55" x2="196" y1="526" y2="526"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="543">
+id : long</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="559">
+nome : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="575">
+descricao : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="591">
+ordem : int</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="607">
+classe : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="623">
+tipoEntrada : boolean</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="58" y="639">
+passo : Passo</text>
+<rect height="169" style="fill: none; stroke:#000000; stroke-width:1" width="142" x="54" y="502"/>
+<rect height="253" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="216" x="14" y="190"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="216" x="14" y="190"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="216" x="14" y="190"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="216" x="14" y="190"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="104" y="206">
+Passo</text>
+<rect height="91" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="215" x="15" y="351"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="15" x2="230" y1="351" y2="351"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="368">
+getErrosDeCompilacao() : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="384">
+compila() : boolean</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="400">
+executa(entrada : Entrada) : Set</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="416">
+getProximo() : Passo</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="432">
+getAnterior() : Passo</text>
+<rect height="136" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="215" x="15" y="214"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="15" x2="230" y1="214" y2="214"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="231">
+nome : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="247">
+ordem : int</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="263">
+explicacao_html : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="279">
+codigo_java : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="295">
+codigo_java_auxiliar : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="311">
+aula : Aula</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="327">
+parametros : List</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="18" y="343">
+errosDeCompilacao : String</text>
+<rect height="253" style="fill: none; stroke:#000000; stroke-width:1" width="216" x="14" y="190"/>
+<rect height="157" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="256" x="334" y="14"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="256" x="334" y="14"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="256" x="334" y="14"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="256" x="334" y="14"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="438" y="30">
+Usuario</text>
+<rect height="43" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="255" x="335" y="127"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="335" x2="590" y1="127" y2="127"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="144">
+isSenhaValida(senha : String) : boolean</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="160">
+setSenha(senha : String)</text>
+<rect height="88" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="255" x="335" y="38"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="335" x2="590" y1="38" y2="38"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="55">
+id : Long</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="71">
+email : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="87">
+hash_senha : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="103">
+nome : String</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="338" y="119">
+professor : boolean</text>
+<rect height="157" style="fill: none; stroke:#000000; stroke-width:1" width="256" x="334" y="14"/>
+<rect height="121" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="160" x="382" y="486"/>
+<rect height="0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="160" x="382" y="486"/>
+<rect height="0" style="fill: none; stroke:#000000; stroke-width:1" width="160" x="382" y="486"/>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="160" x="382" y="486"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="446" y="502">
+Valor</text>
+<rect height="23" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="159" x="383" y="583"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="383" x2="542" y1="583" y2="583"/>
+<rect height="72" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="159" x="383" y="510"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="383" x2="542" y1="510" y2="510"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="386" y="527">
+id : long</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="386" y="543">
+entrada : Entrada</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="386" y="559">
+parametro : Parametro</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="386" y="575">
+valor : String</text>
+<rect height="121" style="fill: none; stroke:#000000; stroke-width:1" width="160" x="382" y="486"/>
+<polyline points="110,111 110,190" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polygon points="110,111 115,121 110,131 105,121" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<polygon points="110,111 115,121 110,131 105,121" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="121" y="133">
+1</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="114" y="182">
+1..*</text>
+<polyline points="462,171 462,238" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="473" y="193">
+1</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="466" y="230">
+1..*</text>
+<polyline points="196,543 382,543" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="207" y="535">
+1</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="356" y="535">
+1..*</text>
+<polyline points="462,359 462,486" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polygon points="462,359 467,369 462,379 457,369" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<polygon points="462,359 467,369 462,379 457,369" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="473" y="381">
+1</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="466" y="478">
+1..*</text>
+<polyline points="126,443 126,502" style="fill:none; stroke:#000000; stroke-width:1"/>
+<polygon points="126,443 131,453 126,463 121,453" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<polygon points="126,443 131,453 126,463 121,453" style="fill:none; stroke:#000000; stroke-width:1"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="137" y="465">
+1</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="130" y="494">
+0..*</text>
+</svg>

@@ -1,0 +1,41 @@
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Introdu\IeC {\c c}\IeC {\~a}o}{7}
+\contentsline {section}{\numberline {1.1}Econometria: Teoria e Pr\IeC {\'a}tica}{7}
+\contentsline {section}{\numberline {1.2}Um Problema Econom\IeC {\'e}trico}{8}
+\contentsline {chapter}{\numberline {2}A Plataforma}{10}
+\contentsline {section}{\numberline {2.1}Proposta Funcional}{10}
+\contentsline {subsection}{\numberline {2.1.1}Usu\IeC {\'a}rios}{10}
+\contentsline {subsection}{\numberline {2.1.2}Aulas}{10}
+\contentsline {section}{\numberline {2.2}Modelagem}{11}
+\contentsline {subsection}{\numberline {2.2.1}Diagrama de Classes de Entidade}{11}
+\contentsline {subsection}{\numberline {2.2.2}Casos de Uso}{13}
+\contentsline {subsubsection}{\numberline {2.2.2.1}UC1. Criar Aula}{13}
+\contentsline {subsubsection}{\numberline {2.2.2.2}UC2. Adicionar Passo}{13}
+\contentsline {subsubsection}{\numberline {2.2.2.3}UC3. Interagir com Aula}{14}
+\contentsline {chapter}{\numberline {3}Arquitetura de Software}{15}
+\contentsline {section}{\numberline {3.1}Tecnologias}{15}
+\contentsline {subsection}{\numberline {3.1.1}Linguagem de Programa\IeC {\c c}\IeC {\~a}o}{15}
+\contentsline {subsubsection}{\numberline {3.1.1.1}C/C++}{16}
+\contentsline {subsubsection}{\numberline {3.1.1.2}Pascal}{17}
+\contentsline {subsubsection}{\numberline {3.1.1.3}Fortran}{17}
+\contentsline {subsubsection}{\numberline {3.1.1.4}Java (op\IeC {\c c}\IeC {\~a}o final)}{17}
+\contentsline {subsection}{\numberline {3.1.2}Ambiente de Desenvolvimento, Compila\IeC {\c c}\IeC {\~a}o e Publica\IeC {\c c}\IeC {\~a}o}{18}
+\contentsline {section}{\numberline {3.2}Testes Automatizados}{18}
+\contentsline {subsection}{\numberline {3.2.1}Padr\IeC {\~o}es de Projeto}{19}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Mapeamento Objeto-Relacional}{20}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Apresenta\IeC {\c c}\IeC {\~a}o e MVC (Model / View / Controller)}{22}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Invers\IeC {\~a}o de Controle / Inje\IeC {\c c}\IeC {\~a}o de Depend\IeC {\^e}ncias}{24}
+\contentsline {chapter}{\numberline {4}Resolu\IeC {\c c}\IeC {\~a}o do Problema}{26}
+\contentsline {section}{\numberline {4.1}M\IeC {\'e}todos de Gradiente}{26}
+\contentsline {subsection}{\numberline {4.1.1}Newton-Raphson}{27}
+\contentsline {subsection}{\numberline {4.1.2}Gauss-Newton}{27}
+\contentsline {subsection}{\numberline {4.1.3}Marquardt-Levenberg}{28}
+\contentsline {chapter}{\numberline {5}Resultados e Conclus\IeC {\~o}es}{30}
+\contentsline {section}{\numberline {5.1}Aula: M\IeC {\'e}todos Num\IeC {\'e}ricos}{30}
+\contentsline {section}{\numberline {5.2}Compila\IeC {\c c}\IeC {\~a}o Din\IeC {\^a}mica}{30}
+\contentsline {section}{\numberline {5.3}Limita\IeC {\c c}\IeC {\~o}es}{30}
+\contentsline {section}{\numberline {5.4}Conclus\IeC {\~a}o Final}{31}
+\contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Ap\IeC {\^e}ndice I - Listagens de Software}{32}
+\contentsline {section}{\numberline {A.1}Listagens de Software}{32}
+\contentsline {section}{\numberline {A.2}Configura\IeC {\c c}\IeC {\~a}o do Ambiente de Trabalho}{32}
+\contentsline {chapter}{Refer\^encias}{34}
