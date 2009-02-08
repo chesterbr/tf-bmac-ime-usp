@@ -43,7 +43,7 @@
 %%%%%%%% RESUMO %%%%%%%%
 \pretextualchapter{Resumo}
 \vspace{4cm}
-Propõe uma plataforma de \textit{software} cujo objetivo é servir de ao ensino de tópicos de Econometria. Trabalha um problema de Econometria apresentando métodos numéricos para a sua resolução. Descreve a experiência de implementar a plataforma e o problema proposto, comentando os resultados.
+Propõe uma plataforma de \textit{software} cujo objetivo é servir de ao ensino de tópicos de Econometria. Trabalha um problema de Econometria apresentando métodos numéricos para a sua resolução. Descreve a experiência de implementar a plataforma e aplicar a ela o problema proposto, comentando os resultados.
 
 
 \newpage
@@ -57,6 +57,7 @@ Propõe uma plataforma de \textit{software} cujo objetivo é servir de ao ensino
 %\subsection{}
 
 \chapter{Introdução}
+\label{cap_problema}
 
 \section{Econometria: Teoria e Prática}
 
@@ -102,8 +103,23 @@ onde $y = (y_1, y_2, ..., y_{20})'$, $\theta^* = (\theta_1^*, \theta_2^*)'$ é o
  
  \[ H(\theta) = [y - f(\theta)]'[y - f(\theta)] \]
 
-Este é um problema econométrico típico, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele.
+Este é um problema econométrico típico, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utiliza os dados fornecidos pelos autores, apresentados na tabela \ref{dados}.
 
+\begin{table}
+	\begin{center}
+		\begin{tabular}{ r | c c c c }
+			\hline
+			$t$ & $y_t$ & $x_{t1}$ & $x_{t2}$ & $x_{t3}$ \\
+			\hline
+			1 & 4.284 & 1,000 & 0.286 & 0.645 \\			2 & 4.149 & 1,000 & 0.973 & 0.585 \\			3 & 3.877 & 1,000 & 0.384 & 0.310 \\			4 & 0.533 & 1,000 & 0.276 & 0.058 \\			5 & 2.211 & 1,000 & 0.973 & 0.455 \\			6 & 2.389 & 1,000 & 0.543 & 0.779 \\			7 & 2.145 & 1,000 & 0.957 & 0.259 \\			8 & 3.231 & 1,000 & 0.948 & 0.202 \\			9 & 1.998 & 1,000 & 0.543 & 0.028 \\			10 & 1.379 & 1,000 & 0.797 & 0.099 \\			11 & 2.106 & 1,000 & 0.936 & 0.142 \\			12 & 1.428 & 1,000 & 0.889 & 0.296 \\			13 & 1.011 & 1,000 & 0.006 & 0.175 \\			14 & 2.179 & 1,000 & 0.828 & 0.180 \\			15 & 2.858 & 1,000 & 0.399 & 0.842 \\			16 & 1.388 & 1,000 & 0.617 & 0.039 \\			17 & 1.651 & 1,000 & 0.939 & 0.103 \\			18 & 1.593 & 1,000 & 0.784 & 0.620 \\			19 & 1.046 & 1,000 & 0.072 & 0.158 \\			20 & 2.152 & 1,000 & 0.889 & 0.704 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Dados usados no exemplo}
+	\label{dados}
+\end{table}
+
+Os valores de $x_{t2}$ e $x_{t3}$ são números pseudo-aleatórios, gerados a partir de uma distribuição uniforme no intervalo unitário, e os $y_t$ foram gerados tomando o modelo $\theta_1^* + \theta_2^*x_{t2}+\theta_2^*x_{t3}$, adicionando a ele um número pseudo-aleatório e considerando $\theta_1^* = \theta_2^* = 0$, isto é, adicionando um erro aleatório a $1+x_{t2}+x_{t3}$.
 
 
 
@@ -173,11 +189,10 @@ Para maior clareza, seguem algumas das páginas \footnote{Um projeto de software
 
 
 
-\section{Tecnologias}
 Uma vez definida a funcionalidade desejada, faz-se necessário selecionar tecnologias (linguagens, ferramentas e frameworks) e metodologias (padrões de projeto) que facilitem a criação da plataforma de software desejada de forma eficiente, e, acima de tudo, de forma expansível para acomodar necessidades futuras.
 
 As escolhas definidas aqui foram norteadas por dois pré requisitos: que todas as metodologias tenham referencial acadêmico e implementações bem-sucedidas; e que todas as ferramentas utilizadas sejam gratuitas e de código livre, garantindo que a aplicação  possa ser ampliada e modificada por qualquer entidade interessada, sem que hajam restrições de qualquer natureza.
-\subsection{Linguagem de Programação}
+\section{Linguagem de Programação}
 É necessário fazer duas escolhas neste tópico: a da linguagem a ser utilizada para construir o aplicativo, e a da linguagem através da qual os algoritmos serão descritos para a mesma.
 
 Para o aplicativo, é preciso ter uma linguagem que ofereça performance, escalabilidade, suporte ao desenvolvimento para a web e facilidade para trabalhar com bancos de dados relacionais (ferramenta indispensável para o volume de dados gerado pelo uso em larga escala, vide adiante). Também é importante que a linguagem não seja excessivamente obscura ou limitada a um nicho de mercado, já que um dos objetivos é propor uma plataforma que possa ser ampliada e melhorada por quem tenha interesse.
@@ -188,31 +203,43 @@ Com o uso dos mecanismos de arquitetura apropriados é possível trabalhar ambas
 
 Embora existam linguagens de domínio específico para algoritmos matemáticos, faz sentido considerar primeiro linguagens de uso geral (ainda no sentido de simplificar e popularizar a plataforma). Estudos como o de Prechelt\cite{Prechelt} abordam aspectos como tempo de desenvolvimento e performance para o uso geral, mas é necessário levar em conta as necessidades particulares desta aplicação. Isto nos levou a considerar:
 
-\subsubsection{C/C++}
+\subsection{C/C++}
 A melhor opção em termos de performance. Por ter acesso aos mais diferentes tipos de bilbiotecas nos diversos sistemas operacionais existentes, também não apresentaria problemas para trabalhar com banco de dados ou com web. No entanto, a programação nesta dupla é bastante sujeita a erros, e muitas vezes é preciso escolher entre a flexibilidade do C++ e a performance do C.
 
 Além disso, é necessário um esforço extra para garantir a compabilidade entre diferentes plataformas. Tais fatores elevariam o tempo do  projeto e colocariam uma barreira à entrada de novos desenvolvedores – isso sem falar que dificilmente a programação dos algoritmos seria feita de forma didaticamente viável nela.
 
-\subsubsection{Pascal}
+\subsection{Pascal}
 Tem a seu favor um excelente balanço entre performance e facilidade de programação (por ser mais fortemente tipada do que C e executar muitas das verificações de erros comuns em tempo de execução), além de possuir extensões de orientação a objeto e implementações livres (como o Free Pascal). No entanto as universidades já não tem mais incluído esta linguagem em seus currículos (Java é o substituto mais comum), o que se reflete em reduzida disponibilidade de programadores.
 
-\subsubsection{Fortran}
+\subsection{Fortran}
 Um dos pontos fortes é a vasta quantidade de algoritmos matemáticos e estatísticos disponíveis na literatura já codificados nesta linguagem. No entanto, a linguagem oferece poucas facilidades para a programação na web, e a mão-de-obra disponível é muito limitada ao meio científico/acadêmico.
 
-\subsubsection{Java (opção final)}
+\subsection{Java (opção final)}
 O equilíbrio entre as demandas funcionais e não-funcionais levou à escolha da linguagem Java para a primeira implementação. Estudos como o de Bull, Smith, Pottage e Freeman\cite{BullSmithPottageFreeman} mostram que apresenta performance comparável a C, aliada a uma ampla gama de bibliotecas/frameworks que tornarão a implementação mais simples e expansível.
 
 Uma vantagem adicional é a possibilidade que a linguagem oferece (a partir da Versão 6) de que o compilador seja invocado através de APIs de alto nível, permitindo a execução interativa dos algoritmos econométricos de forma independente de sistema operacional ou plataforma.
 
 Caso esta escolha não seja a mais apropriada no futuro, uma possibilidade que estará disponível são  linguagens dinâmicas como Ruby, Python ou LISP, ou, alternativamente, como linguagens estáticas com suporte a reflexão, como C\# ou Objective-C – observando-se o mapeamento dos mecanismos de arquitetura para recursos equivalentes em cada uma delas.
 
-\subsection{Ambiente de Desenvolvimento, Compilação e Publicação}
+\section{Ambiente de Desenvolvimento}
 
 É importante que o processo de compilação e publicação (\textit{deploy}) da aplicação sejam completamente automatizados, de forma que qualquer pessoa possa facilmente descarregar o código existente de um repositório, testá-lo e implementar novas características.
 
 A grande quantidade de frameworks envolvidos no processo gera uma dificuldade adicional: o gerenciamento de dependências. Tento isto em vista, usaremos o Maven\footnote{\url{http://maven.apache.org}} não apenas para executar a compilação e publicação, mas também para recuperar automaticamente todas as bibliotecas (.JAR) de frameworks utilizados a partir da Internet.
 
-O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a ferramenta dependente dele. 
+O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado - conjunto que agrega editor de textos, compilador e ferramenta de depuração em um único pacote, agilizando o desenvolvimento de software} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a ferramenta dependente dele. 
+
+\section{Compilação e Carregamento Dinâmico de Classes}
+\label{explicacao_compilacao}
+
+Uma vez decidido que Java seria tanto a linguagem de desenvolvimento quanto a linguagem usada para definir os exercícios que seriam aplicados em cada passo de cada aula, foi preciso utilizar o recurso de compilação dinâmica, disponível a partir da versão 1.6 da linguagem, bem como o carregamento dinâmico de classes\footnote{A parte relevante do código-fonte para cada um destes recursos está disponível na Seção \ref{listagens}}.
+
+A abordagem para o uso do primeiro recurso foi a criação de uma nova classe para cada passo inserido no sistema, gerada a partir do identificador do passo relacionado a ela. Esta classe receberia um mapa nome-valor (\textit{java.util.Map}) com os parâmetros de entrada e seus valores, e devolveria um outro mapa no mesmo formato com os parâmetros de saída (e eventuais parâmetros de entrada modificados - este último detalhe é importante para a execução de métodos iterativos como o que usaremos como exemplo).
+
+Uma vez montada esta classe, a mesma é compilada dinamicamente sempre que necessário. Para executá-la, em princípio poderia ser feita uma chamada direta, mas isso gera um problema: a cada mudança é preciso descarregar a classe da memória e recarregá-la, e não é possível executar esta operação com classes carregadas automaticamente pelo \textit{classloader} padrão do Java. A solução é instanciar um novo classloader a cada execução, colocando as classes compiladas num diretório visível apenas para ele.
+
+Desta forma, quando não há mais referência ao classloader, ele se torna elegível para descarga na coleta de lixo seguinte - e o mesmo ocorre com as classes carregadas por ele. Ainda é possível solicitar à JVM a coleta de lixo (via \textit{System.gc()}) - isto não garante a execução do procedimento, mas na maioria das implementações evita que o mesmo aconteça apenas após muitas alterações, gerando um benefício de performance. Em qualquer caso, o sistema reconhece as mudanças já na execução seguinte do passo da aula - que é o efeito desejado.
+
 
 \section{Testes Automatizados}
 
@@ -220,7 +247,7 @@ O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Developm
 
 Sistema Java costumam usar o framework JUnit\footnote{\url{http://junit.org}} para implementação de testes unitários automáticos, devido à sua natureza não-intrusiva (mantendo o código de testes separado do restante) e seu amplo leque de capacidades embutidas, mantendo o código de testes bastante sucinto. Mesmo testes funcionais automáticos podem ser feitos através dele (uma estratégia é expandi-lo através da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}, desenhada para este fim).
 
-\subsection{Padrões de Projeto}
+\section{Padrões de Projeto}
 
 Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}, ilustrada na Figura \ref{deployment} e detalhada da seguinte forma:
 
@@ -248,7 +275,7 @@ As melhores práticas de desenvolvimento de software muitas vezes demandam a imp
 
 O restante desta sessão é dedicado a descrever e justificar algumas destas práticas, definindo (quando aplicável) os frameworks selecionados para a implementação das mesmas.
 
-\subsubsection{Mapeamento Objeto-Relacional}
+\subsection{Mapeamento Objeto-Relacional}
 
 Ao longo das últimas décadas, os sistemas gerenciadores de banco de dados relacionais (RDBMS)  simplificaram o armazenamento de dados através da introdução da abordagem relacional de representação dos mesmos, implementada em pacotes de software de baixo custo, de forma isolada da aplicação principal, permitindo ao desenvolvedor concentrar-se no domínio específico do problema computacional a ser resolvido\footnote{Para uma perspectiva histórica, consulte Codd\cite{Codd1970}}.
 
@@ -266,7 +293,7 @@ O Hibernate é um framework de código totalmente livre, que gera automaticament
 
 Uma outra técnica para implementar o conceito de persistência é a chamada prevalência - nela, o estado dos objetos é armazenado em sistemas de arquivo tradicionais, num misto de serialização e de aualizações de estado (balanceando segurança dos dados e performance). Tal abordagem pode ser implementada usando um framework como Prevayler\footnote{\url{http://www.prevayler.org}} para adicionar a capacidade de prevalência às classes de domínio. Embora esta técnica simplifique o deploy por dispensar um SGBD, a quantidade de memória RAM necessária para manter todo o grafo de objetos em memória tornaria inviável o uso da aplicação em larga escala.
 
-\subsubsection{Apresentação e MVC (Model / View / Controller)}
+\subsection{Apresentação e MVC (Model / View / Controller)}
 
 Devido à sua natureza de interação com o usuário, a camada de apresentação é uma das mais sujeitas a alterações. Além disso, seu fluxo pode se tornar bastante complexo, o que favorece a duplicação de código desnecessária.
 
@@ -287,7 +314,7 @@ Tendo em vista que as alternativas padrão não atendem às necessidades do proj
 
 Finalmente, é importante salientar que existe uma outra alternativa para otimizar o desenvolvimento da camada de apresentação: o uso de arquiteturas baseadas em componentes, tais como Wicket, WebWorks e JSF (os dois primeiros são frameworks, o último é uma especificação para este tipo de arquitetura, definida sob supervisão da empresa que desenvolve o Java e seguida por diversos frameworks), sobretudo pela agilidade que oferecem na prototipação e na criação de interfaces. No entanto, aplicações desenvolvidas sob este tipo de arquitetura não possuem a “tolerância a mudanças” que o MVC proporciona (e estas mudanças seguramente ocorrerão à medida em que a plataforma for expandida), razão pela qual descartamos tal tipo de solução.
 
-\subsubsection{Inversão de Controle / Injeção de Dependências}
+\subsection{Inversão de Controle / Injeção de Dependências}
 
 Tendo em perspectiva que a aplicação resultante deste projeto será uma base para o desenvolvimento de outros sistemas, é importante que a mesma seja de fácil compreensão e manutenção.
 
@@ -355,6 +382,22 @@ Matrix passo = invHess.times(grad);
 \end{verbatim}
 \end{mylisting}
 
+Os resultados obtidos através da aplicação sucessiva deste passo (conforme descrito no Capítulo \ref{cap_problema} coincidem com os apresentados pelos autores e reproduzidos aqui na Tabela \ref{resultados_nr}.
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{ r | c c r  }
+			\hline
+			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
+			\hline
+			1 & 3.000000 & 2.000000 & 264.3918 \\			2 & -0.084033 & 1.811210 & 20.6328 \\			3 & 0.625029 & 1.423940 & 16.5105 \\			4 & 0.817259 & 1.272776 & 16.0961 \\			5 & 0.862590 & 1.237516 & 16.0818 \\			6 & 0.864782 & 1.235753 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 0.000000 & 2.000000 & 29.2758 \\			2 & 0.334936 & 1.600435 & 17.7382 \\			3 & 0.735040 & 1.336953 & 16.1955 \\			4 & 0.849677 & 1.247743 & 16.0832 \\			5 & 0.864541 & 1.235946 & 16.0817 \\			6 & 0.864787 & 1.235749 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 1.500000 & 0.500000 & 20.2951 \\			2 & 2.256853 & 0.007135 & 20.7735 \\			3 & 2.467047 & -0.436460 & 21.0312 \\			4 & 2.316982 & -0.202435 & 20.9467 \\			5 & 2.359743 & -0.320579 & 20.9809 \\			6 & 2.354457 & -0.319153 & 20.9805 \\			7 & 2.354471 & -0.319186 & 20.9805 \\			8 & 2.354471 & -0.319186 & 20.9805 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Algumas iterações do método de Newton-Rhapson}
+	\label{resultados_nr}
+\end{table}
+
 \subsection{Gauss-Newton}
 
 Este método utiliza uma particularidade da forma da função objetivo, calculando o passo como:
@@ -372,9 +415,27 @@ Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f)).times(-1);
 \end{verbatim}
 \end{mylisting}
 
+Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}.
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{ r | c c r  }
+			\hline
+			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
+			\hline
+			1 & 3.000000 & 2.000000 & 264.3918 \\			2 & -0.084033 & 1.811210 & 20.6328 \\			3 & 0.625029 & 1.423940 & 16.5105 \\			4 & 0.817259 & 1.272776 & 16.0961 \\			5 & 0.862590 & 1.237516 & 16.0818 \\			6 & 0.864782 & 1.235753 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 0.000000 & 2.000000 & 29.2758 \\			2 & 0.334936 & 1.600435 & 17.7382 \\			3 & 0.735040 & 1.336953 & 16.1955 \\			4 & 0.849677 & 1.247743 & 16.0832 \\			5 & 0.864541 & 1.235946 & 16.0817 \\			6 & 0.864787 & 1.235749 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 1.500000 & 0.500000 & 20.2951 \\			2 & 2.256853 & 0.007135 & 20.7735 \\			3 & 2.467047 & -0.436460 & 21.0312 \\			4 & 2.316982 & -0.202435 & 20.9467 \\			5 & 2.359743 & -0.320579 & 20.9809 \\			6 & 2.354457 & -0.319153 & 20.9805 \\			7 & 2.354471 & -0.319186 & 20.9805 \\			8 & 2.354471 & -0.319186 & 20.9805 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Algumas iterações do método de Gauss-Newtion}
+	\label{resultados_gn}
+\end{table}
+
+
+
 \subsection{Marquardt-Levenberg}
 
-Este método é uma modificação de algoritmos que não garantem uma matriz de direção $P_n$ definida positiva, utilizando a matriz $P_n + \lambda_n\bar P_n$ (que é sempre definida positiva se $\bar P_n$ o for e o escalar for suficientemente grande. Uma idéia sugerida pelos autores é aplicar esta idéia no método de Gauss, i.e.:
+Para tornar o exemplo completo, apresentamos um algoritmo gerado através da modificação de algoritmos anteriores. Neste caso, trata-se de uma modificação de algoritmos que não garantem uma matriz de direção $P_n$ definida positiva, utilizando a matriz $P_n + \lambda_n\bar P_n$ (que é sempre definida positiva se $\bar P_n$ o for e o escalar for suficientemente grande. Uma idéia sugerida pelos autores é aplicar esta idéia no método de Gauss, i.e.:
 
 \[ P_n = [Z(\theta_n)'Z(\theta_n) + \lambda_n\bar P_n]^{-1} \]
 
@@ -396,17 +457,9 @@ Matrix passo = invHess.minus(I).inverse().times(gradientPrime.times(z)).times(-1
 \end{verbatim}
 \end{mylisting}
 
+Os resultados são semelhantes aos obtidos pelo método antes da modificação, no entanto, a velocidade de convergência é muito maior.
 
-\chapter {Resultados e Conclusões}
-
-\section{Aula: Métodos Numéricos}
-
-*****colocar aqui screenshots e tabelas de resultados*****
-
-\section{Compilação Dinâmica}
-
-**** falar aqui dos obstáculos encontrados ****
-
+\chapter {Conclusões e Sugestões Para Continuidade}
 %\section{Histórico de Trabalho}
 
 %O trabalho se iniciou com a definição do escopo funcional da plataforma, através de pesquisa de trabalhos já existentes (incluindo o já mencionado trabalho do Prof. Cicely). Com base neste, os detalhes da arquitetura de software foram traçados.
@@ -417,24 +470,160 @@ Matrix passo = invHess.minus(I).inverse().times(gradientPrime.times(z)).times(-1
 
 %Finalmente, este teste foi executado, e as conclusões foram registradas neste documento.
 
-\section {Limitações}
+O objetivo do trabalho era demonstrar a viabilidade da construção de uma plataforma para facilitar a criação de aulas experimentais, testando sua viabilidade em um exemplo de sala de aula. Neste sentido, verificou-se que, embora os features básicos tenham sido implementados em tempo razoável e o sistema tenha se demonstrado eficiente para a composição de blocos didáticos específicos, é preciso um tratamento muito mais abrangente para se chegar a uma ferramenta de abrangência mais universal e eficácia mensurável.
 
-Dado o objetivo de demostrar a viabilidade da construção e permitir o teste da eficiência da implementação da plataforma, e também levando em conta os limites naturais de um trabalho de graduação, é natural que nem todos os recursos que uma plataforma completa poderia oferecer tenham sido implementados.
+Contudo, o resultado obtido (tanto em termos de projeto quanto de implementação) pode ser uma base para a construção desta ferramenta. Um aspecto que deve ser trabalhado de forma mais profunda do que o escopo do trabalho permitiu é o didático - um estudo um pouco mais focado nas necessidades do aluno durante o aprendizado da Econometria poderia dar ao sistema uma orientação que lhe permitisse atender melhor a estas demandas.
 
-Ao priorizar, portanto, o conjunto básico de funcionalidades, algumas não foram implementadas. Mais notavelmente: um cadastro de usuários, a possibilidade de salvar e recuperar dados, e a possibilidade de o código influir na ordem em que os passos são executados.
+De qualquer forma, mesmo a visão centrada na exibição de conteúdo e execução de algoritmos sugere a implementação de um conjunto de funcionalidades que, dados os limites naturais de um trabalho de graduação, não pôde ser implementado em sua totalidade.
 
-É importante notar que o sistema comporta a inclusão de todas estas características, sem prejuízo das já existentes, ou sem a necessidade de refatoração em larga escala.
+Assim, o sistema seria enriquecido se fossem implementados itens funcionais tais como:
 
-Sob o ponto de vista técnico, a inversão de controle foi aplicada de forma bastante moderada, sem o uso de um framework específico. Também não há uma rotina formal de testes unitários, apenas testes ad-hoc no próprio código. No entanto, a aplicação dos outros padrões e boas práticas, aliadas ao tamanho relativamente pequeno do código, permitem ações de reengenharia para introduzir estes conceitos sem maiores dificuldades.
+\begin{itemize}
+\item Cadastro de usuários (possivelmente vinculado a algum sistema de matrícula);
+\item Possibilidade de salvar e recuperar dados;
+\item Permitir ao código decidir o próximo passo a ser executado;
+\item Uma interface mais amigável para o professor (em particular na visualização do texto das aulas e da depuração do código dos algoritmos);
+\item Possibilidade de usar outros sistemas de codificação, como \LaTeX ou MathML na composição do texto das aulas;
+\item Conversão semi-automática de algoritmos em outras linguagens (ex.: FORTRAN).
+\end{itemize}
 
-\section {Conclusão Final}
+É importante notar que o sistema comporta a inclusão de todas estas características, sem prejuízo das já existentes, e sem a necessidade de refatoração em larga escala.
 
-**** jogar um blá aqui, acenar e sorrir ***
+Sob o ponto de vista técnico, algumas das possíveis melhorias incluem:
+
+\begin{itemize}
+\item Utilização de um sistema mais eficiente de Inversão de Controle: a IoC foi aplicada de forma bastante moderada, sem o uso de um framework específico. Para o tamanho atual do sistema isto não representou maiores problemas (mesmo com as constantes mudanças feitas ao longo do projeto), mas uma revisão neste aspecto seria interessante caso o mesmo venha a crescer no futuro;
+\item Criação de uma rotina formal de testes unitários - o sistema atual tem apenas testes ad-hoc no próprio código;
+\item Medição e melhorias na performance de pontos específicos - em particular no sistema de compliação dinâmica, que recompila as classes a cada execução. Uma alternativa é atrelar um único classloader para cada passo, e mantê-los no escopo da aplicação. Esta refatoração pode ser feita diretamente na classe Passo, sem prejuízo para o restante do código.
+\end{itemize}
+
+
 
 \appendix
 \chapter {Complementos Técnicos}
 \section{Listagens de Software}
-O código-fonte completo do protótipo contém cerca de 5000 linhas de código\footnote{excluindo comentários, segundo relatório obtido através do software \textit{cloc}, em \url{http://cloc.sourceforge.net/}}, tornando sua reprodução aqui pouco produtiva. Optamos por reproduzir os trechos relevantes, disponibilizando o código completo para download  no endereço \url{http://chester.blog.br/tf}.
+\label{listagens}
+O código-fonte completo da implementação contém cerca de 5000 linhas de código\footnote{Excluindo comentários, segundo relatório obtido através do software \textit{cloc}, em \url{http://cloc.sourceforge.net/}}, tornando sua reprodução aqui pouco produtiva. Optou-se por reproduzir os trechos mais relevantes, mantendo o código-completo disponível para download na Internet\footnote{O código completo pode ser baixado no endereço \url{http://chester.blog.br/tf}}.
+
+\subsection{Compilação Dinâmica de Classes}
+
+Como cada algoritmo a ser executado estava atrelado a um passo de uma aula, optou-se por vincular a capacidade de compilação à classe \textit{Passo}. A estratégia é discutida na Seção \ref{explicacao_compilacao}, e o código segue abaixo.
+
+\begin{mylisting}
+\begin{verbatim}
+public boolean compila() {
+
+  // Monta o código-fonte
+  StringBuilder fonte = new StringBuilder();
+  fonte.append("package " + this.getNomePackage() + ";\n");
+  fonte.append("import java.util.*;\n");
+  fonte.append("import Jama.*;\n");
+  fonte.append("public class " + this.getNomeClasse() + " extends tf.codigodinamico.Base {\n");
+  fonte.append(" public Map<String, Object> executa(Map<String, Object> __entrada) {\n");
+  // Recupera os parâmetros de entrada do mapa, com statements no formato:
+  // Classe nome = (Classe)__entrada.get("nome");
+  // e declara os de saída como simplesmente
+  // Classe nome = null;
+  if (this.getParametros() != null)
+    for (Parametro p : this.getParametros()) {
+      fonte.append("  ").append(p.getClasse()).append(' ').append(
+          p.getNome()).append(" = ");
+      if (p.isTipoEntrada())
+        fonte.append('(').append(p.getClasse()).append(
+            ")__entrada.get(\"").append(p.getNome()).append(
+            "\")");
+      else
+        fonte.append("null");
+      fonte.append(";\n");
+    }
+  // Enxerta o código escrito pelo professor
+  fonte.append('\n').append(this.getCodigo_java()).append('\n');
+  fonte.append(";;\n"); // Evita que fórmulas simples gerem erros 
+  // Monta o mapa com os parâmetros de saída, com statements no formato:
+  // __saida.add("nome",nome);
+  fonte.append("  Map<String,Object> __saida = new HashMap<String,Object>();\n");
+  if (this.getParametros() != null)
+    for (Parametro p : this.getParametros())
+      // if (!p.isTipoEntrada())
+      fonte.append("  __saida.put(\"").append(p.getNome()).append(
+          "\",").append(p.getNome()).append(");\n");
+  fonte.append("  return __saida;\n");
+  fonte.append(" }\n");
+  
+  // Enxerta o código auxiliar
+  fonte.append('\n').append(this.getCodigo_java_auxiliar()).append('\n');
+  fonte.append(";;\n"); // Evita que fórmulas simples gerem erros
+  
+  fonte.append("}\n");
+
+  // Prepara o compilador
+  javax.tools.JavaCompiler compilador = ToolProvider
+      .getSystemJavaCompiler();
+  JavaSourceFromString javaString = new JavaSourceFromString(this
+      .getNomePackage()
+      + "." + this.getNomeClasse(), fonte.toString());
+  ArrayList<JavaSourceFromString> al = new ArrayList<JavaSourceFromString>();
+  al.add(javaString);
+
+  // Saída (erros, etc.)
+  ByteArrayOutputStream baos = new ByteArrayOutputStream();
+  OutputStreamWriter osw = new OutputStreamWriter(baos);
+
+  // Diretório-destino e classpath
+  List<String> opcoes = new ArrayList<String>();
+  opcoes.add("-d");
+  opcoes.add(ConfigHelper.getClasspathDinamico());
+  opcoes.add("-cp");
+  opcoes.add(ConfigHelper.getClaspathApp());
+
+  // Compila
+  JavaCompiler.CompilationTask task = compilador.getTask(osw, null, null, opcoes, null, al);
+  boolean sucesso = task.call();
+
+  this.errosDeCompilacao = baos.toString();
+  return sucesso;
+}
+\end{verbatim}
+\end{mylisting}
+
+\subsection{Carregamento Dinâmico de Classes}
+
+O código abaixo carrega uma clase, executa-a e a descarrega. Uma alternativa mais performática seria atrelar o classloader a algum objeto compartilhável pela aplicação, carregando-o uma vez só, mas para fins de estudo este método é bastante conveniente.
+
+\begin{mylisting}
+\begin{verbatim}
+  
+  // Instancia o classloader, apontando para o diretório de classes dinâmicas
+  URL[] urls = new URL[1];
+  try {
+    urls[0] = new File(ConfigHelper.getClasspathDinamico()).toURI().toURL();
+  } catch (MalformedURLException e) {
+    // ... Trata o erro - é um problema de configuração
+  }
+  ClassLoader cl = new URLClassLoader(urls, Thread.currentThread().getContextClassLoader());
+  
+  // Carrega a classe através do classloader
+  Class<Base> classe;
+  Base codigo;
+  classe = (Class<Base>) cl.loadClass(this.getNomePackage() + "." + this.getNomeClasse());
+  codigo = (Base) classe.getConstructor(new Class[0]).newInstance(new Object[0]);
+
+  // Executa o método
+  Map<String, Object> resultado = codigo.executa(entrada);
+
+  // Descarrega a classe (matando as referências ao objeto, a ela e ao classloader)
+  ReferenceQueue weakQueueCl = new ReferenceQueue();
+  WeakReference weakRefCl = new WeakReference(classe, weakQueueCl);
+  weakRefCl.enqueue();
+  codigo = null;
+  classe = null;
+  cl = null;
+  System.gc();
+  System.gc();
+  return resultado;
+
+\end{verbatim}
+\end{mylisting}
 
 \subsection{Funções de Apoio Para Métodos Numéricos}
 
@@ -458,8 +647,8 @@ private static double[][] hess(double theta1, double theta2, Matrix y, Matrix x2
     hess[0][1] += 2 * (x2.get(t,0) + 2 * theta2 * x3.get(t,0));
     hess[1][0] += 2 * x2.get(t,0) + 4 * theta2 * x3.get(t,0);
     hess[1][1] += 4 * x3.get(t,0) * (f - y.get(t,0))
-		+ (x2.get(t,0) + 2 * theta2 * x3.get(t,0))
-		* (2 * x2.get(t,0) + 4 * theta2 * x3.get(t,0));
+    + (x2.get(t,0) + 2 * theta2 * x3.get(t,0))
+    * (2 * x2.get(t,0) + 4 * theta2 * x3.get(t,0));
   }
   return hess;
 }
@@ -482,34 +671,27 @@ private static Matrix Z(double theta1, double theta2, Matrix x2, Matrix x3) {
   }
   return Z;
 }
-
-
 \end{verbatim}
 \end{mylisting}
 
-\subsection{Compilação Dinâmica}
 [...]
 
-\section {Guia do Desenvolvedor}
+\section {Configuração do Ambiente}
 
-Esta seção procura auxiliar pessoas interessadas em expandir as capacidades do protótipo, facilitando a configuração do ambiente de trabalho.
+Esta seção procura auxiliar pessoas interessadas em expandir as capacidades do código, facilitando a configuração do ambiente de trabalho.
 
-\subsection {Requisitos}
-[...]
-\subsection {Configuração do Ambiente}
-[...]
+O desenvolvimento pode ser feito em qualquer desktop que possua o Sun JDK 1.6 ou superior, ou um software compatível que permita compilar código para esta plataforma. Após a instalação do mesmo e o download do software (veja seção anterior), o caminho recomendado consiste em instalar o Apache Maven\footnote{\url{http://maven.apache.org}}, que irá gerenciar de todo o processo de download de dependências e bibliotecas, bem como da compilação e empacotamento do software.
 
-Os seguintes passos permitem a configuração de um ambiente para trabalhar com o código desenvolvido:
+Uma vez no diretório-raiz da aplicação (\texttt{tf}), o comando \texttt{mvn package} irá executar o download das dependências, compilar o software e gerar o arquivo\texttt{tf.war} que pode ser instalado em qualquer \textit{web container}  compatível com a especificação Servlet 2.3. Uma alternativa interessante é instruir o Maven a executar uma versão mínima do Apache Tomcat já com a aplicação dentro. Para isso, basta usar o comando \texttt{mvn tomcat:run}.
+
+Os diretórios estão divididos seguindo a padronização do Maven, incluindo os arquivos de configuração, localizados em \texttt{tf/src/resources}. Dois arquivos precisam ser configurados:
 
 \begin{itemize}
-\item Instalar o Java Development Kit (JDK) da Sun (\url{http://java.sun.org/jdk}) ou equivalente, versão 1.6 ou superior;
-\item Instalar o Eclipse (\url{http://www.eclipse.org}), versão 3.4 ou superior;
-\item Instalar o Maven (ex.: sudo apt-get install maven2);
-\item Adicionar ao Eclipse o suporte a Maven (\url{http://m2eclipse.codehaus.org/});
-\item Adicionar ao Eclipse o componente Web Tools Platform (WTP, \url{http://www.eclipse.org/webtools/});
-\item Baixar o código fonte e abrir;
-\item Instalar o Tomcat 6.0 ou superior (\url{http://tomcat.apache.org});
+\item O arquivo \texttt{hibernate.cfg.xml}, que está configurado para usar um banco de dados HSQLDB, residindo no diretório de deployment da própria aplicação - uma opção apropriada para desenvolvimento, mas que certamente deve ser revisada ao colocar o sistema em produção. Em qualquer caso, a propriedade \texttt{hbm2ddl.auto} pode ser des-comentada uma vez para criar o banco (e depois re-comentada para evitar apagá-lo!)
+\item O arquivo \texttt{tf.properties.exemplo} deve ser copiado para \texttt{tf.properties} e editado para apontar para dois diretórios: um que é onde o web container armazena as suas classes (tipicamente o \texttt{WEB\_INF/classes} de onde o arquivo JAR foi descompactado), o outro é um diretório criado para armazenar as classes dinâmicas (que não pode estar dentro do diretório anterior, e para o qual a aplicação deve ter direitos de escrita).
 \end{itemize}
+
+Qualquer IDE pode ser utilizada, mas os fontes incluem um projeto do Eclipse. Caso seja desejado usar esta IDE, deve-se instalar a mesma (\url{http://www.eclipse.org}) na versão 3.4 ou superior, e, em seguida, adicionar o suporte a Maven (\url{http://m2eclipse.codehaus.org/}) e o componente Web Tools Platform (WTP, \url{http://www.eclipse.org/webtools/}).
 
 \nocite{*}
 \bibliographystyle {plain}

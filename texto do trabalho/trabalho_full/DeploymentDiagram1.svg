@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 20001102//EN' 'http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd'>
+<svg height="588" width="500" xmlns="http://www.w3.org/2000/svg">
+<rect height="176" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="472" x="14" y="14"/>
+<rect height="176" style="fill: none; stroke:#000000; stroke-width:1" width="472" x="14" y="14"/>
+<rect height="184" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="472" x="14" y="190"/>
+<rect height="184" style="fill: none; stroke:#00ffff; stroke-width:1" width="472" x="14" y="190"/>
+<rect height="184" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="472" x="14" y="190"/>
+<rect height="184" style="fill: none; stroke:#000000; stroke-width:1" width="472" x="14" y="190"/>
+<rect height="16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="96" x="18" y="15"/>
+<rect height="15" style="fill: none; stroke:#ffffff; stroke-width:1" width="95" x="18" y="15"/>
+<text style="font-family:Dialog; font-size:10;" x="18" y="28">
+Apresentação</text>
+<rect height="26" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="104" x="18" y="191"/>
+<rect height="25" style="fill: none; stroke:#ffffff; stroke-width:1" width="103" x="18" y="191"/>
+<text style="font-family:Dialog; font-size:10;" x="18" y="204">
+Regras de Negócio</text>
+<rect height="200" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="472" x="14" y="374"/>
+<rect height="200" style="fill: none; stroke:#000000; stroke-width:1" width="472" x="14" y="374"/>
+<rect height="16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="120" x="18" y="375"/>
+<rect height="15" style="fill: none; stroke:#ffffff; stroke-width:1" width="119" x="18" y="375"/>
+<text style="font-family:Dialog; font-size:10;" x="18" y="388">
+Armazenamento</text>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="182" x="288" y="46"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="182" x="288" y="46"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="182" x="288" y="46"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="182" x="288" y="46"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="308" y="64">
+&lt;&lt;Intercepting Filter&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="358" y="81">
+tf.filters</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="278" y="56"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="278" y="56"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="278" y="71"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="278" y="71"/>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="182" x="40" y="46"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="182" x="40" y="46"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="182" x="40" y="46"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="182" x="40" y="46"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="101" y="64">
+&lt;&lt;View&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="123" y="81">
+JSPs</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="30" y="56"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="30" y="56"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="30" y="71"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="30" y="71"/>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="176" x="160" y="126"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="176" x="160" y="126"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="176" x="160" y="126"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="176" x="160" y="126"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="201" y="144">
+&lt;&lt;Controller&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="179" y="161">
+Stripes Front Controller</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="150" y="136"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="150" y="136"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="150" y="151"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="150" y="151"/>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="106" x="152" y="262"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="106" x="152" y="262"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="106" x="152" y="262"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="106" x="152" y="262"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="171" y="280">
+&lt;&lt;Model&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="183" y="297">
+tf.action</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="142" y="272"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="142" y="272"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="142" y="287"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="142" y="287"/>
+<rect height="40" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="126" x="312" y="214"/>
+<rect height="40" style="fill: none; stroke:#00ffff; stroke-width:1" width="126" x="312" y="214"/>
+<rect height="40" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="126" x="312" y="214"/>
+<rect height="40" style="fill: none; stroke:#000000; stroke-width:1" width="126" x="312" y="214"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="350" y="231">
+tf.helpers</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="302" y="222"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="302" y="222"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="302" y="235"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="302" y="235"/>
+<rect height="40" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="126" x="312" y="318"/>
+<rect height="40" style="fill: none; stroke:#00ffff; stroke-width:1" width="126" x="312" y="318"/>
+<rect height="40" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="126" x="312" y="318"/>
+<rect height="40" style="fill: none; stroke:#000000; stroke-width:1" width="126" x="312" y="318"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="365" y="335">
+Jama</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="302" y="326"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="302" y="326"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="302" y="339"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="302" y="339"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="258" x2="263" y1="262" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="268" x2="273" y1="261" y2="260"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="278" x2="283" y1="260" y2="259"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="288" x2="293" y1="258" y2="257"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="298" x2="303" y1="257" y2="256"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="308" x2="312" y1="255" y2="254"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="301" x2="312" y1="262" y2="254"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="299" x2="312" y1="248" y2="254"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="258" x2="262" y1="307" y2="308"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="267" x2="272" y1="309" y2="310"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="277" x2="282" y1="311" y2="312"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="287" x2="292" y1="313" y2="314"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="297" x2="302" y1="315" y2="316"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="307" x2="312" y1="317" y2="318"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="298" x2="312" y1="322" y2="318"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="301" x2="312" y1="308" y2="318"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="171" y2="176"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="181" y2="186"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="191" y2="196"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="201" y2="206"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="211" y2="216"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="221" y2="226"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="231" y2="236"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="241" y2="246"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="251" y2="256"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="202" x2="202" y1="261" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="195" x2="202" y1="250" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="209" x2="202" y1="250" y2="262"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="126" y2="121"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="116" y2="111"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="106" y2="101"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="96" y2="91"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="197" x2="190" y1="103" y2="91"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="183" x2="190" y1="103" y2="91"/>
+<polyline points="222,67 288,67" style="fill:none; stroke:#000000; stroke-width:1"/>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="166" x="96" y="406"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="166" x="96" y="406"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="166" x="96" y="406"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="166" x="96" y="406"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="114" y="424">
+&lt;&lt;Entity-Attribute&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="142" y="441">
+tf.model.data</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="86" y="416"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="86" y="416"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="86" y="431"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="86" y="431"/>
+<rect height="45" style="fill:#00ffff; stroke:#00ffff; stroke-width:1" width="110" x="128" y="502"/>
+<rect height="45" style="fill: none; stroke:#00ffff; stroke-width:1" width="110" x="128" y="502"/>
+<rect height="45" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="110" x="128" y="502"/>
+<rect height="45" style="fill: none; stroke:#000000; stroke-width:1" width="110" x="128" y="502"/>
+<text style="font-family:Lucida Grande; font-size:13;" x="153" y="520">
+&lt;&lt;DAO&gt;&gt;</text>
+<text style="font-family:Lucida Grande; font-size:13;" x="157" y="537">
+Hibernate</text>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="118" y="512"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="118" y="512"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="20" x="118" y="527"/>
+<rect height="10" style="fill: none; stroke:#000000; stroke-width:1" width="20" x="118" y="527"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="307" y2="312"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="317" y2="322"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="327" y2="332"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="337" y2="342"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="347" y2="352"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="357" y2="362"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="367" y2="372"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="377" y2="382"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="387" y2="392"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="182" x2="182" y1="397" y2="402"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="175" x2="182" y1="394" y2="406"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="189" x2="182" y1="394" y2="406"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="451" y2="456"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="461" y2="466"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="471" y2="476"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="481" y2="486"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="491" y2="496"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="190" x2="190" y1="501" y2="502"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="183" x2="190" y1="490" y2="502"/>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="197" x2="190" y1="490" y2="502"/>
+<rect height="80" rx="16" ry="16" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="72" x="342" y="446"/>
+<rect height="80" rx="16" ry="16" style="fill:#ffffff; stroke:#000000; stroke-width:1" width="72" x="342" y="446"/>
+<ellipse cx="378" cy="450" rx="36.0" ry="12.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="378" cy="450" rx="35.0" ry="11.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<ellipse cx="378" cy="522" rx="36.0" ry="12.0" style="fill:#000000; stroke:#000000; stroke-width:1"/>
+<ellipse cx="378" cy="522" rx="35.0" ry="11.0" style="fill:#ffffff; stroke:#ffffff; stroke-width:1"/>
+<rect height="10" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="70" x="343" y="510"/>
+<rect height="10" style="fill: none; stroke:#ffffff; stroke-width:1" width="70" x="343" y="510"/>
+<rect height="32" style="fill:#ffffff; stroke:#ffffff; stroke-width:1" width="56" x="352" y="478"/>
+<rect height="31" style="fill: none; stroke:#ffffff; stroke-width:1" width="55" x="352" y="478"/>
+<text style="font-family:Dialog; font-size:10;" x="358" y="491">
+Banco de</text>
+<text style="font-family:Dialog; font-size:10;" x="365" y="504">
+Dados</text>
+<line style="fill:#000000; stroke:#000000; stroke-width:1" x1="238" x2="342" y1="526" y2="494"/>
+</svg>
