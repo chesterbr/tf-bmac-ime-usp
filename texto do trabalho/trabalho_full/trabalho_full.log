@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.5.18)  8 FEB 2009 22:13
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.5.18)  18 FEB 2009 00:34
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -497,20 +497,20 @@ ros, $\OML/cmm/m/it/12 e \OT1/cmr/m/n/12 = (\OML/cmm/m/it/12 e[]; e[]; :::; e[]
  []
 
 
-Overfull \hbox (0.99374pt too wide) in paragraph at lines 106--107
+Overfull \hbox (0.99374pt too wide) in paragraph at lines 109--110
 []\OT1/cmr/m/n/12 Este ^^Se um pro-blema eco-nom^^Setrico t^^S^^Ppico, j^^Sa ad
 ap-tado a um mo-delo ma-tem^^Satico,
  []
 
 [9] [10]
 Cap\'{\i }tulo 2.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 158.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 161.
 
 (/usr/local/texlive/2007/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 158.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 161.
  [11
 
 ]
@@ -529,13 +529,13 @@ Cap\'{\i }tulo 3.
 [16
 
 ]
-Overfull \hbox (1.64651pt too wide) in paragraph at lines 223--224
+Overfull \hbox (1.64651pt too wide) in paragraph at lines 226--227
 []\OT1/cmr/m/n/12 Embora exis-tam lin-gua-gens de dom^^S^^Pnio es-pec^^S^^Pfico
  para al-go-rit-mos ma-tem^^Saticos,
  []
 
 [17] [18]
-Overfull \hbox (18.55411pt too wide) in paragraph at lines 251--251
+Overfull \hbox (18.55411pt too wide) in paragraph at lines 254--254
 []\OT1/cmr/bx/n/17.28 Compila^^Xc~ao e Car-re-ga-mento Din^amico de Clas-
  []
 
@@ -546,7 +546,7 @@ system(epstopdf deployment.eps)...executed.
 File: deployment.pdf Graphic file (type pdf)
  <use deployment.pdf>
 [21] [22 <./deployment.pdf>] [23]
-Underfull \hbox (badness 2057) in paragraph at lines 309--309
+Underfull \hbox (badness 2057) in paragraph at lines 312--312
 [][]\OT1/cmr/m/n/10 Uma lista am-pla pode ser en-con-trada em $\OT1/cmtt/m/n/10
  http : / / java-[]source . net / open-[]source /
  []
@@ -558,7 +558,7 @@ Cap\'{\i }tulo 4.
 ] [30] [31] [32] [33] [34]
 Cap\'{\i }tulo 5.
 
-Overfull \hbox (2.91417pt too wide) in paragraph at lines 551--552
+Overfull \hbox (2.91417pt too wide) in paragraph at lines 564--565
 []\OT1/cmr/m/n/12 Cadastro de usu^^Sarios (pos-si-vel-mente vin-cu-lado a al-gu
 m sis-tema de matr^^S^^Pcula); 
  []
@@ -570,7 +570,7 @@ Apendice A.
 [38
 
 ] [39] [40] [41] [42]
-Overfull \hbox (0.18633pt too wide) in paragraph at lines 763--764
+Overfull \hbox (0.18633pt too wide) in paragraph at lines 776--777
 \OT1/cmr/m/n/12 Caso seja de-se-jado usar esta IDE, deve-se ins-ta-lar a mesma 
 ($\OT1/cmtt/m/n/12 http : / / www . eclipse .
  []
@@ -582,36 +582,33 @@ Overfull \hbox (0.18633pt too wide) in paragraph at lines 763--764
 | Comentario, sugestao ou critica sobre o abnTeX? Entre em contato: |
 |                  http://abntex.codigolivre.org.br                 |
 +-------------------------------------------------------------------+
-[45] (./trabalho_full.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[45] (./trabalho_full.aux) ) 
 Here is how much of TeX's memory you used:
- 2745 strings out of 94073
- 35612 string characters out of 1162984
- 95019 words of memory out of 1500000
- 5963 multiletter control sequences out of 10000+50000
+ 2748 strings out of 94073
+ 35650 string characters out of 1162984
+ 95030 words of memory out of 1500000
+ 5966 multiletter control sequences out of 10000+50000
  20252 words of font info for 76 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  28i,9n,24p,1037b,409s stack positions out of 5000i,500n,6000p,200000b,5000s
-</usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></usr/l
-ocal/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmbxti10.pfb></usr/local/te
-xlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmcsc10.pfb></usr/local/texlive/20
-07/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></usr/local/texlive/2007/texmf-
-dist/fonts/type1/bluesky/cm/cmmi12.pfb></usr/local/texlive/2007/texmf-dist/font
-s/type1/bluesky/cm/cmmi6.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bl
-uesky/cm/cmmi8.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/c
-mr10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmr12.pfb><
-/usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></usr/local/
-texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmr8.pfb></usr/local/texlive/200
-7/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></usr/local/texlive/2007/texmf-d
-ist/fonts/type1/bluesky/cm/cmsy8.pfb></usr/local/texlive/2007/texmf-dist/fonts/
-type1/bluesky/cm/cmti10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/blu
-esky/cm/cmti12.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/c
-mtt10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmtt12.pfb
-></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmtt8.pfb>
-Output written on trabalho_full.pdf (44 pages, 390954 bytes).
+</usr/local/texlive/2007/texmf-dist/fonts/type1/blu
+esky/cm/cmbx12.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/c
+mbxti10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmcsc10.
+pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></usr
+/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi12.pfb></usr/local/te
+xlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi6.pfb></usr/local/texlive/2007
+/texmf-dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/local/texlive/2007/texmf-dis
+t/fonts/type1/bluesky/cm/cmr10.pfb></usr/local/texlive/2007/texmf-dist/fonts/ty
+pe1/bluesky/cm/cmr12.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesk
+y/cm/cmr7.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmr8.p
+fb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></usr/
+local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmsy8.pfb></usr/local/texl
+ive/2007/texmf-dist/fonts/type1/bluesky/cm/cmti10.pfb></usr/local/texlive/2007/
+texmf-dist/fonts/type1/bluesky/cm/cmti12.pfb></usr/local/texlive/2007/texmf-dis
+t/fonts/type1/bluesky/cm/cmtt10.pfb></usr/local/texlive/2007/texmf-dist/fonts/t
+ype1/bluesky/cm/cmtt12.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/blue
+sky/cm/cmtt8.pfb>
+Output written on trabalho_full.pdf (44 pages, 394255 bytes).
 PDF statistics:
  229 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)

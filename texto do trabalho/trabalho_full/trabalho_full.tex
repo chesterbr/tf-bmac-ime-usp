@@ -63,7 +63,7 @@ Propõe uma plataforma de \textit{software} cujo objetivo é servir de ao ensino
 
 Dentre os objetivos de um curso de Econometria de nivel superior está a capacitação do aluno para compreender, construir e analisar modelos econométricos, utilizando-os como ferramentas para o planejamento estratético e a tomada de decisões relacionadas aos fenômenos estudados nestes modelos.
 
-Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econômica envolvida quanto do instrumental matemático necessário para a modelagem dos fenômenos analisados. Esta meta só pode ser atingida se, aliada a uma sólida base teórica, o aluno puder interagir com estes modelos, realizando experiências e comparando resultados.
+Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econômica envolvida quanto do instrumental matemático e estatístico necessário para a modelagem dos fenômenos analisados. Esta meta só pode ser atingida se, aliada a uma sólida base teórica, o aluno puder interagir com estes modelos, realizando experiências e comparando resultados.
 
 Tradicionalmente os cursos expoem o aluno a um pacote de software especializado, tal como o \em{EViews} ou o \em{SPSS}\footnote{Uma lista completa e atualizada de pacotes do gênero é mantida por Kane\cite{web:econsoftware}}. Esta abordagem tem como principal vantagem a capacitação do aluno em uma ferramenta que ele possivelmente irá usar no seu dia-a-dia. 
 
@@ -75,7 +75,7 @@ Estas duas abordagens nos levaram a experimentar uma alternativa intermediária:
 
 \section {Um Problema Econométrico}
 
-Seria difícil avaliar a eficácia da plataforma de software sem a implementação de um exemplo prático, o que nos leva a trabalhar nela um modelo econométrico de interesse e um instrumental matemático associado. Este capítulo aborda os detalhes matemáticos destas escolhas.
+Seria difícil avaliar a eficácia da plataforma de software sem a implementação de um exemplo prático, o que nos leva a trabalhar nessa plataforma um modelo econométrico de interesse e um instrumental matemático associado. Este capítulo aborda os detalhes matemáticos destas escolhas.
 
 Judge, Griffiths, Hill e Lütkepohl\cite{judge} apresentam de forma sucinta e didática o uso de métodos numéricos de otimização para a estimação de parâmetros em modelos estatísticos no geral (tendo em vista os modelos econométricos apresentados ao longo do livro).
 
@@ -101,9 +101,12 @@ onde $y = (y_1, y_2, ..., y_{20})'$, $\theta^* = (\theta_1^*, \theta_2^*)'$ é o
  
  O objetivo é encontrar um estimador de mínimos quadrados para $\theta^*$, e para tanto devemos minimizar a função:
  
- \[ H(\theta) = [y - f(\theta)]'[y - f(\theta)] \]
+\begin{equation}
+  \label{eq_H}
+  H(\theta) = [y - f(\theta)]'[y - f(\theta)] 
+\end{equation}
 
-Este é um problema econométrico típico, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utiliza os dados fornecidos pelos autores, apresentados na tabela \ref{dados}.
+Este é um problema econométrico típico, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utilizar os dados fornecidos pelos autores, apresentados na tabela \ref{dados}, e estimar os parâmetros.
 
 \begin{table}
 	\begin{center}
@@ -111,7 +114,26 @@ Este é um problema econométrico típico, já adaptado a um modelo matemático,
 			\hline
 			$t$ & $y_t$ & $x_{t1}$ & $x_{t2}$ & $x_{t3}$ \\
 			\hline
-			1 & 4.284 & 1,000 & 0.286 & 0.645 \\			2 & 4.149 & 1,000 & 0.973 & 0.585 \\			3 & 3.877 & 1,000 & 0.384 & 0.310 \\			4 & 0.533 & 1,000 & 0.276 & 0.058 \\			5 & 2.211 & 1,000 & 0.973 & 0.455 \\			6 & 2.389 & 1,000 & 0.543 & 0.779 \\			7 & 2.145 & 1,000 & 0.957 & 0.259 \\			8 & 3.231 & 1,000 & 0.948 & 0.202 \\			9 & 1.998 & 1,000 & 0.543 & 0.028 \\			10 & 1.379 & 1,000 & 0.797 & 0.099 \\			11 & 2.106 & 1,000 & 0.936 & 0.142 \\			12 & 1.428 & 1,000 & 0.889 & 0.296 \\			13 & 1.011 & 1,000 & 0.006 & 0.175 \\			14 & 2.179 & 1,000 & 0.828 & 0.180 \\			15 & 2.858 & 1,000 & 0.399 & 0.842 \\			16 & 1.388 & 1,000 & 0.617 & 0.039 \\			17 & 1.651 & 1,000 & 0.939 & 0.103 \\			18 & 1.593 & 1,000 & 0.784 & 0.620 \\			19 & 1.046 & 1,000 & 0.072 & 0.158 \\			20 & 2.152 & 1,000 & 0.889 & 0.704 \\
+			1 & 4.284 & 1,000 & 0.286 & 0.645 \\
+			2 & 4.149 & 1,000 & 0.973 & 0.585 \\
+			3 & 3.877 & 1,000 & 0.384 & 0.310 \\
+			4 & 0.533 & 1,000 & 0.276 & 0.058 \\
+			5 & 2.211 & 1,000 & 0.973 & 0.455 \\
+			6 & 2.389 & 1,000 & 0.543 & 0.779 \\
+			7 & 2.145 & 1,000 & 0.957 & 0.259 \\
+			8 & 3.231 & 1,000 & 0.948 & 0.202 \\
+			9 & 1.998 & 1,000 & 0.543 & 0.028 \\
+			10 & 1.379 & 1,000 & 0.797 & 0.099 \\
+			11 & 2.106 & 1,000 & 0.936 & 0.142 \\
+			12 & 1.428 & 1,000 & 0.889 & 0.296 \\
+			13 & 1.011 & 1,000 & 0.006 & 0.175 \\
+			14 & 2.179 & 1,000 & 0.828 & 0.180 \\
+			15 & 2.858 & 1,000 & 0.399 & 0.842 \\
+			16 & 1.388 & 1,000 & 0.617 & 0.039 \\
+			17 & 1.651 & 1,000 & 0.939 & 0.103 \\
+			18 & 1.593 & 1,000 & 0.784 & 0.620 \\
+			19 & 1.046 & 1,000 & 0.072 & 0.158 \\
+			20 & 2.152 & 1,000 & 0.889 & 0.704 \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -345,18 +367,18 @@ Existem várias formas de implementar o princípio de IoC, sendo que a Injeção
 
 \section {Métodos de Gradiente}
 
-O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$.
+O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (cuja definição está em \ref{eq_H}).
 
 Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho de passo $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para o passo seguinte, isto é:
 
 \[ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} \]
 
-O método torna-se completo quando determinamos uma condição de parada. Idealmente o faríamos quando a função objetivo não puder mais ser minimizada. Para fins práticos, paramos quando a redução passar a ser insignificante, por exemplo, se, para um $\epsilon > 0$ suficientemente pequeno e um $l$ inteiro e positivo tivermos uma das seguintes condições:
+O método torna-se completo quando determinamos uma condição de parada. Idealmente o faríamos quando o valor da função objetivo não puder mais ser reduzido. Para fins práticos, paramos quando a redução passar a ser insignificante, por exemplo, se, para um $\epsilon > 0$ suficientemente pequeno e um $l$ inteiro e positivo tivermos uma das seguintes condições:
 
 \begin{enumerate}
 \item $ ( \theta_{n+l} - \theta_n )'( \theta_{n+l} - \theta_n ) < \epsilon$
 \item $ H(  \theta_n )- H (\theta_{n+l} ) < \epsilon$
-\item $  [\frac{\delta H}{\delta \theta}\vert_{\theta_n}]'[\frac{\delta H}{\delta \theta}\vert_{\theta_n}] < \epsilon$
+\item $  [\frac{\partial H}{\partial \theta}\vert_{\theta_n}]'[\frac{\partial H}{\partial \theta}\vert_{\theta_n}] < \epsilon$
 \end{enumerate}
 
 Além disso, devemos impor limites no número de passos e/ou tempo de compilação, e tentar novos valores iniciais quando este tipo de condição ocorrer.
@@ -367,9 +389,13 @@ A seguir apresentamos alguns métodos detalhados pelos autores, acompanhados do 
 
 \subsection{Newton-Raphson}
 
-Este algoritmo consiste em usar o inverso da matriz Heissiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
+Este algoritmo consiste em usar o inverso da matriz Hessiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
 
 \[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n} \]
+
+Aqui entendemos $\mathcal{H}_n$ como o Hessiano de $H(\theta)$ aplicado em $\theta_n$, isto é, a matriz definida por:
+
+\[  \mathcal{H}_n = \left [ \left . \frac{\partial^2 H}{\partial \theta \partial \theta'} \right |_{\theta_n}  \right ] ^{-1} \]
 
 O código abaixo calcula, para um par \textit{theta1} / \textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana para a função objetivo no ponto, encontra-se no Apêndice A - bem como o de outras funções de apoio como esta.}:
 
@@ -382,7 +408,13 @@ Matrix passo = invHess.times(grad);
 \end{verbatim}
 \end{mylisting}
 
+É interessante notar que este código utiliza a classe \textit{Matrix} pertencente à ao pacote JAMA\footnote{Sua especificação e uma implementação de referência podem ser encontradas em \url{http://math.nist.gov/javanumerics/jama/}. A plataforma implementada neste trabalho disponibiliza o JAMA automaticamente para a escrita de algoritmos.}. Este pacote possui como principal vantagem a escrita "natural" de operações encadeadas - por exemplo, dada uma matriz $M$, se quiséssemos calcular $(M^{-1})'$, isto é, a transposta da inversa de $M$, o código seria diretamente: \textit{M.inverse().transpose()}.
+
 Os resultados obtidos através da aplicação sucessiva deste passo (conforme descrito no Capítulo \ref{cap_problema} coincidem com os apresentados pelos autores e reproduzidos aqui na Tabela \ref{resultados_nr}.
+
+Esta tabela apresenta três casos de execução: o primeiro iniciando no ponto $\theta=(3,2)$, o segundo no ponto $\theta=(0,2)$ e o terceiro no ponto $\theta=(1.5, 0.5)$. Nos dois primeiros casos, a função $H(\theta)$ converge para o mínimo local ($16.0817$) em $\theta=(0.864787,1.235748)$, e no último para outro mínimo local ($20.9805$), localizado em $\theta(2.354471,-0,319186)$\footnote{Estes valores são aproximações numéricas}.
+
+O exemplo mostra que não existe garantia de convergência para o mínimo global em algoritmos de otimização como estes. De qualquer forma, é possível observar a velocidade de convergência e comparar o algoritmo com alternativas como as que seguem adiante.
 
 \begin{table}
 	\begin{center}
@@ -390,11 +422,36 @@ Os resultados obtidos através da aplicação sucessiva deste passo (conforme de
 			\hline
 			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
 			\hline
-			1 & 3.000000 & 2.000000 & 264.3918 \\			2 & -0.084033 & 1.811210 & 20.6328 \\			3 & 0.625029 & 1.423940 & 16.5105 \\			4 & 0.817259 & 1.272776 & 16.0961 \\			5 & 0.862590 & 1.237516 & 16.0818 \\			6 & 0.864782 & 1.235753 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 0.000000 & 2.000000 & 29.2758 \\			2 & 0.334936 & 1.600435 & 17.7382 \\			3 & 0.735040 & 1.336953 & 16.1955 \\			4 & 0.849677 & 1.247743 & 16.0832 \\			5 & 0.864541 & 1.235946 & 16.0817 \\			6 & 0.864787 & 1.235749 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 1.500000 & 0.500000 & 20.2951 \\			2 & 2.256853 & 0.007135 & 20.7735 \\			3 & 2.467047 & -0.436460 & 21.0312 \\			4 & 2.316982 & -0.202435 & 20.9467 \\			5 & 2.359743 & -0.320579 & 20.9809 \\			6 & 2.354457 & -0.319153 & 20.9805 \\			7 & 2.354471 & -0.319186 & 20.9805 \\			8 & 2.354471 & -0.319186 & 20.9805 \\
+			1 & 3.000000 & 2.000000 & 264.3918 \\
+			2 & -0.084033 & 1.811210 & 20.6328 \\
+			3 & 0.625029 & 1.423940 & 16.5105 \\
+			4 & 0.817259 & 1.272776 & 16.0961 \\
+			5 & 0.862590 & 1.237516 & 16.0818 \\
+			6 & 0.864782 & 1.235753 & 16.0817 \\
+			7 & 0.864787 & 1.235748 & 16.0817 \\
+			8 & 0.864787 & 1.235748 & 16.0817 \\
+			\hline
+			1 & 0.000000 & 2.000000 & 29.2758 \\
+			2 & 0.334936 & 1.600435 & 17.7382 \\
+			3 & 0.735040 & 1.336953 & 16.1955 \\
+			4 & 0.849677 & 1.247743 & 16.0832 \\
+			5 & 0.864541 & 1.235946 & 16.0817 \\
+			6 & 0.864787 & 1.235749 & 16.0817 \\
+			7 & 0.864787 & 1.235748 & 16.0817 \\
+			8 & 0.864787 & 1.235748 & 16.0817 \\
+			\hline
+			1 & 1.500000 & 0.500000 & 20.2951 \\
+			2 & 2.256853 & 0.007135 & 20.7735 \\
+			3 & 2.467047 & -0.436460 & 21.0312 \\
+			4 & 2.316982 & -0.202435 & 20.9467 \\
+			5 & 2.359743 & -0.320579 & 20.9809 \\
+			6 & 2.354457 & -0.319153 & 20.9805 \\
+			7 & 2.354471 & -0.319186 & 20.9805 \\
+			8 & 2.354471 & -0.319186 & 20.9805 \\
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{Algumas iterações do método de Newton-Rhapson}
+	\caption{Algumas iterações do método de Newton-Rhapson.}
 	\label{resultados_nr}
 \end{table}
 
@@ -423,7 +480,32 @@ Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a 
 			\hline
 			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
 			\hline
-			1 & 3.000000 & 2.000000 & 264.3918 \\			2 & -0.084033 & 1.811210 & 20.6328 \\			3 & 0.625029 & 1.423940 & 16.5105 \\			4 & 0.817259 & 1.272776 & 16.0961 \\			5 & 0.862590 & 1.237516 & 16.0818 \\			6 & 0.864782 & 1.235753 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 0.000000 & 2.000000 & 29.2758 \\			2 & 0.334936 & 1.600435 & 17.7382 \\			3 & 0.735040 & 1.336953 & 16.1955 \\			4 & 0.849677 & 1.247743 & 16.0832 \\			5 & 0.864541 & 1.235946 & 16.0817 \\			6 & 0.864787 & 1.235749 & 16.0817 \\			7 & 0.864787 & 1.235748 & 16.0817 \\			8 & 0.864787 & 1.235748 & 16.0817 \\			\hline			1 & 1.500000 & 0.500000 & 20.2951 \\			2 & 2.256853 & 0.007135 & 20.7735 \\			3 & 2.467047 & -0.436460 & 21.0312 \\			4 & 2.316982 & -0.202435 & 20.9467 \\			5 & 2.359743 & -0.320579 & 20.9809 \\			6 & 2.354457 & -0.319153 & 20.9805 \\			7 & 2.354471 & -0.319186 & 20.9805 \\			8 & 2.354471 & -0.319186 & 20.9805 \\
+			1 & 3.000000 & 2.000000 & 264.3918 \\
+			2 & -0.084033 & 1.811210 & 20.6328 \\
+			3 & 0.625029 & 1.423940 & 16.5105 \\
+			4 & 0.817259 & 1.272776 & 16.0961 \\
+			5 & 0.862590 & 1.237516 & 16.0818 \\
+			6 & 0.864782 & 1.235753 & 16.0817 \\
+			7 & 0.864787 & 1.235748 & 16.0817 \\
+			8 & 0.864787 & 1.235748 & 16.0817 \\
+			\hline
+			1 & 0.000000 & 2.000000 & 29.2758 \\
+			2 & 0.334936 & 1.600435 & 17.7382 \\
+			3 & 0.735040 & 1.336953 & 16.1955 \\
+			4 & 0.849677 & 1.247743 & 16.0832 \\
+			5 & 0.864541 & 1.235946 & 16.0817 \\
+			6 & 0.864787 & 1.235749 & 16.0817 \\
+			7 & 0.864787 & 1.235748 & 16.0817 \\
+			8 & 0.864787 & 1.235748 & 16.0817 \\
+			\hline
+			1 & 1.500000 & 0.500000 & 20.2951 \\
+			2 & 2.256853 & 0.007135 & 20.7735 \\
+			3 & 2.467047 & -0.436460 & 21.0312 \\
+			4 & 2.316982 & -0.202435 & 20.9467 \\
+			5 & 2.359743 & -0.320579 & 20.9809 \\
+			6 & 2.354457 & -0.319153 & 20.9805 \\
+			7 & 2.354471 & -0.319186 & 20.9805 \\
+			8 & 2.354471 & -0.319186 & 20.9805 \\
 			\hline
 		\end{tabular}
 	\end{center}
