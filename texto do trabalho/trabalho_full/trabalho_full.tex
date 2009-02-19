@@ -303,7 +303,7 @@ Ao longo das últimas décadas, os sistemas gerenciadores de banco de dados rela
 
 Além disso, a popularização dos RDBMS permitiu o uso de recursos computacionais relativamente limitados (tais como microcomputadores) para a execução de tarefas de manipulação de dados anteriormente restritas a sistemas de grande porte (e elevado custo de operação e manutenção), razão pela qual o uso de um RDBMS é indicado em qualquer sistema no qual a manipulação indireta dos dados não represente impacto na performance.
 
-Tal característica, aliada à importância que os dados representam para as organizações (chegando, em muitos casos, a ser mais valiosos que os aplicativos ou os meios físicos nos quais eles são armazenados e processados), fez com que muitos dos sistemas desenvolvidos entre as décadas de 80 e 90 tivessem o modelo relacional de banco de dados como base do seu projeto – o software que manipularia estes dados era pensado de forma secundária, quase que conseqüência direta do desenho do banco.
+Tal característica, aliada à importância que os dados representam para as organizações (chegando, em muitos casos, a ser mais valiosos que os aplicativos ou os meios físicos nos quais eles são armazenados e processados), fez com que muitos dos sistemas desenvolvidos entre as décadas de 80 e 90 tivessem o modelo relacional de banco de dados como base do seu projeto – o software que manipularia estes dados era pensado de forma secundária, quase que consequência direta do desenho do banco.
 
 Com a introdução das técnicas de desenvolvimento de software orientado a objeto – outro artefato que aumentou o nível de abstração com o qual os projetistas de software lidam com o domínio dos problemas (e, portanto, a sua produtividade) – surgiu uma nova abordagem: proponentes destas técnicas defendem que o sistema deve ser modelado sob o ponto de vista de suas classes – o armazenamento em meio não-volátil dos objetos destas classes (agora denominado \textit{persistência}) passa a ser visto apenas como uma capacidade adicional das mesmas, e o banco de dados torna-se um mero armazém de objetos\footnote{Uma descrição isenta de plataforma deste tipo de mapeamento é dada por Ambler\cite{web:ambler}}.
 
@@ -367,7 +367,7 @@ Existem várias formas de implementar o princípio de IoC, sendo que a Injeção
 
 \section {Métodos de Gradiente}
 
-O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma seqüência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (cuja definição está em \ref{eq_H}).
+O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma sequência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (cuja definição está em \ref{eq_H}).
 
 Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho de passo $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para o passo seguinte, isto é:
 
@@ -459,9 +459,9 @@ O exemplo mostra que não existe garantia de convergência para o mínimo global
 
 Este método utiliza uma particularidade da forma da função objetivo, calculando o passo como:
 
-\[ \theta_{n+1} = \theta_{n} + [Z(\theta_n)'Z(\theta_n)]^{-1}[Z(\theta_n)'Z(\theta_n)] \]
+\[ \theta_{n+1} = \theta_{n} + [Z(\theta_n)'Z(\theta_n)]^{-1}Z(\theta_n)'[y-f(\theta_n)] \]
 
-onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$. O texto supra mencionado mostra como este algoritmo pode ser visto como uma sequência de regressões lineares (sendo $\theta_{n+1}$ o estimador de mínimos quadrados para o modelo $\bar y(\theta_{n})=Z(\theta_{n})\theta + e$). Uma implementação possível para o cálculo do passo seria:
+onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$. O texto supra mencionado mostra como este algoritmo pode ser visto como uma sequência de regressões lineares (sendo $\theta_{n+1}$ o estimador de mínimos quadrados para o modelo $\bar y(\theta_{n})=Z(\theta_{n})\theta + e$). Novamente representando o ponto atual através do par (\textit{theta1},\textit{theta2)}), uma possível implementação para o cálculo do passo seria:
 
 \begin{mylisting}
 \begin{verbatim}
@@ -472,7 +472,11 @@ Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f)).times(-1);
 \end{verbatim}
 \end{mylisting}
 
-Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}.
+Neste código, \textit{Zt} representa a transposta de $Z(\theta)$, e \textit{f} o valor de $f(\theta)$ para o conjunto de parâmetros no passo atual ($\theta_n$).
+
+Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}. O experimento com o par $(3,2)$ permite comparar a convergência com o o algoritmo de Newton-Rhapson, e observa-se convergência mais rápida para o ponto $(0.864787, 1.235749)$.
+
+O terceiro experimento também usa os mesmos dados do método anterior, mas observa-se que, partindo do mesmo ponto $(1.5, 0.5)$, este método converge para o ponto de mínimo local do primeiro experimento - diferindo do resultado obtido com Newton-Rhapson para este ponto inicial. Novamente evidencia-se a inexistência de controle sobre qual ponto de mínimo local será atingido.
 
 \begin{table}
 	\begin{center}
@@ -517,29 +521,35 @@ Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a 
 
 \subsection{Marquardt-Levenberg}
 
-Para tornar o exemplo completo, apresentamos um algoritmo gerado através da modificação de algoritmos anteriores. Neste caso, trata-se de uma modificação de algoritmos que não garantem uma matriz de direção $P_n$ definida positiva, utilizando a matriz $P_n + \lambda_n\bar P_n$ (que é sempre definida positiva se $\bar P_n$ o for e o escalar for suficientemente grande. Uma idéia sugerida pelos autores é aplicar esta idéia no método de Gauss, i.e.:
+Para tornar o exemplo completo, apresentamos um algoritmo gerado através da modificação de algoritmos anteriores. A motivação para esta modificação está em garantir que a matriz Z seja não-singular (Z singular seria algebricamente não-inversível - como lidamos com aproximações, isso se traduz em perturbações e consequente perda de robustez do algoritmo).
+
+Para tanto, precisaríamos garantir que $P_n$ seja positiva definida e, neste sentido, é possível usar o fato de que
+
+\[  P_n + \lambda_n\bar P_n \]
+
+é sempre positiva definida se $\bar P_n$ também o for e o escalar for suficientemente grande Uma idéia sugerida pelos autores é aplicar esta idéia no método de Gauss, modificando $Z(\theta_n)'Z(\theta)$ (e não sua inversa), i.e.:
 
 \[ P_n = [Z(\theta_n)'Z(\theta_n) + \lambda_n\bar P_n]^{-1} \]
 
-Ou, de forma similar, modificar o Hessiano da função objetivo e usar, como matriz de direção:
+Valores reduzidos de $\lambda_n$ toranm o método equivalente ao método de Gauss, e valores maiores aproximam a direção daquela de declive máximo. É possível trabalhar com o escalar constante, ou começar com ele pequeno e diminuir a cada iteração, a menos que isso leve a um tamanho de passo inaceitável.
 
-\[ P_n = [\mathcal{H}_n+\lambda_nI_K]^-1 \]
+De forma similar, modificar o Hessiano da função objetivo e usar, como matriz de direção:
 
-Novamente, o código-fonte utilizado:
+\[ P_n = [\mathcal{H}_n+\lambda_nI_K]^{-1} \]
+
+Novamente, o código-fonte para o cálculo da matriz:
 
 \begin{mylisting}
 \begin{verbatim}
-Matrix F = f(theta1, theta2, x2, x3);
-Matrix z = y.minus(F);
-Matrix gradient = Z(theta1, theta2, x2, x3);
-Matrix gradientPrime = gradient.transpose();
-Matrix invHess = gradientPrime.times(gradient);
-Matrix I = Matrix.identity(2, 2).times(0.7);
-Matrix passo = invHess.minus(I).inverse().times(gradientPrime.times(z)).times(-1);
+Matrix f = f(theta1, theta2, x2, x3); 
+Matrix Z = Z(theta1, theta2, x2, x3); 
+Matrix Zt = Z.transpose(); 
+Matrix lambda_I = Matrix.identity(2, 2).times(0.7); 
+Matrix passo = Zt.times(Z).minus(lambda_I).inverse().times(Zt.times(y.minus(f))).times(-1);
 \end{verbatim}
 \end{mylisting}
 
-Os resultados são semelhantes aos obtidos pelo método antes da modificação, no entanto, a velocidade de convergência é muito maior.
+Por simplicidade, trabalhamos o escalar constante (0.7), e a variável \textit{lambda\_I} é a identidade multiplicada por ele, sendo as outras matrizes definidas de forma idêntica ao caso anterior. A velocidade de convergência é comparável à dos outros métodos (e pode ser melhorada trabalhando o fator $\lambda_n$ conforme descrito acima), mas a grande vantagem é a robustez decorrente da modificação.
 
 \chapter {Conclusões e Sugestões Para Continuidade}
 %\section{Histórico de Trabalho}
@@ -756,7 +766,17 @@ private static Matrix Z(double theta1, double theta2, Matrix x2, Matrix x3) {
 \end{verbatim}
 \end{mylisting}
 
-[...]
+Além disso, é preciso definir como parâmetros de entrada as matrizes \textit{y}, \textit{x2} \textit{x3}, bem como os parâmetros reais \textit{theta1} e \textit{theta2}. Os parâmetros de saída devem ser as varíaveis reais \textit{passo1} e \textit{passo2} (representando a matriz de direção), e o trecho de código abaixo deve ser acrescentado ao código dos algoritmos (para garantir que tanto a matriz de direção quanto o ponto correspondente ao passo corrente sejam atualizadas para a execução do passo seguinte):
+
+\begin{mylisting}
+\begin{verbatim}
+passo1 = passo.get(0,0);
+passo2 = passo.get(1,0);
+theta1 -= passo1;
+theta2 -= passo2;
+\end{verbatim}
+\end{mylisting}
+
 
 \section {Configuração do Ambiente}
 
