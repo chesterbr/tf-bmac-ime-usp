@@ -1,0 +1,47 @@
+Amigos, gostaria de informar que amanhã eu apresento meu TCC!
+Se você está lendo isso, muito provavelmente eu ficaria feliz que vc fosse me ver triunfar ou fracassar. Esperamos que eu triunfe....hunff
+Data: 17/02 às 17 horas na sala 266 do bloco A do IME-USP.
+Avise a mais pessoas que eu, porventura tenha esquecido.
+Obrigado pelo apoio
+Thiago 
+
+
+
+Chester, seguem algumas observações para v avaliar a conveniência de incorporar. Vou aos poucos lendo e comentando:
+
+1.       P7  segundo parag “instrumental matemático e estatístico;
+ok
+
+2.        P8  penúltimo para “leva a trabalhar nessa plataforma”
+ok
+
+3.       P9 primeiro para “Os autores ilustram o método Newton-Raphson.... Aqui seria interessante estender este papo na linha da referencia que discutimos
+
+4.       P9 penultimo para: “Vamos utilizar os dados fornecidos pelos autores e estimar os parâmetros....
+ok
+
+5.       P29 primeiro para: Dizer onde foi de definida H(teta)
+ok, fiz numerando a fórmula (não sei se a linguagem está apropriada)
+
+6.       P29 último para: Idealmente o faríamos quando o valor da funçãoo objetivo nao puder mais ser reduzido;
+ok
+
+7.       P30 quarto para: “matriz Hessiana”. Logo após a fórmula, definir as matrizes; Seria interessante apresentar aqui o a biblio JAMA;
+ok. Defini a matriz Hn (Hessiano de H(theta_n), as outras já tinham sido mostradas, vale a pena referenciar?
+
+Sobre a Jama, ela foi mencionada muito brevemente na seção 3.5. Brevemente *demais*. A JAMA foi citada brevemente no projeto, mas de fato é bom falar mais aqui, introduzi brevemente de forma contextualizada.
+
+8.       P31 Descrever um pouco mais esta tabela.
+ok, fiz a descrição no texto, veja se está apropriada.
+
+9.       P32  rever a primeira fórmula da página. Dois termos colapsam na identidade;
+
+10.   P32 Definir as matrizes do código que aparece na página
+
+11.   P32 Dizer c om mais clareza que em Maerquardt se procura tornar a Matriz  Z não singular. Aproveitar aqui para definir as matrizes (Pn deve ser poitivo definida;
+
+12.   P33 descrever a trabela. Um-dois parágrafos dará.
+
+13.   P 34 descrever um pouco mais
+
+14.   Acho bom documentar um pouco com anexos de códigos e esquemas.

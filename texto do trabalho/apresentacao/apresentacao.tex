@@ -1,0 +1,241 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.5 2007/01/28 20:48:23 tantau Exp $
+
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+
+
+\title[Plataforma para Estudo Interativo de Métodos Econométricos] % (optional, use only with long paper titles)
+{Uma Plataforma de Software para o Estudo Interativo de Métodos e Algoritmos Econométricos}
+
+%\subtitle
+%{Presentation Subtitle} % (optional)
+
+\author % (optional, use only with lots of authors)
+{Carlos Duarte do Nascimento}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+
+\institute[Universidade de São Paulo] % (optional, but mostly needed)
+{
+  Instituto de Matemática e Estatística\\
+  Universidade de São Paulo
+%  \and
+%  \inst{2}%
+%  Faculdade de Economia, Administração e Contabiludade\\
+%  Universidade de São Paulo}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+}
+\date % (optional)
+{4 de Março de 2009}
+
+%\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+ \pgfdeclareimage[height=0.5cm]{university-logo}{logousp}
+ \logo{\pgfuseimage{university-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Conteúdo}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{Introdução}
+\begin{frame}{Apresentações}
+	Orientador	
+			\begin{itemize}
+				\item{Prof Cicely Moitinho Amaral}
+			\end{itemize}			
+	Banca Avaliadora
+			\begin{itemize}
+				\item{Prof. Claudio Possani}
+				\item{Prof. Sergio Muniz Oliva Filho}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{O que este trabalho \textit{não} é}
+	\begin{itemize}
+		\item Análise de um problema matemático
+		\item Um estudo profundo de Métodos Numéricos
+	\end{itemize}
+\end{frame}
+
+\section{O Problema}
+
+\begin{frame}{O Ensino de Econometria}
+\end{frame}
+
+\begin{frame}{Um Problema Econométrico}
+\end{frame}
+
+\section{Modelo da Solução}
+
+\begin{frame}{Proposta Funcional}
+\end{frame}
+
+\begin{frame}{Diagramas de Classe}
+\end{frame}
+
+\begin{frame}{Casos de Uso}
+\end{frame}
+
+\section{Arquitetura de Software}
+
+\begin{frame}{Escolha da Linguagem}
+\end{frame}
+
+\begin{frame}{Compilação Dinâmica}
+\end{frame}
+
+\begin{frame}{Padrões de Projeto}
+\end{frame}
+
+\section{Demonstração (I)}
+\begin{frame}{Demonstração (I)}
+\end{frame}
+
+\section{Construindo uma Aula}
+
+\begin{frame}{Um Problema Econométrico: reotmando}
+\end{frame}
+
+\begin{frame}{Métodos Numéricos}
+\end{frame}
+
+\begin{frame}{Newton-Rhapson}
+\end{frame}
+
+\begin{frame}{Gauss-Newton}
+\end{frame}
+
+\section{Demonstração (II)}
+\begin{frame}{Demonstração (II)}
+\end{frame}
+
+\section{Conclusão}
+
+\begin{frame}{Conclusões e Continuidade}
+\end{frame}
+
+\begin{frame}{Make Titles Informative.}
+
+  You can create overlays\dots
+  \begin{itemize}
+  \item using the \texttt{pause} command:
+    \begin{itemize}
+    \item
+      First item.
+      \pause
+    \item    
+      Second item.
+    \end{itemize}
+  \item
+    using overlay specifications:
+    \begin{itemize}
+    \item<3->
+      First item.
+    \item<4->
+      Second item.
+    \end{itemize}
+  \item
+    using the general \texttt{uncover} command:
+    \begin{itemize}
+      \uncover<5->{\item
+        First item.}
+      \uncover<6->{\item
+        Second item.}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\section*{Summary}
+
+\begin{frame}{Summary}
+
+  % Keep the summary *very short*.
+  \begin{itemize}
+  \item
+    The \alert{first main message} of your talk in one or two lines.
+  \item
+    The \alert{second main message} of your talk in one or two lines.
+  \item
+    Perhaps a \alert{third message}, but not more than that.
+  \end{itemize}
+  
+  % The following outlook is optional.
+  \vskip0pt plus.5fill
+  \begin{itemize}
+  \item
+    Outlook
+    \begin{itemize}
+    \item
+      Something you haven't solved.
+    \item
+      Something else you haven't solved.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\end{document}
+
+
