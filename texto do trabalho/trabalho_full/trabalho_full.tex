@@ -67,27 +67,29 @@ Neste sentido, é importante que o aluno tenha conhecimento tanto da teoria econ
 
 Tradicionalmente os cursos expoem o aluno a um pacote de software especializado, tal como o \em{EViews} ou o \em{SPSS}\footnote{Uma lista completa e atualizada de pacotes do gênero é mantida por Kane\cite{web:econsoftware}}. Esta abordagem tem como principal vantagem a capacitação do aluno em uma ferramenta que ele possivelmente irá usar no seu dia-a-dia. 
 
-Não é por acaso que tais ferramentas são adotadas universalmente por econometristas profissionais: elas automatizam muitos dos processos algébricos (regressões, aproximações numéricas) e estatísticos (testes de hipóteses, cálculo de estimadores qualitativos) envolvidos na modelagem econométrica. Entretanto, é exatamente este poder de simplificação que cria barreiras para o uso didático das mesmas: por mais importante que seja a visão geral do processo, a formação do aluno fica prejudicada se ele não é exposto aos detalhes computacionais do processo.
+	Não é por acaso que tais ferramentas são adotadas universalmente por econometristas profissionais: elas automatizam muitos dos processos algébricos (regressões, aproximações numéricas) e estatísticos (testes de hipóteses, cálculo de estimadores qualitativos) envolvidos na modelagem econométrica. Entretanto, é exatamente este poder de simplificação que cria barreiras para o uso didático das mesmas: por mais importante que seja a visão geral do processo, a formação do aluno é limitada quando ele não é exposto aos detalhes computacionais do processo.
 
 No extremo oposto, há professores que preferem o uso de um ambiente de programação tradicional, levando o aluno a construir suas próprias ferramentas e apresentar seus resultados na forma de "exercícios-programa". Esta abordagem permite maior aprofundamento, mas há a questão do tempo (a programação de um algoritmo de regressão simples, por exemplo, pode consumir boa parte do tempo de um curso básico de séries de tempo, por exemplo) e do interesse do aluno (que não pretende necessariamente se tornar um programador, mas apenas compreender a lógica do processo).
 
-Estas duas abordagens nos levaram a experimentar uma alternativa intermediária: um sistema no qual um professor poderia mesclar textos teóricos com implementações de algoritmos para a resolução de problemas econométricos pontuais. O aluno poderia controlar seu nível de interação, podendo executar os algoritmos com dados pré-cadastrados, alterar estes dados e comparar os resultados, ou até mesmo criar seus próprios dados e sugerir mudanças nos algoritmos (caso tenha o conhecimento de programação de computadores para tanto).
+	Estas duas abordagens nos levaram a experimentar uma alternativa intermediária: um sistema no qual um professor poderia mesclar textos teóricos com implementações de algoritmos para a resolução de problemas econométricos pontuais. O aluno poderia controlar seu nível de interação, podendo executar os algoritmos com dados pré-cadastrados, alterar estes dados e comparar os resultados, ou até mesmo trabalhar com seus próprios dados e sugerir mudanças nos algoritmos (caso tenha o conhecimento de programação de computadores para tanto). A alternativa intermediária envolve a construção de uma plataforma de software que possibilita uma interação controlada entre o professor e o estudante.
 
-\section {Um Problema Econométrico}
+	\section {Um Exemplo de Problema Econométrico}
 
 Seria difícil avaliar a eficácia da plataforma de software sem a implementação de um exemplo prático, o que nos leva a trabalhar nessa plataforma um modelo econométrico de interesse e um instrumental matemático associado. Este capítulo aborda os detalhes matemáticos destas escolhas.
 
-Judge, Griffiths, Hill e Lütkepohl\cite{judge} apresentam de forma sucinta e didática o uso de métodos numéricos de otimização para a estimação de parâmetros em modelos estatísticos no geral (tendo em vista os modelos econométricos apresentados ao longo do livro).
 
-Eles trabalham um problema genérico de otimização, que considera o modelo estatístico não-linear:
+	Judge, Griffiths, Hill e Lütkepohl\cite{judge} apresentam de forma sucinta e didática o uso de métodos numéricos de otimização para a estimação de parâmetros em modelos estatísticos no geral (tendo em vista os modelos lineares apresentados ao longo do livro).
 
-\[ y_t = \theta_1^* + \theta_2^* x_{t2} + (\theta_2^*)^2 x_{t3} +e_t , t = 1,2,...,20 \]
-\[ y = f(\theta^*)+e\]
+Eles trabalham um problema genérico de otimização na estimação dos parâmetros de um modelo  estatístico não-linear da forma:
 
-onde $y = (y_1, y_2, ..., y_{20})'$, $\theta^* = (\theta_1^*, \theta_2^*)'$ é o vetor de parâmetros, $e = (e_1, e_2, ..., e_{20})'$ e
+\[ y_t = \theta_1 + \theta_2 x_{t2} + (\theta_2)^2 x_{t3} +e_t , t = 1,2,...,20 \]
+\[ y = f(\theta)+e\]
+
+
+	onde $y = (y_1, y_2, ..., y_{20})'$ é um vetor de observações da variável dependente, $\theta = (\theta_1, \theta_2)'$ é o vetor de parâmetros, $e = (e_1, e_2, ..., e_{20})'$ é o vetor de erros e a função $f(\theta)$ é dada por 
 
 \[ f(\theta)=
-	\left( \begin{array}{ccc}
+        \left( \begin{array}{ccc}
 \theta1 + \theta_2 x_{12} + \theta_2^2 x_{13} \\
 \theta1 + \theta_2 x_{22} + \theta_2^2 x_{23} \\
 .\\
@@ -95,53 +97,67 @@ onde $y = (y_1, y_2, ..., y_{20})'$, $\theta^* = (\theta_1^*, \theta_2^*)'$ é o
 .\\
 \theta1 + \theta_2 x_{20,2} + \theta_2^2 x_{20,3} \\
 
-
 \end{array} \right)\
  \]
+
+Na notação supra se omite um * presente na notação original para tornar mais legível.
  
- O objetivo é encontrar um estimador de mínimos quadrados para $\theta^*$, e para tanto devemos minimizar a função:
+ O objetivo é encontrar um estimador de mínimos quadrados para $\theta$. Para tanto, devemos minimizar a função:
  
 \begin{equation}
   \label{eq_H}
   H(\theta) = [y - f(\theta)]'[y - f(\theta)] 
 \end{equation}
 
-Este é um problema econométrico típico, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utilizar os dados fornecidos pelos autores, apresentados na tabela \ref{dados}, e estimar os parâmetros.
+onde $H(\theta)$ corresponde à soma dos quadrados do erro.
+
+
+	Este é um problema econométrico típico de aplicação da teoria dos mínimos quadrados, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utilizar os dados fornecidos pelos autores, apresentados na Tabela \ref{dados}, e estimar os parâmetros.
 
 \begin{table}
-	\begin{center}
-		\begin{tabular}{ r | c c c c }
-			\hline
-			$t$ & $y_t$ & $x_{t1}$ & $x_{t2}$ & $x_{t3}$ \\
-			\hline
-			1 & 4.284 & 1,000 & 0.286 & 0.645 \\
-			2 & 4.149 & 1,000 & 0.973 & 0.585 \\
-			3 & 3.877 & 1,000 & 0.384 & 0.310 \\
-			4 & 0.533 & 1,000 & 0.276 & 0.058 \\
-			5 & 2.211 & 1,000 & 0.973 & 0.455 \\
-			6 & 2.389 & 1,000 & 0.543 & 0.779 \\
-			7 & 2.145 & 1,000 & 0.957 & 0.259 \\
-			8 & 3.231 & 1,000 & 0.948 & 0.202 \\
-			9 & 1.998 & 1,000 & 0.543 & 0.028 \\
-			10 & 1.379 & 1,000 & 0.797 & 0.099 \\
-			11 & 2.106 & 1,000 & 0.936 & 0.142 \\
-			12 & 1.428 & 1,000 & 0.889 & 0.296 \\
-			13 & 1.011 & 1,000 & 0.006 & 0.175 \\
-			14 & 2.179 & 1,000 & 0.828 & 0.180 \\
-			15 & 2.858 & 1,000 & 0.399 & 0.842 \\
-			16 & 1.388 & 1,000 & 0.617 & 0.039 \\
-			17 & 1.651 & 1,000 & 0.939 & 0.103 \\
-			18 & 1.593 & 1,000 & 0.784 & 0.620 \\
-			19 & 1.046 & 1,000 & 0.072 & 0.158 \\
-			20 & 2.152 & 1,000 & 0.889 & 0.704 \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Dados usados no exemplo}
-	\label{dados}
+		\label{tabela_dados}
+        \begin{center}
+                \begin{tabular}{ r | c c c c }
+                        \hline
+                        $t$ & $y_t$ & $x_{t1}$ & $x_{t2}$ & $x_{t3}$ \\
+                        \hline
+                        1 & 4.284 & 1,000 & 0.286 & 0.645 \\
+                        2 & 4.149 & 1,000 & 0.973 & 0.585 \\
+                        3 & 3.877 & 1,000 & 0.384 & 0.310 \\
+                        4 & 0.533 & 1,000 & 0.276 & 0.058 \\
+                        5 & 2.211 & 1,000 & 0.973 & 0.455 \\
+                        6 & 2.389 & 1,000 & 0.543 & 0.779 \\
+                        7 & 2.145 & 1,000 & 0.957 & 0.259 \\
+                        8 & 3.231 & 1,000 & 0.948 & 0.202 \\
+                        9 & 1.998 & 1,000 & 0.543 & 0.028 \\
+                        10 & 1.379 & 1,000 & 0.797 & 0.099 \\
+                        11 & 2.106 & 1,000 & 0.936 & 0.142 \\
+                        12 & 1.428 & 1,000 & 0.889 & 0.296 \\
+                        13 & 1.011 & 1,000 & 0.006 & 0.175 \\
+                        14 & 2.179 & 1,000 & 0.828 & 0.180 \\
+                        15 & 2.858 & 1,000 & 0.399 & 0.842 \\
+                        16 & 1.388 & 1,000 & 0.617 & 0.039 \\
+                        17 & 1.651 & 1,000 & 0.939 & 0.103 \\
+                        18 & 1.593 & 1,000 & 0.784 & 0.620 \\
+                        19 & 1.046 & 1,000 & 0.072 & 0.158 \\
+                        20 & 2.152 & 1,000 & 0.889 & 0.704 \\
+                        \hline
+                \end{tabular}
+        \end{center}
+        \caption{Dados usados no exemplo}
+        \label{dados}
 \end{table}
 
-Os valores de $x_{t2}$ e $x_{t3}$ são números pseudo-aleatórios, gerados a partir de uma distribuição uniforme no intervalo unitário, e os $y_t$ foram gerados tomando o modelo $\theta_1^* + \theta_2^*x_{t2}+\theta_2^*x_{t3}$, adicionando a ele um número pseudo-aleatório e considerando $\theta_1^* = \theta_2^* = 0$, isto é, adicionando um erro aleatório a $1+x_{t2}+x_{t3}$.
+
+	Os valores de $x_{t2}$ e $x_{t3}$ são números pseudo-aleatórios, gerados a partir de uma distribuição uniforme no intervalo unitário, e os valores de $y_t$ foram gerados tomando o termo $\theta_1 + \theta_2x_{t2}+\theta_2x_{t3}$, adicionando a ele um número pseudo-aleatório de uma distribuição normal e considerando $\theta_1 = \theta_2 = 1$, isto é, adicionando um erro aleatório a $1+x_{t2}+x_{t3}$.
+
+
+
+
+
+
+
+	O exemplo da tabela \ref{tabela_dados} acima apresenta uma ilustração na aplicação do método de Newton para estimar os parâmetros de um modelo não linear do tipo apresentado acima em 1.1. Antes, todavia de chegar ao tratamento econométrico que é o foco deste trabalho, será apresentada no Capitulo 2 a seguir, a plataforma destinada a dar suporte ao processo interativo professor-aluno relacionado à aprendizagem por intermedio da Internet de problemas complexos semelhantes ao que foi introduzido neste capítulo.
 
 
 
@@ -149,25 +165,28 @@ Os valores de $x_{t2}$ e $x_{t3}$ são números pseudo-aleatórios, gerados a pa
 
 \section{Proposta Funcional}
 
-O objetivo do sistema é facilitar o estudo de conceitos e técnicas de econometria. Suas principais áreas funcionais\footnote{Tais áreas estão propositalmente definidas de forma superficial, com o objetivo de não prjeudicar o caráter experimental do trabalho. Um produto de software mais objetivo deveria seguir a linha proposta por Jacobson\cite{Jacobson}.} seriam:
+
+	O objetivo do sistema é facilitar o estudo de conceitos e técnicas de econometria. Suas principais áreas funcionais\footnote{Tais áreas estão propositalmente definidas de forma superficial, com o objetivo de não prejudicar o caráter experimental do trabalho. Um produto de software mais objetivo deverá seguir a linha proposta por Jacobson\cite{Jacobson}.} serão:
 
 \subsection{Usuários}
-O sistema irá identificar os usuários no sistema, qualificando-os entre aqueles que irão introduzir o material a ser trabalhado (doravante denominados \textit{professores}) e aqueles que irão trabalhar este material (que chamaremos de \textit{alunos}).
+
+
+	O sistema irá identificar os usuários, qualificando-os entre aqueles que irão introduzir o material didático a ser trabalhado (doravante denominados \textit{professores}) e aqueles que irão trabalhar este material (que chamaremos de \textit{alunos}).
 \subsection{Aulas}
-A introdução do material didático no sistema é feita pelo professor. Para fins de organização, cada tópico abordado será tratado como uma \textit{aula}, dividida em um ou mais \textit{passos}, que serão apresentados sequencialmente ao aluno quando ele selecionar uma determinada aula.
+	A introdução do material didático no sistema é feita pelo professor. Para fins de organização, cada tópico abordado será tratado como uma \textit{aula}, dividida em um ou mais \textit{passos}, que serão apresentados sequencialmente ao aluno quando ele selecionar uma determinada aula.
 
 Cada passo da aula consiste em:
 \begin{itemize}
-\item Parte teórica: Conteúdo textual/HTML simples, explicando o que será executado; 
-\item Parte prática: Abaixo do texto teórico, o aluno encontrará campos onde poderá entrar com dados e executar um código previamente preparado pelo professor, obtendo resultados imediatamente. Esta execução pode ser feita repetidas vezes, variando os dados ou mesmo observando múltiplas iterações de um determinado algoritmo, até que o aluno decida avançar para o passo seguinte.
+\item Parte teórica: conteúdo textual/HTML simples, explicando o que será executado; 
+\item Parte prática: abaixo do texto teórico, o aluno encontrará campos onde poderá entrar com dados e executar um código previamente preparado pelo professor, obtendo resultados imediatamente. Esta execução pode ser feita repetidas vezes, variando os dados ou mesmo observando múltiplas iterações de um determinado algoritmo, até que o aluno decida avançar para o passo seguinte.
 \end{itemize}
 
 Desta forma, o professor pode programar possibilidades experimentais para o aluno, tornando o experimento tão amplo quanto deseje. É necessário codificar apenas a parte matemática/econométrica (muitas vezes já praticamente pronta na literatura) - sendo que a plataforma irá cuidar dos detalhes relacionados a compilação, fluxo e apresentação ao aluno.
 
-Para o aluno tudo fica simplificado também - não há exposição ao código, apenas ao texto e à ferramenta para experimentar. Uma possibilidade é salvar os dados de entrada/saída para uso futuro (ou para avaliação do professor). Também é interessante que o aluno possa carregar dados pré-existentes disponibilizados pelo professor (por exemplo, dados reais aplicados em um modelo).
+	Para o aluno, tudo fica simplificado também - não há exposição ao código, apenas ao texto e à ferramenta para experimentar. Uma possibilidade aberta pelo sistema é salvar os dados de entrada/saída para uso futuro (ou para avaliação do professor). Também é possível que o aluno possa carregar dados pré-existentes disponibilizados pelo professor (por exemplo, dados reais aplicados em um modelo).
 
 
-\section {Modelagem}
+\section {Modelagem do Software}
 
 \subsection{Diagrama de Classes de Entidade}
 As principais entidades são modeladas de acordo com o diagrama na Figura \ref{classes}.
@@ -182,7 +201,7 @@ As principais entidades são modeladas de acordo com o diagrama na Figura \ref{c
 
 \textbf{Passo} é a entidade mais importante do sistema, representando cada tela com a qual o usuário interage, incluindo o código-fonte (algoritmo) que será experimentado pelo aluno. Uma \textbf{Aula} agrupa um conjunto de passos, permitindo a organização do conteúdo didático.
 
-Cada variável que o professor determina que o aluno poderá inserir ou recuperar de um passo é um \textbf{Parametro}. Os dados efetivamente entrados pelo aluno são representados por objetos \textbf{Valor} e guardados coletivamente na forma de \textbf{Entrada}.
+	Cada informação que o professor determina que o aluno poderá inserir ou recuperar de um passo é um \textbf{Parametro}. Os dados efetivamente entrados pelo aluno são representados por objetos \textbf{Valor} e guardados coletivamente na forma de \textbf{Entrada}.
 
 \subsection{Casos de Uso}
 
@@ -191,21 +210,22 @@ No geral, as iterações mais importantes do sistema são os casos de uso aprese
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.75]{casos.eps}
-\caption{{\bf Casos de Uso do Sistema}}
+
+
+	\caption{{\bf Casos de Uso (UC) do Sistema}}
 \label{casos}
 \end{center}
 \end{figure}
 
 \subsubsection{UC1. Criar Aula}
-Após dividir o conteúdo didático em aula, o professor insere cada uma delas no sistema, atribuindo um nome e uma descrição breve.
+
+	Após dividir o conteúdo didático em aulas, o professor insere cada uma delas no sistema, atribuindo um nome e uma descrição breve.
 \subsubsection{UC2. Adicionar Passo}
 Cada aula é dividida pelo professor em um ou mais passos, que serão executados sequencialmente pelo aluno. Para cada passo adicionado, o professor dá um nome, cadastra um texto explicativo e um algoritmo que será executado como exercício ao final da leitura do texto, com parâmetros de entrada e saída também definidos pelo professor.
 \subsubsection{UC3. Interagir com Aula}
 Uma vez tendo o material preparado, o aluno pode entrar no sistema e visualizar a lista de todas as aulas. Ao selecionar uma delas, o primeiro passo tem seu texto explicativo exibido, e, ao final, o aluno pode entrar com os dados e verificar os resultados, como programado pelo professor.
 
 
-Um projeto de software mais elaborado poderia documentar 
-Para maior clareza, seguem algumas das páginas \footnote{Um projeto de software mais elaborado poderia documentar estas interações na forma de Casos de Uso UML\cite{}}
 
 \chapter {Arquitetura de Software}
 
@@ -213,70 +233,70 @@ Para maior clareza, seguem algumas das páginas \footnote{Um projeto de software
 
 Uma vez definida a funcionalidade desejada, faz-se necessário selecionar tecnologias (linguagens, ferramentas e frameworks) e metodologias (padrões de projeto) que facilitem a criação da plataforma de software desejada de forma eficiente, e, acima de tudo, de forma expansível para acomodar necessidades futuras.
 
-As escolhas definidas aqui foram norteadas por dois pré requisitos: que todas as metodologias tenham referencial acadêmico e implementações bem-sucedidas; e que todas as ferramentas utilizadas sejam gratuitas e de código livre, garantindo que a aplicação  possa ser ampliada e modificada por qualquer entidade interessada, sem que hajam restrições de qualquer natureza.
+	As escolhas definidas aqui foram norteadas por dois pre requisitos: que todas as metodologias tenham referencial acadêmico e implementações bem-sucedidas; e que todas as ferramentas utilizadas sejam gratuitas e de código livre, garantindo que a aplicação  possa ser ampliada e modificada por qualquer entidade interessada, sem que hajam restrições de qualquer natureza.
 \section{Linguagem de Programação}
 É necessário fazer duas escolhas neste tópico: a da linguagem a ser utilizada para construir o aplicativo, e a da linguagem através da qual os algoritmos serão descritos para a mesma.
 
 Para o aplicativo, é preciso ter uma linguagem que ofereça performance, escalabilidade, suporte ao desenvolvimento para a web e facilidade para trabalhar com bancos de dados relacionais (ferramenta indispensável para o volume de dados gerado pelo uso em larga escala, vide adiante). Também é importante que a linguagem não seja excessivamente obscura ou limitada a um nicho de mercado, já que um dos objetivos é propor uma plataforma que possa ser ampliada e melhorada por quem tenha interesse.
 
-Já o algoritmo exige uma linguagem que possa ser compilada ou interpretada dinamicamente, que tenha respaldo acadêmico (para aproveitar o código e, mais importante, o conhecimento pré-existente no corpo docente) e, preferencialmente, que já possua um ambiente de compilação/runtime livre (a implementação de tal ambiente não as complexidades inerentes a este tipo de implementação fogem ao escopo deste trabalho). 
 
-Com o uso dos mecanismos de arquitetura apropriados é possível trabalhar ambas as demandas através de uma linguagem única. Esta abordagem simplifica o projeto e reduz a barreira de entrada para novos desenvolvedores, e foi considerada antes de tentar trabalhar com uma linguagem de aplicação separada da linguagem de algoritmos.
+	Já o algoritmo exige uma linguagem que possa ser compilada ou interpretada dinamicamente, que tenha respaldo acadêmico (para aproveitar o código e, mais importante, o conhecimento pré-existente no corpo docente) e, preferencialmente, que já possua um ambiente de compilação/runtime livre (a implementação de tal ambiente e as complexidades inerentes a este tipo de implementação fogem ao escopo deste trabalho). 
 
-Embora existam linguagens de domínio específico para algoritmos matemáticos, faz sentido considerar primeiro linguagens de uso geral (ainda no sentido de simplificar e popularizar a plataforma). Estudos como o de Prechelt\cite{Prechelt} abordam aspectos como tempo de desenvolvimento e performance para o uso geral, mas é necessário levar em conta as necessidades particulares desta aplicação. Isto nos levou a considerar:
+	Com o uso dos mecanismos de arquitetura apropriados é possível trabalhar tanto a linguagem do aplicativo quanto a linguagem do algorítmo  através de uma linguagem única. Esta abordagem simplifica o projeto e reduz a barreira de entrada para novos desenvolvedores, e foi considerada antes de tentar trabalhar com uma linguagem de aplicação separada da linguagem de algoritmos.
+
+	Embora existam linguagens de domínio específico para algoritmos matemáticos, faz sentido considerar primeiro linguagens de uso geral (ainda no sentido de simplificar e popularizar a plataforma). Estudos como o de Prechelt\cite{Prechelt} abordam aspectos como tempo de desenvolvimento e performance para o uso geral, mas é necessário levar em conta as necessidades particulares desta aplicação. Isto nos levou a considerar prós e contras de algumas linguagens que preenchem os requisitos deste trabalho e, finalmente, optar pela opção mais apropriada. Discorre-se sobre algumas dessas liguagens a seguir.
 
 \subsection{C/C++}
-A melhor opção em termos de performance. Por ter acesso aos mais diferentes tipos de bilbiotecas nos diversos sistemas operacionais existentes, também não apresentaria problemas para trabalhar com banco de dados ou com web. No entanto, a programação nesta dupla é bastante sujeita a erros, e muitas vezes é preciso escolher entre a flexibilidade do C++ e a performance do C.
+	C/C++ seria a melhor opção em termos de performance. Por ter acesso aos mais diferentes tipos de bilbiotecas nos diversos sistemas operacionais existentes, também não apresentaria problemas para trabalhar com banco de dados ou com web. No entanto, a programação nesta dupla é bastante sujeita a erros e, muitas vezes, é preciso escolher entre a flexibilidade do C++ e a performance do C.
 
-Além disso, é necessário um esforço extra para garantir a compabilidade entre diferentes plataformas. Tais fatores elevariam o tempo do  projeto e colocariam uma barreira à entrada de novos desenvolvedores – isso sem falar que dificilmente a programação dos algoritmos seria feita de forma didaticamente viável nela.
+	Além disso, é necessário um esforço extra para garantir a compabilidade entre diferentes plataformas. Tais fatores elevariam o tempo do  projeto e colocariam uma barreira à entrada de novos desenvolvedores – isso sem falar que, dificilmente, a programação dos algoritmos seria feita de forma didaticamente viável em C/C++.
 
 \subsection{Pascal}
-Tem a seu favor um excelente balanço entre performance e facilidade de programação (por ser mais fortemente tipada do que C e executar muitas das verificações de erros comuns em tempo de execução), além de possuir extensões de orientação a objeto e implementações livres (como o Free Pascal). No entanto as universidades já não tem mais incluído esta linguagem em seus currículos (Java é o substituto mais comum), o que se reflete em reduzida disponibilidade de programadores.
+	A linguagem Pascal tem a seu favor um excelente balanço entre performance e facilidade de programação (por ser mais fortemente tipada do que C e executar muitas das verificações de erros comuns em tempo de execução), além de possuir extensões de orientação a objeto e implementações livres (como o Free Pascal). No entanto, as universidades já não têm mais incluído essa linguagem em seus currículos (Java é o substituto mais comum), o que se reflete em reduzida disponibilidade de programadores.
 
 \subsection{Fortran}
-Um dos pontos fortes é a vasta quantidade de algoritmos matemáticos e estatísticos disponíveis na literatura já codificados nesta linguagem. No entanto, a linguagem oferece poucas facilidades para a programação na web, e a mão-de-obra disponível é muito limitada ao meio científico/acadêmico.
+	Um dos pontos fortes da linguagem Fortran é a vasta quantidade de algoritmos matemáticos e estatísticos disponíveis na literatura já codificados nesta linguagem. No entanto, a linguagem oferece poucas facilidades para a programação na web, e a mão-de-obra disponível é muito limitada ao meio científico/acadêmico.
 
-\subsection{Java (opção final)}
-O equilíbrio entre as demandas funcionais e não-funcionais levou à escolha da linguagem Java para a primeira implementação. Estudos como o de Bull, Smith, Pottage e Freeman\cite{BullSmithPottageFreeman} mostram que apresenta performance comparável a C, aliada a uma ampla gama de bibliotecas/frameworks que tornarão a implementação mais simples e expansível.
+	\subsection{Java}
+	O equilíbrio entre as demandas funcionais e não-funcionais levou à escolha da linguagem Java para a primeira implementação do aplicativo, objeto deste trabalho. Estudos como o de Bull, Smith, Pottage e Freeman\cite{BullSmithPottageFreeman} mostram que a linguagem Java apresenta performance comparável à linguagem C, aliado a uma ampla gama de bibliotecas/frameworks que tornarão a implementação mais simples e expansível.
 
-Uma vantagem adicional é a possibilidade que a linguagem oferece (a partir da Versão 6) de que o compilador seja invocado através de APIs de alto nível, permitindo a execução interativa dos algoritmos econométricos de forma independente de sistema operacional ou plataforma.
+ - fale-me depois o que é isto:
+	Uma vantagem adicional da linguagem Java é a possibilidade que essa linguagem oferece (a partir da Versão 6) ao possibilitar que o compilador seja invocado através de APIs de alto nível, permitindo a execução interativa de algoritmos de forma independente de sistema operacional ou plataforma.
 
-Caso esta escolha não seja a mais apropriada no futuro, uma possibilidade que estará disponível são  linguagens dinâmicas como Ruby, Python ou LISP, ou, alternativamente, como linguagens estáticas com suporte a reflexão, como C\# ou Objective-C – observando-se o mapeamento dos mecanismos de arquitetura para recursos equivalentes em cada uma delas.
+	Caso esta escolha não seja a mais apropriada no futuro, uma possibilidade que estará disponível é dada pela escolha de linguagens dinâmicas como Ruby, Python ou LISP, ou, alternativamente, como linguagens estáticas com suporte a reflexão, como C\# ou Objective-C – observando-se o mapeamento dos mecanismos de arquitetura para recursos equivalentes em cada uma delas.
 
 \section{Ambiente de Desenvolvimento}
 
-É importante que o processo de compilação e publicação (\textit{deploy}) da aplicação sejam completamente automatizados, de forma que qualquer pessoa possa facilmente descarregar o código existente de um repositório, testá-lo e implementar novas características.
+	Pretende-se neste trabalho que o processo de compilação e publicação (\textit{deploy}) da aplicação seja completamente automatizado, de forma que qualquer pessoa possa facilmente descarregar o código existente de um repositório, testá-lo e implementar novas características.
 
-A grande quantidade de frameworks envolvidos no processo gera uma dificuldade adicional: o gerenciamento de dependências. Tento isto em vista, usaremos o Maven\footnote{\url{http://maven.apache.org}} não apenas para executar a compilação e publicação, mas também para recuperar automaticamente todas as bibliotecas (.JAR) de frameworks utilizados a partir da Internet.
+	A grande quantidade de frameworks envolvidos na presente arquitetura gera uma dificuldade adicional relacionada ao gerenciamento de dependências. Tento isto, uma solução adotada faz uso de um aplicativo desenvolvido pela empresa Apache, chamado  Maven\footnote{\url{http://maven.apache.org}}. Este aplicativo será usado não apenas para executar a compilação e publicação, mas também para recuperar automaticamente todas as bibliotecas (.JAR) de frameworks utilizados a partir da Internet.
 
-O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado - conjunto que agrega editor de textos, compilador e ferramenta de depuração em um único pacote, agilizando o desenvolvimento de software} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a ferramenta dependente dele. 
+	O código-fonte não irá exigir nenhum IDE\footnote{\textit{Integrated Development Environment} - Ambiente de Desenvolvimento Integrado - conjunto que agrega editor de textos, compilador e ferramenta de depuração em um único pacote, agilizando o desenvolvimento de software} em particular. No entanto, o Eclipse (\url{http://eclipse.org}) será utilizado como ferramenta base, sempre tomando o cuidado de não tornar a plataforma dependente dele. 
 
 \section{Compilação e Carregamento Dinâmico de Classes}
 \label{explicacao_compilacao}
 
-Uma vez decidido que Java seria tanto a linguagem de desenvolvimento quanto a linguagem usada para definir os exercícios que seriam aplicados em cada passo de cada aula, foi preciso utilizar o recurso de compilação dinâmica, disponível a partir da versão 1.6 da linguagem, bem como o carregamento dinâmico de classes\footnote{A parte relevante do código-fonte para cada um destes recursos está disponível na Seção \ref{listagens}}.
+	Uma vez decidido que Java será tanto a linguagem de desenvolvimento quanto a linguagem usada para definir os exercícios que serão aplicados em cada passo de cada aula, foi preciso utilizar o recurso de compilação dinâmica, disponível a partir da Versão 1.6 da linguagem Java, bem como o carregamento dinâmico de classes\footnote{A parte relevante do código-fonte para cada um destes recursos está disponível na Seção \ref{listagens}.}.
 
-A abordagem para o uso do primeiro recurso foi a criação de uma nova classe para cada passo inserido no sistema, gerada a partir do identificador do passo relacionado a ela. Esta classe receberia um mapa nome-valor (\textit{java.util.Map}) com os parâmetros de entrada e seus valores, e devolveria um outro mapa no mesmo formato com os parâmetros de saída (e eventuais parâmetros de entrada modificados - este último detalhe é importante para a execução de métodos iterativos como o que usaremos como exemplo).
+	A abordagem para o uso da compilação dinâmica foi a criação de uma nova classe para cada passo inserido no sistema, gerada a partir do identificador do passo relacionado a ela. Esta classe receberia um objeto mapa nome-valor (\textit{java.util.Map}) com os parâmetros de entrada e seus valores, e devolveria um outro objeto mapa no mesmo formato com os parâmetros de saída (e eventuais parâmetros de entrada modificados.  Este detalhe é importante para a execução de métodos iterativos como o que usaremos como exemplo).
 
-Uma vez montada esta classe, a mesma é compilada dinamicamente sempre que necessário. Para executá-la, em princípio poderia ser feita uma chamada direta, mas isso gera um problema: a cada mudança é preciso descarregar a classe da memória e recarregá-la, e não é possível executar esta operação com classes carregadas automaticamente pelo \textit{classloader} padrão do Java. A solução é instanciar um novo classloader a cada execução, colocando as classes compiladas num diretório visível apenas para ele.
-
-Desta forma, quando não há mais referência ao classloader, ele se torna elegível para descarga na coleta de lixo seguinte - e o mesmo ocorre com as classes carregadas por ele. Ainda é possível solicitar à JVM a coleta de lixo (via \textit{System.gc()}) - isto não garante a execução do procedimento, mas na maioria das implementações evita que o mesmo aconteça apenas após muitas alterações, gerando um benefício de performance. Em qualquer caso, o sistema reconhece as mudanças já na execução seguinte do passo da aula - que é o efeito desejado.
+	Uma vez montada esta classe, a mesma é compilada dinamicamente sempre que necessário. Para executá-la, em princípio poderia ser feita uma chamada direta, mas isso gera um problema: a cada mudança é preciso descarregar a classe da memória e recarregá-la, e não é possível executar esta operação com classes carregadas automaticamente pelo \textit{classloader} padrão do Java. A solução é instanciar um novo \textit{classloader} a cada execução, colocando as classes compiladas num diretório visível apenas para ele. Desta forma, quando não há mais referência ao \textit{classloader}, ele se torna elegível para descarga na coleta de lixo seguinte e o mesmo ocorre com as classes carregadas por ele. Ainda é possível solicitar à JVM (Java Virtual Machine) a coleta de lixo (via \textit{System.gc()}). Isto não garante a execução do procedimento mas, na maioria das implementações, evita que o mesmo aconteça apenas após muitas alterações, gerando um benefício de performance. Em qualquer caso, o sistema reconhece as mudanças já na execução seguinte do passo da aula - que é o efeito desejado.
 
 
 \section{Testes Automatizados}
 
-É muito importante que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é desejável - de fato, autores como Janzen e Saiedian\cite{Janzen_Saiedian} defendem a idéia de que o desenvolvimento como um todo deve ser pensado com foco nos testes, alegando que esta abordagem (\textit{Test-Driven Development}) teria impacto positivo na qualidade do código gerado e do produto final.
+	Atenção é dada neste trabalho, no sentido que o sistema mantenha os resultados consistentes, mesmo com a implementação de novas funcionalidades. Para tanto, a criação de testes automáticos (unitários e funcionais) durante o processo de desenvolvimento (e não como um detalhe adicional) é desejável. De fato, autores como Janzen e Saiedian\cite{Janzen_Saiedian} defendem a idéia de que o desenvolvimento como um todo deve ser pensado com foco nos testes, alegando que esta abordagem (\textit{Test-Driven Development}) teria impacto positivo na qualidade do código gerado e do produto final.
 
-Sistema Java costumam usar o framework JUnit\footnote{\url{http://junit.org}} para implementação de testes unitários automáticos, devido à sua natureza não-intrusiva (mantendo o código de testes separado do restante) e seu amplo leque de capacidades embutidas, mantendo o código de testes bastante sucinto. Mesmo testes funcionais automáticos podem ser feitos através dele (uma estratégia é expandi-lo através da extensão JFunc\footnote{\url{http://jfunc.sourceforge.net}}, desenhada para este fim).
+	Sistemas desenvolvidos em Java costumam usar o framework JUnit\footnote{\url{http://junit.org}, 2009} para implementação de testes unitários automáticos, devido à sua natureza não-intrusiva (mantendo o código de testes separado do restante) e seu amplo leque de capacidades embutidas, mantendo o código de testes bastante sucinto. Mesmo testes funcionais automáticos podem ser feitos através dele.\footnote{(uma estratégia é expandi-lo através da extensão JFunc. \url{http://jfunc.sourceforge.net}, 2009}, desenhada para este fim).
 
 \section{Padrões de Projeto}
 
-Sob a perspectiva da arquitetura geral, o sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados), sendo, portanto, razoável trabalhar com a separação em três camadas descrita por Eckerson\cite{Eckerson1995}, ilustrada na Figura \ref{deployment} e detalhada da seguinte forma:
+	Sob a perspectiva da arquitetura geral, o presente sistema pode ser visto como uma coleção interativa de CRUDs\footnote{\textit{Create-Read-Update-Delete}, acrônimo para módulos que efetuam estas quatro operações básicas sobre algum tipo de entidade -uma referência ao termo (contextualizada num ambiente OO) se encontra em Kilov\cite{kilov_crud}}. As exceções ficam por conta da execução interativa de algoritmos e da importação de dados, sendo, portanto, razoável trabalhar com a separação em três camadas, como foi  descrita por Eckerson\cite{Eckerson1995}, ilustrada na Figura \ref{deployment}. As três camadas de Eckerson são as seguintes:
 
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.8]{deployment.eps}
-\caption{{\bf Diagrama de Componentes da aplicação, separado por camadas}}
+\caption{{\bf Diagrama de Componentes da aplicação, separado por camadas. Eckerson\cite{Eckerson1995}}}
 \label{deployment}
 \end{center}
 \end{figure}
@@ -309,21 +329,21 @@ Com a introdução das técnicas de desenvolvimento de software orientado a obje
 
 A plataforma proposta neste trabalho segue esta nova abordagem, para a qual se coloca um problema: como representar a riqueza gramatical dos elementos da orientação a objeto (tais como herança, polimorfismo e navegabilidade) dentro do sistema de modelagem relacional dos RDBMS? Esta questão se divide em dois aspectos: o da busca da metodologia para mapear estas características e o da forma de implementá-la (evitando a redundância de código).
 
-Este problema não é novo\footnote{Kilov novamente}, tampouco exclusivo desta aplicação. A técnica para resolve-lo é denominada mapeamento objeto-relacional, e na plataforma Java existem diversos frameworks de código livre que a implementam\footnote{Uma lista ampla pode ser encontrada em \url{http://java-source.net/open-source/persistence}}. Neste caso uma análise mais aprofundada pôde ser dispensada, visto que o Hibernate\footnote{\url{http://www.hibernate.org}} é o padrão de facto adotado pela comunidade Java para sistemas com características de persistência convencionais, tais como este.
+	Este problema não é novo\footnote{Kilov}, tampouco exclusivo desta aplicação. A técnica para resolve-lo é denominada mapeamento objeto-relacional, e na plataforma Java existem diversos frameworks de código livre que a implementam\footnote{Uma lista ampla pode ser encontrada em \url{http://java-source.net/open-source/persistence}}. Neste caso uma análise mais aprofundada pôde ser dispensada, visto que o Hibernate\footnote{\url{http://www.hibernate.org}} é o padrão de facto adotado pela comunidade Java para sistemas com características de persistência convencionais, tais como este.
 
-O Hibernate é um framework de código totalmente livre, que gera automaticamente e em tempo de execução as declarações SQL necessárias para persistir e recuperar objetos no RDBMS. O código SQL gerado é geralmente muito otimizado, e é possível customizar qualquer declaração que não seja aceitável. Além disso, a Versão 3 permite o uso de annotations, isto é, do desenho do mapeamento sobre o próprio código. Esta característica torna os arquivos de mapeamento (que usualmente demandam muito tempo e acrescentam um passo extra na compreensão do código) dispensáveis, o que, por si só, já justifica o seu uso.
+	O Hibernate é um framework de código totalmente livre, que gera automaticamente e em tempo de execução as declarações SQL necessárias para persistir e recuperar objetos no RDBMS. O código SQL gerado é geralmente muito otimizado, e é possível customizar qualquer declaração que não seja aceitável. Além disso, a Versão 3 do Hibernate permite o uso de \textit{annotations}, isto é, do desenho do mapeamento sobre o próprio código. Esta característica torna os arquivos de mapeamento (que usualmente demandam muito tempo e acrescentam um passo extra na compreensão do código) dispensáveis, o que, por si só, já justifica o seu uso.
 
-Uma outra técnica para implementar o conceito de persistência é a chamada prevalência - nela, o estado dos objetos é armazenado em sistemas de arquivo tradicionais, num misto de serialização e de aualizações de estado (balanceando segurança dos dados e performance). Tal abordagem pode ser implementada usando um framework como Prevayler\footnote{\url{http://www.prevayler.org}} para adicionar a capacidade de prevalência às classes de domínio. Embora esta técnica simplifique o deploy por dispensar um SGBD, a quantidade de memória RAM necessária para manter todo o grafo de objetos em memória tornaria inviável o uso da aplicação em larga escala.
+	Uma outra técnica para implementar o conceito de persistência é a chamada prevalência. Nela, o estado dos objetos é armazenado em sistemas de arquivo tradicionais, num misto de serialização e de aualizações de estado (balanceando segurança dos dados e performance). Tal abordagem pode ser implementada usando um framework como Prevayler\footnote{\url{http://www.prevayler.org}} para adicionar a capacidade de prevalência às classes de domínio. Embora esta técnica simplifique o \textit{deploy} por dispensar um Sistema de Gerenciamento de Banco de Dados (SGBD), a quantidade de memória RAM necessária para manter todo o grafo de objetos em memória tornaria inviável o uso da aplicação em larga escala.
 
-\subsection{Apresentação e MVC (Model / View / Controller)}
+	\subsection{Apresentação e MVC (Model/View/Controller)}
 
-Devido à sua natureza de interação com o usuário, a camada de apresentação é uma das mais sujeitas a alterações. Além disso, seu fluxo pode se tornar bastante complexo, o que favorece a duplicação de código desnecessária.
+	Devido à sua natureza de interação com o usuário, a camada de apresentação é uma das mais sujeitas a alterações. Além disso, seu fluxo pode se tornar bastante complexo, o que favorece a duplicação de código desnecessária. O padrão de projeto Model/View/Controller (MVC) tem se demonstrado útil na redução dos problemas observados em outros padrões. Nele, a camada de apresentação é segregada em dois tipos de componentes: View (composta pelas diversas interfaces do sistema, e desprovida de qualquer código que não esteja relacionado à interação com o usuário e à pré-validação dos dados introduzidos por ele) e Model (código que responde a ações imperativas do usuário, tais como submeter um formulário de dados ou solicitar uma funcionalidade).
 
-O padrão de projeto Model/View/Controller (MVC) tem se demonstrado útil na redução destes problemas. Nele, a camada de apresentação é segregada em dois tipos de componentes: view (composta pelas diversas interfaces do sistema, e desprovida de qualquer código que não esteja relacionado à interação com o usuário e à pré-validação dos dados introduzidos por ele) e model (código que responde a ações imperativas do usuário, tais como submeter um formulário de dados ou solicitar uma funcionalidade).
+	View e Model operam de forma totalmente independente: componentes de Model respondem às solicitações utilizando as camadas inferiores e retornando algum tipo de status (ex.: “sucesso”, “operação inválida”, etc.), e componentes de View apresentam dados anexados a eles e retornam os dados novos ou alterações feitas pelos usuários.
 
 View e Model operam de forma totalmente independente: componentes de model respondem às solicitações utilizando as camadas inferiores e retornando algum tipo de status (ex.: “sucesso”, “operação inválida”, etc.), e componentes de view apresentam dados anexados a eles e retornam os dados novos ou alterações feitas pelos usuários.
 
-A conexão entre eles é feita pelo controller: um componente que, para cada solicitação da view, dispara um ou mais componentes do model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo é mantido neste componente (no código ou em um arquivo de configuração), desacoplando o código e oferecendo uma visão de alto nível que torna fácil identificar componentes reutilizáveis e/ou o impacto de quaisquer mudanças\footnote{Tygre descreve sua primeira implementação de MVC na interface gráfica original da Xerox, mas a consolidação do modelo em sistemas web é atribuída a Gamma / Helm / Johnson / Vlissides\cite{Gamma1995}}.
+A conexão entre eles é feita pelo controller: um componente que, para cada solicitação da view, dispara um ou mais componentes do model, e, conforme o resultado, apresenta uma nova view. Todo o fluxo é mantido neste componente (no código ou em um arquivo de configuração), desacoplando o código e oferecendo uma visão de alto nível que torna fácil identificar componentes reutilizáveis e/ou o impacto de quaisquer mudanças\footnote{Tygver\cite{Tygver} descreve sua primeira implementação de MVC na interface gráfica original da Xerox, mas a consolidação do modelo em sistemas web é atribuída a Gamma / Helm / Johnson / Vlissides\cite{Gamma1995}}.
 
 Embora seja possível adotar a filosofia MVC através do desenvolvimento direto, muito trabalho pode ser popupado através do uso de um framework MVC que, dentre outras coisas, implemente um controller configurável e auxilie na passagem de dados entre model e view (tarefa que se torna complexa à medida em que se considera a generalidade do HTML no tocante a formulários de dados, e o desejo de usar técnicas como AJAX para aumentar a usabilidade da aplicação). De início, foram considerados os frameworks mais utilizados atualmente, a saber:
 
@@ -336,11 +356,11 @@ Tendo em vista que as alternativas padrão não atendem às necessidades do proj
 
 Finalmente, é importante salientar que existe uma outra alternativa para otimizar o desenvolvimento da camada de apresentação: o uso de arquiteturas baseadas em componentes, tais como Wicket, WebWorks e JSF (os dois primeiros são frameworks, o último é uma especificação para este tipo de arquitetura, definida sob supervisão da empresa que desenvolve o Java e seguida por diversos frameworks), sobretudo pela agilidade que oferecem na prototipação e na criação de interfaces. No entanto, aplicações desenvolvidas sob este tipo de arquitetura não possuem a “tolerância a mudanças” que o MVC proporciona (e estas mudanças seguramente ocorrerão à medida em que a plataforma for expandida), razão pela qual descartamos tal tipo de solução.
 
-\subsection{Inversão de Controle / Injeção de Dependências}
+	\subsection{Inversão de Controle/Injeção de Dependências}
 
 Tendo em perspectiva que a aplicação resultante deste projeto será uma base para o desenvolvimento de outros sistemas, é importante que a mesma seja de fácil compreensão e manutenção.
 
-Um dos grandes obstáculos para a manutenção de projetos de software é o acoplamento excessivo entre os seus diferentes módulos e camadas. Ainda que se use (e usamos) boas práticas de separação das mesmas (tais como a arquitetura Model-View-Controller e o modelo de três camadas), se estas camadas apresentarem excessiva dependência cruzada, pequenas alterações irão demandar grandes esforços de codificação e teste.
+	Um dos grandes obstáculos para a manutenção de projetos de software é o acoplamento excessivo entre os seus diferentes módulos e camadas. Ainda que se use (e usamos) boas práticas de separação das camadas (tais como a arquitetura Model/View/Controller e o modelo de três camadas), se estas camadas apresentarem excessiva dependência cruzada, pequenas alterações irão demandar grandes esforços de codificação e teste.
 
 A inversão de controle\footnote{Fowler\cite{FowlerIoc} define a IoC como uma característica comum em frameworks, mas uma vez identificada, esta passou a ser usada como técnica de projeto } (IoC) é uma técnica de projeto que aborda o problema do acoplamento subvertendo a maneira tradicional com que um módulo do sistema solicita funcionalidade a outro módulo (daí o nome). O princípio fundamental é que um módulo que dependa de outro para executar a sua funcionalidade não o chama explicitamente – ao invés disso ele manifesta esta dependência de alguma forma, e o ambiente operacional cuida de oferecer o componente que melhor ofereça o tipo de serviço necessário.
 
@@ -361,19 +381,23 @@ Existem várias formas de implementar o princípio de IoC, sendo que a Injeção
 
 
 
-\chapter{Resolução do Problema}
+\chapter{O Tratamento do Problema Econométrico}
 
+O objetivo neste Capítulo é dar uma sequencia ao desenvolvimento de um problema econométrico como foi introduzido Capítulo 2. O problema antes colocado consiste em aplicar o método dos mínimos quadrados para estimar uma funçào não linear nos parâmetros. Como em tais casos, não é possivel obter as formulas para os estimados diretamente do sistema de equações normais, utiliza-se métdos númericos para estimaçào dos parâmetros. 
 
+A seguir, são descritos três métodos numericos, chamados métodos de gradiente, que serão utilizados para ilustrar algumas aplicações do sistema construido.
 
-\section {Métodos de Gradiente}
+\section {Métodos Numéricos}
+
+	O problema descrito na intrudução deste trabalho pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma sequência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (definida em \ref{eq_H}).
 
 O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma sequência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (cuja definição está em \ref{eq_H}).
 
-Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho de passo $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para o passo seguinte, isto é:
+Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para a iteração seguinte, isto é:
 
 \[ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} \]
 
-O método torna-se completo quando determinamos uma condição de parada. Idealmente o faríamos quando o valor da função objetivo não puder mais ser reduzido. Para fins práticos, paramos quando a redução passar a ser insignificante, por exemplo, se, para um $\epsilon > 0$ suficientemente pequeno e um $l$ inteiro e positivo tivermos uma das seguintes condições:
+	O método torna-se completo quando determinamos uma condição de parada. Idealmente o faríamos quando o valor da função objetivo não puder mais ser reduzido. Para fins práticos, paramos quando a redução passar a ser insignificante. Por exemplo,  para um $\epsilon > 0$ suficientemente pequeno e um $l$ inteiro e positivo poderemos ter uma das seguintes condições:
 
 \begin{enumerate}
 \item $ ( \theta_{n+l} - \theta_n )'( \theta_{n+l} - \theta_n ) < \epsilon$
@@ -389,15 +413,16 @@ A seguir apresentamos alguns métodos detalhados pelos autores, acompanhados do 
 
 \subsection{Newton-Raphson}
 
-Este algoritmo consiste em usar o inverso da matriz Hessiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
+	O algoritmo de Newton-Raphson consiste em usar o inverso da matriz Hessiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
 
 \[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n} \]
 
 Aqui entendemos $\mathcal{H}_n$ como o Hessiano de $H(\theta)$ aplicado em $\theta_n$, isto é, a matriz definida por:
 
-\[  \mathcal{H}_n = \left [ \left . \frac{\partial^2 H}{\partial \theta \partial \theta'} \right |_{\theta_n}  \right ] ^{-1} \]
+	\[  \mathcal{H}_n = \left [ \left . \frac{\partial^2 H}{\partial \theta \partial \theta'} \right |_{\theta_n}  \right ] \]
 
-O código abaixo calcula, para um par \textit{theta1} / \textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana para a função objetivo no ponto, encontra-se no Apêndice A - bem como o de outras funções de apoio como esta.}:
+
+O código abaixo calcula, para um par \textit{theta1}/\textit{theta2}, a matriz com o passo, isto é, os valores que, subtraídos deste par, resultarão no par correspondente ao passo seguinte\footnote{O código da função hess, que calcula a matriz Hessiana para a função objetivo no ponto, encontra-se no Apêndice A - bem como o de outras funções de apoio como esta.}:
 
 \begin{mylisting}
 \begin{verbatim}
@@ -408,60 +433,60 @@ Matrix passo = invHess.times(grad);
 \end{verbatim}
 \end{mylisting}
 
-É interessante notar que este código utiliza a classe \textit{Matrix} pertencente à ao pacote JAMA\footnote{Sua especificação e uma implementação de referência podem ser encontradas em \url{http://math.nist.gov/javanumerics/jama/}. A plataforma implementada neste trabalho disponibiliza o JAMA automaticamente para a escrita de algoritmos.}. Este pacote possui como principal vantagem a escrita "natural" de operações encadeadas - por exemplo, dada uma matriz $M$, se quiséssemos calcular $(M^{-1})'$, isto é, a transposta da inversa de $M$, o código seria diretamente: \textit{M.inverse().transpose()}.
+É interessante notar que este código utiliza a classe \textit{Matrix} pertencente  ao pacote JAMA\footnote{Sua especificação e uma implementação de referência podem ser encontradas em \url{http://math.nist.gov/javanumerics/jama/}. A plataforma implementada neste trabalho disponibiliza o JAMA automaticamente para a escrita de algoritmos.}. Este pacote possui como principal vantagem a escrita "natural" de operações encadeadas - por exemplo, dada uma matriz $M$, se quiséssemos calcular $(M^{-1})'$, isto é, a transposta da inversa de $M$, o código seria diretamente: \textit{M.inverse().transpose()}.
 
-Os resultados obtidos através da aplicação sucessiva deste passo (conforme descrito no Capítulo \ref{cap_problema} coincidem com os apresentados pelos autores e reproduzidos aqui na Tabela \ref{resultados_nr}.
+Os resultados obtidos através da aplicação sucessiva deste cálculo ao problema descrito no Capítulo \ref{cap_problema} coincidem com os apresentados pelos autores e reproduzidos aqui na Tabela \ref{resultados_nr}.
 
 Esta tabela apresenta três casos de execução: o primeiro iniciando no ponto $\theta=(3,2)$, o segundo no ponto $\theta=(0,2)$ e o terceiro no ponto $\theta=(1.5, 0.5)$. Nos dois primeiros casos, a função $H(\theta)$ converge para o mínimo local ($16.0817$) em $\theta=(0.864787,1.235748)$, e no último para outro mínimo local ($20.9805$), localizado em $\theta(2.354471,-0,319186)$\footnote{Estes valores são aproximações numéricas}.
 
 O exemplo mostra que não existe garantia de convergência para o mínimo global em algoritmos de otimização como estes. De qualquer forma, é possível observar a velocidade de convergência e comparar o algoritmo com alternativas como as que seguem adiante.
 
 \begin{table}
-	\begin{center}
-		\begin{tabular}{ r | c c r  }
-			\hline
-			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
-			\hline
-			1 & 3.000000 & 2.000000 & 264.3918 \\
-			2 & -0.084033 & 1.811210 & 20.6328 \\
-			3 & 0.625029 & 1.423940 & 16.5105 \\
-			4 & 0.817259 & 1.272776 & 16.0961 \\
-			5 & 0.862590 & 1.237516 & 16.0818 \\
-			6 & 0.864782 & 1.235753 & 16.0817 \\
-			7 & 0.864787 & 1.235748 & 16.0817 \\
-			8 & 0.864787 & 1.235748 & 16.0817 \\
-			\hline
-			1 & 0.000000 & 2.000000 & 29.2758 \\
-			2 & 0.334936 & 1.600435 & 17.7382 \\
-			3 & 0.735040 & 1.336953 & 16.1955 \\
-			4 & 0.849677 & 1.247743 & 16.0832 \\
-			5 & 0.864541 & 1.235946 & 16.0817 \\
-			6 & 0.864787 & 1.235749 & 16.0817 \\
-			7 & 0.864787 & 1.235748 & 16.0817 \\
-			8 & 0.864787 & 1.235748 & 16.0817 \\
-			\hline
-			1 & 1.500000 & 0.500000 & 20.2951 \\
-			2 & 2.256853 & 0.007135 & 20.7735 \\
-			3 & 2.467047 & -0.436460 & 21.0312 \\
-			4 & 2.316982 & -0.202435 & 20.9467 \\
-			5 & 2.359743 & -0.320579 & 20.9809 \\
-			6 & 2.354457 & -0.319153 & 20.9805 \\
-			7 & 2.354471 & -0.319186 & 20.9805 \\
-			8 & 2.354471 & -0.319186 & 20.9805 \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Algumas iterações do método de Newton-Rhapson.}
-	\label{resultados_nr}
+        \begin{center}
+                \begin{tabular}{ r | c c r  }
+                        \hline
+                        $n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
+                        \hline
+                        1 & 3.000000 & 2.000000 & 264.3918 \\
+                        2 & -0.084033 & 1.811210 & 20.6328 \\
+                        3 & 0.625029 & 1.423940 & 16.5105 \\
+                        4 & 0.817259 & 1.272776 & 16.0961 \\
+                        5 & 0.862590 & 1.237516 & 16.0818 \\
+                        6 & 0.864782 & 1.235753 & 16.0817 \\
+                        7 & 0.864787 & 1.235748 & 16.0817 \\
+                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        \hline
+                        1 & 0.000000 & 2.000000 & 29.2758 \\
+                        2 & 0.334936 & 1.600435 & 17.7382 \\
+                        3 & 0.735040 & 1.336953 & 16.1955 \\
+                        4 & 0.849677 & 1.247743 & 16.0832 \\
+                        5 & 0.864541 & 1.235946 & 16.0817 \\
+                        6 & 0.864787 & 1.235749 & 16.0817 \\
+                        7 & 0.864787 & 1.235748 & 16.0817 \\
+                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        \hline
+                        1 & 1.500000 & 0.500000 & 20.2951 \\
+                        2 & 2.256853 & 0.007135 & 20.7735 \\
+                        3 & 2.467047 & -0.436460 & 21.0312 \\
+                        4 & 2.316982 & -0.202435 & 20.9467 \\
+                        5 & 2.359743 & -0.320579 & 20.9809 \\
+                        6 & 2.354457 & -0.319153 & 20.9805 \\
+                        7 & 2.354471 & -0.319186 & 20.9805 \\
+                        8 & 2.354471 & -0.319186 & 20.9805 \\
+                        \hline
+                \end{tabular}
+        \end{center}
+        \caption{Algumas iterações do método de Newton-Rhapson.}
+        \label{resultados_nr}
 \end{table}
 
 \subsection{Gauss-Newton}
 
-Este método utiliza uma particularidade da forma da função objetivo, calculando o passo como:
+	O método de Gauss-Newton utiliza uma particularidade da forma da função objetivo, calculando o passo como:
 
 \[ \theta_{n+1} = \theta_{n} + [Z(\theta_n)'Z(\theta_n)]^{-1}Z(\theta_n)'[y-f(\theta_n)] \]
 
-onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$. O texto supra mencionado mostra como este algoritmo pode ser visto como uma sequência de regressões lineares (sendo $\theta_{n+1}$ o estimador de mínimos quadrados para o modelo $\bar y(\theta_{n})=Z(\theta_{n})\theta + e$). Novamente representando o ponto atual através do par (\textit{theta1},\textit{theta2)}), uma possível implementação para o cálculo do passo seria:
+		onde $Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}]$ e f foi definida em 1.2. A expressão supra  mostra como este algoritmo pode ser visto como uma sequência de regressões lineares (sendo $\theta_{n+1}$ o estimador de mínimos quadrados para o modelo $\bar y(\theta_{n})=Z(\theta_{n})\theta + e$. Novamente, representando o ponto atual através do par (\textit{theta1},\textit{theta2)}), uma possível implementação para o cálculo do passo seria:
 
 \begin{mylisting}
 \begin{verbatim}
@@ -474,47 +499,52 @@ Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f)).times(-1);
 
 Neste código, \textit{Zt} representa a transposta de $Z(\theta)$, e \textit{f} o valor de $f(\theta)$ para o conjunto de parâmetros no passo atual ($\theta_n$).
 
-Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}. O experimento com o par $(3,2)$ permite comparar a convergência com o o algoritmo de Newton-Rhapson, e observa-se convergência mais rápida para o ponto $(0.864787, 1.235749)$.
+Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}. 
+
+
+xxxxxxxxxxxxxxxxxxx  torna mais clara esta proposição ====================
+
+	O experimento com o par $(3,2)$ permite comparar a convergência com o o algoritmo de Newton-Rhapson, e observa-se convergência mais rápida para o ponto $(0.864787, 1.235749)$.
 
 O terceiro experimento também usa os mesmos dados do método anterior, mas observa-se que, partindo do mesmo ponto $(1.5, 0.5)$, este método converge para o ponto de mínimo local do primeiro experimento - diferindo do resultado obtido com Newton-Rhapson para este ponto inicial. Novamente evidencia-se a inexistência de controle sobre qual ponto de mínimo local será atingido.
 
 \begin{table}
-	\begin{center}
-		\begin{tabular}{ r | c c r  }
-			\hline
-			$n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
-			\hline
-			1 & 3.000000 & 2.000000 & 264.3918 \\
-			2 & -0.084033 & 1.811210 & 20.6328 \\
-			3 & 0.625029 & 1.423940 & 16.5105 \\
-			4 & 0.817259 & 1.272776 & 16.0961 \\
-			5 & 0.862590 & 1.237516 & 16.0818 \\
-			6 & 0.864782 & 1.235753 & 16.0817 \\
-			7 & 0.864787 & 1.235748 & 16.0817 \\
-			8 & 0.864787 & 1.235748 & 16.0817 \\
-			\hline
-			1 & 0.000000 & 2.000000 & 29.2758 \\
-			2 & 0.334936 & 1.600435 & 17.7382 \\
-			3 & 0.735040 & 1.336953 & 16.1955 \\
-			4 & 0.849677 & 1.247743 & 16.0832 \\
-			5 & 0.864541 & 1.235946 & 16.0817 \\
-			6 & 0.864787 & 1.235749 & 16.0817 \\
-			7 & 0.864787 & 1.235748 & 16.0817 \\
-			8 & 0.864787 & 1.235748 & 16.0817 \\
-			\hline
-			1 & 1.500000 & 0.500000 & 20.2951 \\
-			2 & 2.256853 & 0.007135 & 20.7735 \\
-			3 & 2.467047 & -0.436460 & 21.0312 \\
-			4 & 2.316982 & -0.202435 & 20.9467 \\
-			5 & 2.359743 & -0.320579 & 20.9809 \\
-			6 & 2.354457 & -0.319153 & 20.9805 \\
-			7 & 2.354471 & -0.319186 & 20.9805 \\
-			8 & 2.354471 & -0.319186 & 20.9805 \\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Algumas iterações do método de Gauss-Newtion}
-	\label{resultados_gn}
+        \begin{center}
+                \begin{tabular}{ r | c c r  }
+                        \hline
+                        $n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
+                        \hline
+                        1 & 3.000000 & 2.000000 & 264.3918 \\
+                        2 & -0.084033 & 1.811210 & 20.6328 \\
+                        3 & 0.625029 & 1.423940 & 16.5105 \\
+                        4 & 0.817259 & 1.272776 & 16.0961 \\
+                        5 & 0.862590 & 1.237516 & 16.0818 \\
+                        6 & 0.864782 & 1.235753 & 16.0817 \\
+                        7 & 0.864787 & 1.235748 & 16.0817 \\
+                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        \hline
+                        1 & 0.000000 & 2.000000 & 29.2758 \\
+                        2 & 0.334936 & 1.600435 & 17.7382 \\
+                        3 & 0.735040 & 1.336953 & 16.1955 \\
+                        4 & 0.849677 & 1.247743 & 16.0832 \\
+                        5 & 0.864541 & 1.235946 & 16.0817 \\
+                        6 & 0.864787 & 1.235749 & 16.0817 \\
+                        7 & 0.864787 & 1.235748 & 16.0817 \\
+                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        \hline
+                        1 & 1.500000 & 0.500000 & 20.2951 \\
+                        2 & 2.256853 & 0.007135 & 20.7735 \\
+                        3 & 2.467047 & -0.436460 & 21.0312 \\
+                        4 & 2.316982 & -0.202435 & 20.9467 \\
+                        5 & 2.359743 & -0.320579 & 20.9809 \\
+                        6 & 2.354457 & -0.319153 & 20.9805 \\
+                        7 & 2.354471 & -0.319186 & 20.9805 \\
+                        8 & 2.354471 & -0.319186 & 20.9805 \\
+                        \hline
+                \end{tabular}
+        \end{center}
+        \caption{Algumas iterações do método de Gauss-Newtion}
+        \label{resultados_gn}
 \end{table}
 
 
@@ -531,7 +561,7 @@ Para tanto, precisaríamos garantir que $P_n$ seja positiva definida e, neste se
 
 \[ P_n = [Z(\theta_n)'Z(\theta_n) + \lambda_n\bar P_n]^{-1} \]
 
-Valores reduzidos de $\lambda_n$ toranm o método equivalente ao método de Gauss, e valores maiores aproximam a direção daquela de declive máximo. É possível trabalhar com o escalar constante, ou começar com ele pequeno e diminuir a cada iteração, a menos que isso leve a um tamanho de passo inaceitável.
+	Valores reduzidos de $\lambda_n$ tornam o método equivalente ao método de Gauss, e valores maiores aproximam a direção daquela de declive máximo. É possível trabalhar com o escalar constante, ou começar com ele pequeno e diminuir a cada iteração, a menos que isso leve a um tamanho de passo inaceitável.
 
 De forma similar, modificar o Hessiano da função objetivo e usar, como matriz de direção:
 
