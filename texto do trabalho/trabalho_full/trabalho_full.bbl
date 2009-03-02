@@ -2,8 +2,8 @@
 
 \bibitem{web:ambler}
 Scott~W. Ambler.
-\newblock Mapping objects to relational databases: O/r mapping in detail.
-\newblock http://www.agiledata.org/essays/mappingObjects.html.
+\newblock Mapping objects to relational databases: O-r mapping in detail.
+\newblock \url{http://www.agiledata.org/essays/mappingObjects.html}.
 
 \bibitem{IeeeExperience}
 Kent Beck, Ron Crocker, Gerard Meszaros, John Vlissides, James~O. Coplien, Lutz
@@ -32,12 +32,12 @@ Wayne~W. Eckerson.
 \bibitem{FowlerIoc}
 Martin Fowler.
 \newblock Inversion of control.
-\newblock \\http://martinfowler.com/bliki/InversionOfControl.html.
+\newblock \url{http://martinfowler.com/bliki/InversionOfControl.html}.
 
 \bibitem{FowlerInjdep}
 Martin Fowler.
 \newblock Inversion of control containers and the dependency injection pattern.
-\newblock http://martinfowler.com/articles/injection.html.
+\newblock \url{http://martinfowler.com/articles/injection.html}.
 
 \bibitem{Gamma1995}
 Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides.
@@ -87,5 +87,8 @@ Lutz Prechelt.
 
 \bibitem{Tygver}
 Trygve Reenskaug.
+\newblock Models-views-controllers.
+\newblock \url{http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html},
+  1979.
 
 \end{thebibliography}

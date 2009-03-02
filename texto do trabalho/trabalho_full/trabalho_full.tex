@@ -260,7 +260,6 @@ Para o aplicativo, é preciso ter uma linguagem que ofereça performance, escala
 	\subsection{Java}
 	O equilíbrio entre as demandas funcionais e não-funcionais levou à escolha da linguagem Java para a primeira implementação do aplicativo, objeto deste trabalho. Estudos como o de Bull, Smith, Pottage e Freeman\cite{BullSmithPottageFreeman} mostram que a linguagem Java apresenta performance comparável à linguagem C, aliado a uma ampla gama de bibliotecas/frameworks que tornarão a implementação mais simples e expansível.
 
- - fale-me depois o que é isto:
 	Uma vantagem adicional da linguagem Java é a possibilidade que essa linguagem oferece (a partir da Versão 6) ao possibilitar que o compilador seja invocado através de APIs de alto nível, permitindo a execução interativa de algoritmos de forma independente de sistema operacional ou plataforma.
 
 	Caso esta escolha não seja a mais apropriada no futuro, uma possibilidade que estará disponível é dada pela escolha de linguagens dinâmicas como Ruby, Python ou LISP, ou, alternativamente, como linguagens estáticas com suporte a reflexão, como C\# ou Objective-C – observando-se o mapeamento dos mecanismos de arquitetura para recursos equivalentes em cada uma delas.
@@ -499,14 +498,9 @@ Matrix passo = Zt.times(Z).inverse().times(Zt).times(y.minus(f)).times(-1);
 
 Neste código, \textit{Zt} representa a transposta de $Z(\theta)$, e \textit{f} o valor de $f(\theta)$ para o conjunto de parâmetros no passo atual ($\theta_n$).
 
-Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}. 
+Novamente, encontramos os mesmos resultados obtidos por Judge et al, conforme a Tabela \ref{resultados_gn}. E desta vez é interessante comparar os resultados com os obtidos com o algoritmo de Newton-Rhapson. Neste sentido, o resultado mais supreendente é o do terceiro experimento: partindo do ponto $(1.5, 0.5)$, este método converge para o mínimo local do primeiro experimento, diferindo do resultado obtido por Newton-Rhapson (que convergia para outro mínimo local a partir do mesmo ponto).
 
-
-xxxxxxxxxxxxxxxxxxx  torna mais clara esta proposição ====================
-
-	O experimento com o par $(3,2)$ permite comparar a convergência com o o algoritmo de Newton-Rhapson, e observa-se convergência mais rápida para o ponto $(0.864787, 1.235749)$.
-
-O terceiro experimento também usa os mesmos dados do método anterior, mas observa-se que, partindo do mesmo ponto $(1.5, 0.5)$, este método converge para o ponto de mínimo local do primeiro experimento - diferindo do resultado obtido com Newton-Rhapson para este ponto inicial. Novamente evidencia-se a inexistência de controle sobre qual ponto de mínimo local será atingido.
+Este resultado evidencia ainda mais a inexistência de controle sobre qual ponto de mínimo local será alcançado, e é interessante para o aluno observar este fenômeno na prática.
 
 \begin{table}
         \begin{center}
@@ -515,31 +509,37 @@ O terceiro experimento também usa os mesmos dados do método anterior, mas obse
                         $n$ & $\theta_{n,1}$ & $\theta_{n,2}$ & $H(\theta_n)$ \\
                         \hline
                         1 & 3.000000 & 2.000000 & 264.3918 \\
-                        2 & -0.084033 & 1.811210 & 20.6328 \\
-                        3 & 0.625029 & 1.423940 & 16.5105 \\
-                        4 & 0.817259 & 1.272776 & 16.0961 \\
-                        5 & 0.862590 & 1.237516 & 16.0818 \\
-                        6 & 0.864782 & 1.235753 & 16.0817 \\
-                        7 & 0.864787 & 1.235748 & 16.0817 \\
-                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        2 & 0.723481& 1.404965 & 16.6635 \\
+                        3 & 0.837007 & 1.259230 & 16.0880 \\
+                        4 & 0.861002 & 1.238408 & 16.0818 \\
+                        5 & 0.864359 & 1.236040 & 16.0817 \\
+                        6 & 0.864740 & 1.235780 & 16.0817 \\
+                        7 & 0,864782 & 1.235752 & 16.0817 \\
+                        8 & 0.864787 & 1.235749 & 16.0817 \\
+                        8 & 0.864787 & 1.235749 & 16.0817 \\
                         \hline
-                        1 & 0.000000 & 2.000000 & 29.2758 \\
-                        2 & 0.334936 & 1.600435 & 17.7382 \\
-                        3 & 0.735040 & 1.336953 & 16.1955 \\
-                        4 & 0.849677 & 1.247743 & 16.0832 \\
-                        5 & 0.864541 & 1.235946 & 16.0817 \\
-                        6 & 0.864787 & 1.235749 & 16.0817 \\
-                        7 & 0.864787 & 1.235748 & 16.0817 \\
-                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        1 & 3.000000 & -1.000000 & 25.5156 \\
+                        2 & 2.498561 & -0.989894 & 20.4856 \\
+                        3 & 2.498566 & -0.985678 & 20.4824 \\
+                        4 & 2.498571 & -0.983903 & 20.4823 \\
+                        5 & 2.498574 & -0.983154 & 20.4823 \\
+                        6 & 2.498575 & -0.982837 & 20.4823 \\
+                        7 & 2.498576 & -0.982703 & 20.4823 \\
+                        8 & 2.498576 & -0.982646 & 20.4823 \\
+                        9 & 2.498576 & -0.982623 & 20.4823 \\
+                        10 & 2.498576 & -0.982612 & 20.4823 \\
+                        11 & 2.498576 & -0.982607 & 20.4823 \\
+                        12 & 2.498576 & -0.982605 & 20.4823 \\
                         \hline
                         1 & 1.500000 & 0.500000 & 20.2951 \\
-                        2 & 2.256853 & 0.007135 & 20.7735 \\
-                        3 & 2.467047 & -0.436460 & 21.0312 \\
-                        4 & 2.316982 & -0.202435 & 20.9467 \\
-                        5 & 2.359743 & -0.320579 & 20.9809 \\
-                        6 & 2.354457 & -0.319153 & 20.9805 \\
-                        7 & 2.354471 & -0.319186 & 20.9805 \\
-                        8 & 2.354471 & -0.319186 & 20.9805 \\
+                        2 & 1.067414 & 1.213585 & 16.6646 \\
+                        3 & 0.868351 & 1.233424 & 16.0818 \\
+                        4 & 0.865161 & 1.235496 & 16.0817 \\
+                        5 & 0.864828 & 1.235721 & 16.0817 \\
+                        6 & 0.864792 & 1.235746 & 16.0817 \\
+                        7 & 0.864788 & 1.235748 & 16.0817 \\
+                        8 & 0.864787 & 1.235748 & 16.0817 \\
+                        9 & 0.864787 & 1.235748 & 16.0817 \\
                         \hline
                 \end{tabular}
         \end{center}
