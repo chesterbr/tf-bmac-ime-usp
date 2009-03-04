@@ -1,10 +1,8 @@
 \beamer@endinputifotherversion {3.07pt}
 \select@language {brazil}
-\beamer@sectionintoc {1}{Introdu\IeC {\c c}\IeC {\~a}o}{3}{0}{1}
+\beamer@sectionintoc {1}{Introdu\IeC {\c c}\IeC {\~a}o}{2}{0}{1}
 \beamer@sectionintoc {2}{O Problema}{5}{0}{2}
-\beamer@sectionintoc {3}{Modelo da Solu\IeC {\c c}\IeC {\~a}o}{7}{0}{3}
-\beamer@sectionintoc {4}{Arquitetura de Software}{10}{0}{4}
-\beamer@sectionintoc {5}{Demonstra\IeC {\c c}\IeC {\~a}o (I)}{13}{0}{5}
-\beamer@sectionintoc {6}{Construindo uma Aula}{14}{0}{6}
-\beamer@sectionintoc {7}{Demonstra\IeC {\c c}\IeC {\~a}o (II)}{18}{0}{7}
-\beamer@sectionintoc {8}{Conclus\IeC {\~a}o}{19}{0}{8}
+\beamer@sectionintoc {3}{Modelo de Solu\IeC {\c c}\IeC {\~a}o}{8}{0}{3}
+\beamer@sectionintoc {4}{Arquitetura de Software}{12}{0}{4}
+\beamer@sectionintoc {5}{Uma Aula Pr\IeC {\'a}tica}{18}{0}{5}
+\beamer@sectionintoc {6}{Conclus\IeC {\~a}o}{24}{0}{6}

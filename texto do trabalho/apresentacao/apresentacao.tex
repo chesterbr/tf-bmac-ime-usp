@@ -4,7 +4,7 @@
 
 \mode<presentation>
 {
-  \usetheme{Warsaw}
+  \usetheme{Singapore}
   % or ...
 
   \setbeamercovered{transparent}
@@ -16,6 +16,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage{times}
 \usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+
 
 
 \title[Plataforma para Estudo Interativo de Métodos Econométricos] % (optional, use only with long paper titles)
@@ -61,12 +65,14 @@
 
 % Delete this, if you do not want the table of contents to pop up at
 % the beginning of each subsection:
-%\AtBeginSubsection[]
-%{
-%  \begin{frame}<beamer>{Outline}
-%    \tableofcontents[currentsection,currentsubsection]
-%  \end{frame}
-%}
+\AtBeginSection[]
+{
+\begin{frame}
+\begin{center}
+\structure{\Huge \insertsection}
+\end{center}
+\end{frame}
+}
 
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
@@ -81,10 +87,10 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Conteúdo}
-  \tableofcontents
+%\begin{frame}{Conteúdo}
+ % \tableofcontents
   % You might wish to add the option [pausesections]
-\end{frame}
+%\end{frame}
 
 
 % Since this a solution template for a generic talk, very little can
@@ -99,74 +105,181 @@
 
 \section{Introdução}
 \begin{frame}{Apresentações}
-	Orientador	
-			\begin{itemize}
-				\item{Prof Cicely Moitinho Amaral}
-			\end{itemize}			
 	Banca Avaliadora
-			\begin{itemize}
-				\item{Prof. Claudio Possani}
-				\item{Prof. Sergio Muniz Oliva Filho}
+	\begin{itemize}
+			\item{Prof Cicely Moitinho Amaral (orientador)}
+			\item{Prof. Claudio Possani}
+			\item{Prof. Sergio Muniz Oliva Filho}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{O que este trabalho \textit{não} é}
 	\begin{itemize}
-		\item Análise de um problema matemático
-		\item Um estudo profundo de Métodos Numéricos
+		\item Análise de um Problema Matemático
+		\item Um Estudo Profundo de Métodos Numéricos
+		\item Apologia (ou Crítica) do Ensino à Distância
 	\end{itemize}
 \end{frame}
 
 \section{O Problema}
 
 \begin{frame}{O Ensino de Econometria}
+	\begin{itemize}
+		\item Teoria + Prática: É importante experimentar!
+		\item Opções para experimentar:
+		\begin {itemize}
+			\item Softwares específicos de Estatística/Econometria (EViews, SPSS, Stata)
+			\item Pacotes Matemáticos "puros" (Mathematica, Gnu R, Matlab, Octave)
+			\item Linguagens de Programação (C, Java, Pascal, Fortran, etc.)
+			\begin {itemize}
+				\item Desenvolvimento pelo Professor
+				\item Desenvolvimento pelo Aluno
+			\end {itemize}
+		\end {itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Um Problema Econométrico}
+(Judge) Estimação de Parâmetros no Modelo:
+\[ y_t = \theta_1 + \theta_2 x_{t2} + (\theta_2)^2 x_{t3} +e_t , t = 1,2,...,20 \]
+\[ y = f(\theta)+e\]
+
+\[ f(\theta)=
+        \left( \begin{array}{ccc}
+\theta1 + \theta_2 x_{12} + \theta_2^2 x_{13} \\
+\theta1 + \theta_2 x_{22} + \theta_2^2 x_{23} \\
+.\\
+.\\
+.\\
+\theta1 + \theta_2 x_{20,2} + \theta_2^2 x_{20,3} \\
+
+\end{array} \right)\
+ \]
+Função objetivo (soma quadrática do erro): 
+ \begin{equation}
+  \label{eq_H}
+  H(\theta) = [y - f(\theta)]'[y - f(\theta)] 
+\end{equation}
+
 \end{frame}
 
-\section{Modelo da Solução}
+\section{Modelo de Solução}
 
 \begin{frame}{Proposta Funcional}
-\end{frame}
-
-\begin{frame}{Diagramas de Classe}
+	\begin{itemize}
+	 	\item Duas Categorias de Usuários:
+		\begin{itemize}
+			\item Professores (cadastram aulas) 
+			\item Alunos (interagem com aulas)
+		\end{itemize}
+		\item Aulas Divididas em Passos
+		\item Passos Divididos em:
+		\begin{itemize}
+			\item Parte Teórica: Texto/HTML
+			\item Parte Prática: Algoritmo interativo
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Casos de Uso}
+	\begin{center}
+		\includegraphics[scale=0.65]{../trabalho_full/casos.eps}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Diagramas de Classe}
+	\begin{center}
+		\includegraphics[scale=0.4]{../trabalho_full/classes.eps}
+	\end{center}
 \end{frame}
 
 \section{Arquitetura de Software}
 
 \begin{frame}{Escolha da Linguagem}
-\end{frame}
-
-\begin{frame}{Compilação Dinâmica}
+	Cada uma apresenta suas vantagens:
+	\begin{itemize}
+		\item C/C++: Performance
+		\item Pascal: Simplicidade
+		\item Fortran: Material Acadêmico
+		\item Java: Equilíbrio destes fatores; facilidade para compilação dinâmica; JAMA
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Padrões de Projeto}
+	\begin{itemize}
+		\item Mapeamento Objeto-Relacional
+		\item Model / View / Controller
+		\item Inversão de Controle / Injeção de Dependências
+	\end{itemize}
 \end{frame}
 
-\section{Demonstração (I)}
-\begin{frame}{Demonstração (I)}
+\begin{frame}{Componentes}
+\begin{center}
+\includegraphics[scale=0.4]{../trabalho_full/deployment.eps}
+\end{center}
 \end{frame}
 
-\section{Construindo uma Aula}
 
-\begin{frame}{Um Problema Econométrico: reotmando}
+\begin{frame}{Compilação Dinâmica de Algoritmos}
+	\begin{itemize}
+		\item Idéia: usar a própria linguagem para executar os algoritmos
+		\item Cadastro do Algoritmo (ex.: Cálculo de Juros):
+		\begin{itemize}
+			\item Parâmetros de Entrada\\\textit{(taxa, valor)}
+			\item Parâmetros de Saída \\\textit{(juros)}
+			\item Algoritmo \\\textit{(juros = valor*(1+taxa); valor = valor + juros)}
+			\item Código Auxiliar (opcional)\\ \textit{(função para Tabela Price)}
+		\end{itemize}
+		\item O sistema monta o código em tempo real usando estes elementos, e o \textit{javac} se encarregad o resto.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\structure{\Huge Demonstração}
+\end{center}
+\end{frame}
+
+\section{Uma Aula Prática}
+
+\begin{frame}{Um Problema Econométrico (retomando)}
+Modelo:
+\[ y_t = \theta_1 + \theta_2 x_{t2} + (\theta_2)^2 x_{t3} +e_t , t = 1,2,...,20 \]
+\[ y = f(\theta)+e\]
+Função-Objetivo: \[H(\theta) = [y - f(\theta)]'[y - f(\theta)] \]
 \end{frame}
 
 \begin{frame}{Métodos Numéricos}
+\begin{block}{Idéia Geral}
+$ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} $
+
+\begin{itemize}
+\item $P_{n}$: direção
+\item $t_{n}$: "distância"
+\item $\gamma_{n}$: gradiente de H
+\end{itemize}
+\end{block}
+\begin{block}{Condições de Parada}
+\begin{enumerate}
+\item $ ( \theta_{n+l} - \theta_n )'( \theta_{n+l} - \theta_n ) < \epsilon$
+\item $ H(  \theta_n )- H (\theta_{n+l} ) < \epsilon$
+\item $  [\frac{\partial H}{\partial \theta}\vert_{\theta_n}]'[\frac{\partial H}{\partial \theta}\vert_{\theta_n}] < \epsilon$
+\end{enumerate}
+\end{block}
+
 \end{frame}
 
 \begin{frame}{Newton-Rhapson}
+
 \end{frame}
 
 \begin{frame}{Gauss-Newton}
 \end{frame}
 
-\section{Demonstração (II)}
-\begin{frame}{Demonstração (II)}
+\begin{frame}
+\begin{center}
+\structure{\Huge Demonstração}
+\end{center}
 \end{frame}
 
 \section{Conclusão}
@@ -174,66 +287,10 @@
 \begin{frame}{Conclusões e Continuidade}
 \end{frame}
 
-\begin{frame}{Make Titles Informative.}
-
-  You can create overlays\dots
-  \begin{itemize}
-  \item using the \texttt{pause} command:
-    \begin{itemize}
-    \item
-      First item.
-      \pause
-    \item    
-      Second item.
-    \end{itemize}
-  \item
-    using overlay specifications:
-    \begin{itemize}
-    \item<3->
-      First item.
-    \item<4->
-      Second item.
-    \end{itemize}
-  \item
-    using the general \texttt{uncover} command:
-    \begin{itemize}
-      \uncover<5->{\item
-        First item.}
-      \uncover<6->{\item
-        Second item.}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
 
 
-\section*{Summary}
 
-\begin{frame}{Summary}
-
-  % Keep the summary *very short*.
-  \begin{itemize}
-  \item
-    The \alert{first main message} of your talk in one or two lines.
-  \item
-    The \alert{second main message} of your talk in one or two lines.
-  \item
-    Perhaps a \alert{third message}, but not more than that.
-  \end{itemize}
-  
-  % The following outlook is optional.
-  \vskip0pt plus.5fill
-  \begin{itemize}
-  \item
-    Outlook
-    \begin{itemize}
-    \item
-      Something you haven't solved.
-    \item
-      Something else you haven't solved.
-    \end{itemize}
-  \end{itemize}
-\end{frame}
 
 
 \end{document}
