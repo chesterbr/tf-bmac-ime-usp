@@ -28,8 +28,8 @@
 \contentsline {chapter}{\numberline {4}O Tratamento do Problema Econom\IeC {\'e}trico}{31}
 \contentsline {section}{\numberline {4.1}M\IeC {\'e}todos Num\IeC {\'e}ricos}{31}
 \contentsline {subsection}{\numberline {4.1.1}Newton-Raphson}{32}
-\contentsline {subsection}{\numberline {4.1.2}Gauss-Newton}{35}
-\contentsline {subsection}{\numberline {4.1.3}Marquardt-Levenberg}{37}
+\contentsline {subsection}{\numberline {4.1.2}Gauss-Newton}{34}
+\contentsline {subsection}{\numberline {4.1.3}Marquardt-Levenberg}{35}
 \contentsline {chapter}{\numberline {5}Conclus\IeC {\~o}es e Sugest\IeC {\~o}es Para Continuidade}{39}
 \contentsline {chapter}{Ap\^endice{} A{} -$\mskip -\thinmuskip $-{} Complementos T\IeC {\'e}cnicos}{42}
 \contentsline {section}{\numberline {A.1}Listagens de Software}{42}

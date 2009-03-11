@@ -112,10 +112,9 @@ Na notação supra se omite um * presente na notação original para tornar mais
 onde $H(\theta)$ corresponde à soma dos quadrados do erro.
 
 
-	Este é um problema econométrico típico de aplicação da teoria dos mínimos quadrados, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utilizar os dados fornecidos pelos autores, apresentados na Tabela \ref{dados}, e estimar os parâmetros.
+	Este é um problema econométrico típico de aplicação da teoria dos mínimos quadrados, já adaptado a um modelo matemático, que se presta bem a ilustrar a aplicação de uma plataforma como a proposta, razão pela qual nos pautamos sobre ele. Vamos utilizar os dados fornecidos pelos autores, apresentados na Tabela \ref{tabela_dados}, e estimar os parâmetros.
 
 \begin{table}
-		\label{tabela_dados}
         \begin{center}
                 \begin{tabular}{ r | c c c c }
                         \hline
@@ -145,7 +144,7 @@ onde $H(\theta)$ corresponde à soma dos quadrados do erro.
                 \end{tabular}
         \end{center}
         \caption{Dados usados no exemplo}
-        \label{dados}
+        	\label{tabela_dados}
 \end{table}
 
 
@@ -157,7 +156,7 @@ onde $H(\theta)$ corresponde à soma dos quadrados do erro.
 
 
 
-	O exemplo da tabela \ref{tabela_dados} acima apresenta uma ilustração na aplicação do método de Newton para estimar os parâmetros de um modelo não linear do tipo apresentado acima em 1.1. Antes, todavia de chegar ao tratamento econométrico que é o foco deste trabalho, será apresentada no Capitulo 2 a seguir, a plataforma destinada a dar suporte ao processo interativo professor-aluno relacionado à aprendizagem por intermedio da Internet de problemas complexos semelhantes ao que foi introduzido neste capítulo.
+	O exemplo da tabela \ref{tabela_dados} acima apresenta uma ilustração na aplicação do método de Newton para estimar os parâmetros de um modelo não linear do tipo apresentado acima em \ref{eq_H}. Antes, todavia de chegar ao tratamento econométrico que é o foco deste trabalho, será apresentada no Capitulo 2 a seguir, a plataforma destinada a dar suporte ao processo interativo professor-aluno relacionado à aprendizagem por intermedio da Internet de problemas complexos semelhantes ao que foi introduzido neste capítulo.
 
 
 
@@ -389,8 +388,6 @@ A seguir, são descritos três métodos numericos, chamados métodos de gradient
 \section {Métodos Numéricos}
 
 	O problema descrito na intrudução deste trabalho pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma sequência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (definida em \ref{eq_H}).
-
-O problema descrito anteriormente pode ser resolvido através de métodos de aplicados a problemas sem restrições. A proposta dos autores (pp. 951 -- 954) é trabalhar métodos iterativos, nos quais se busca uma sequência de parâmetros $\theta_{1}, \theta_{2}, ... , \theta_{n}$ que minimizam a função-objetivo  $H(\theta)$ (cuja definição está em \ref{eq_H}).
 
 Isto significa que, para cada iteração $n$, temos uma matriz de direção $P_{n}$ e tamanho $t_{n}$, que multiplicados pelo gradiente da função H ($\gamma_{n}$) permitem determinar o parâmetro para a iteração seguinte, isto é:
 

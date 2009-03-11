@@ -107,7 +107,7 @@
 \begin{frame}{Apresentações}
 	Banca Avaliadora
 	\begin{itemize}
-			\item{Prof Cicely Moitinho Amaral (orientador)}
+			\item{Prof. Cicely Moitinho Amaral (orientador)}
 			\item{Prof. Claudio Possani}
 			\item{Prof. Sergio Muniz Oliva Filho}
 	\end{itemize}
@@ -115,8 +115,8 @@
 
 \begin{frame}{O que este trabalho \textit{não} é}
 	\begin{itemize}
-		\item Análise de um Problema Matemático
-		\item Um Estudo Profundo de Métodos Numéricos
+		\item Análise de um Problema Matemático / Econométrico
+		\item Um Estudo Aprofundado de Métodos Numéricos
 		\item Apologia (ou Crítica) do Ensino à Distância
 	\end{itemize}
 \end{frame}
@@ -163,7 +163,7 @@ Função objetivo (soma quadrática do erro):
 
 \end{frame}
 
-\section{Modelo de Solução}
+\section{A Plataforma}
 
 \begin{frame}{Proposta Funcional}
 	\begin{itemize}
@@ -227,7 +227,7 @@ Função objetivo (soma quadrática do erro):
 		\begin{itemize}
 			\item Parâmetros de Entrada\\\textit{(taxa, valor)}
 			\item Parâmetros de Saída \\\textit{(juros)}
-			\item Algoritmo \\\textit{(juros = valor*(1+taxa); valor = valor + juros)}
+			\item Algoritmo \\\textit{(juros = valor*taxa; valor = valor + juros)}
 			\item Código Auxiliar (opcional)\\ \textit{(função para Tabela Price)}
 		\end{itemize}
 		\item O sistema monta o código em tempo real usando estes elementos, e o \textit{javac} se encarregad o resto.
@@ -249,7 +249,7 @@ Modelo:
 Função-Objetivo: \[H(\theta) = [y - f(\theta)]'[y - f(\theta)] \]
 \end{frame}
 
-\begin{frame}{Métodos Numéricos}
+\begin{frame}{Métodos de Gradiente}
 \begin{block}{Idéia Geral}
 $ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} $
 
@@ -270,10 +270,49 @@ $ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} $
 \end{frame}
 
 \begin{frame}{Newton-Rhapson}
+Usar o inverso da matriz Hessiana para especificar a direção do passo em cada iteração, ajustando-o pelo gradiente, isto é:
+\[ \theta_{n+1} = \theta_{n} - \mathcal{H}_{n}^{-1}\gamma_{n}  \]
+
+
+$\mathcal{H}_n$: Hessiano de $H(\theta)$ aplicado em $\theta_n$, isto é:
+
+\[  \mathcal{H}_n = \left [ \left . \frac{\partial^2 H}{\partial \theta \partial \theta'} \right |_{\theta_n}  \right ] \]
 
 \end{frame}
 
+\begin{frame}{Newton-Rhapson: implementando}
+\small{\texttt{double[][] hess = hess(theta1, theta2, y, x2, x3);\\
+Matrix invHess = new Matrix(hess).inverse();\\
+Matrix grad = new Matrix(\\\hspace{2pc}gradH(theta1, theta2, y, x2, x3), 2);\\
+Matrix passo = invHess.times(grad);}}
+\end{frame}
+
+
 \begin{frame}{Gauss-Newton}
+
+
+Definindo $ Z(\theta)=[\partial f/ \partial \theta'\vert_{\theta}] $, o passo é dado por:
+
+\[ \theta_{n+1} = \theta_{n} + [Z(\theta_n)'Z(\theta_n)]^{-1}Z(\theta_n)'[y-f(\theta_n)] \]
+
+que é o EMQ para o modelo:
+\[ \bar{y}(\theta_n)=Z(\theta_n)\theta+e \]
+
+\begin{block}{Caracterísitcas}
+\begin{itemize}
+	\item{Funciona como uma sequência de regressões lineares}
+	\item{Restrito a funções-objetivo que são somas de quadrados
+		\\\textit{ótimo: $ H(\theta) = [y - f(\theta)]'[y - f(\theta)] = e(\theta)'e(\theta) $}}
+\end{itemize}
+\end{block}
+		
+\end{frame}
+
+\begin{frame}{Gauss-Newton: implementando}
+\small{\texttt{Matrix Z = Z(theta1, theta2, x2, x3); \\
+Matrix Zt = Z.transpose(); \\
+Matrix f = f(theta1, theta2, x2, x3); \\
+Matrix passo = Zt.times(Z).inverse()\\\hspace{2pc}.times(Zt)\\\hspace{2pc}.times(y.minus(f)).times(-1); }}
 \end{frame}
 
 \begin{frame}
@@ -284,8 +323,30 @@ $ \theta_{n+1} = \theta_{n} - t_{n}P_{n}\gamma_{n} $
 
 \section{Conclusão}
 
-\begin{frame}{Conclusões e Continuidade}
+\begin{frame}{Lições Aprendidas}
+	\begin{itemize}
+		\item Não subestimar o aspecto educacional/didático
+		\item É difícil conciliar simplificação e funcionalidades - mas coompensa
+	\end{itemize}
 \end{frame}
+
+\begin{frame}{Sugestões para Continuidade}
+	\begin{itemize}
+		\item Cadastro de usuários (possivelmente vinculado a algum sistema de matrícula);
+		\item Possibilidade de salvar e recuperar dados;
+		\item Permitir ao código decidir o próximo passo a ser executado;
+		\item Uma interface mais amigável para o professor (em particular na visualização do texto das aulas e da depuração do código dos algoritmos);
+		\item Possibilidade de usar outros sistemas de codificação, como \LaTeX  /MathML na composição da parte teórica;
+		\item Conversão semi-automática de algoritmos em outras linguagens (ex.: FORTRAN).
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\structure{\Huge Obrigado!}
+\end{center}
+\end{frame}
+
 
 
 
